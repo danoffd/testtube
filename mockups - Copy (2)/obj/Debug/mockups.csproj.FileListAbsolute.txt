@@ -1,5 +1,0 @@
-C:\RubyApps\testtube\mockups\bin\mockups.dll
-C:\RubyApps\testtube\mockups\bin\mockups.pdb
-C:\RubyApps\testtube\mockups\obj\Debug\mockups.csprojResolveAssemblyReference.cache
-C:\RubyApps\testtube\mockups\obj\Debug\mockups.dll
-C:\RubyApps\testtube\mockups\obj\Debug\mockups.pdb
