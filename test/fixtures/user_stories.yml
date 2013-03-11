@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ProjectModel: 
+  ProjectActor: 
+  ModelStoryType: 
+  want_to: MyString
+  so_i_can: MyString
+  doit_loe_hours_calculated: 9.99
+  doit_loe_hours: 
+  fibonacci_estimate: 1
+  priority: 1
+  is_fully_recorded: false
+  is_estimate_final: false
+
+two:
+  ProjectModel: 
+  ProjectActor: 
+  ModelStoryType: 
+  want_to: MyString
+  so_i_can: MyString
+  doit_loe_hours_calculated: 9.99
+  doit_loe_hours: 
+  fibonacci_estimate: 1
+  priority: 1
+  is_fully_recorded: false
+  is_estimate_final: false

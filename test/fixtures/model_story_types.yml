@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ProjectModel: 
+  story_type_name: MyString
+
+two:
+  ProjectModel: 
+  story_type_name: MyString

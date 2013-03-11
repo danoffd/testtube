@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  Project: 
+  name: MyString
+  description: MyString
+  start_date: 2013-02-26 09:26:06
+  end_date: 2013-02-26 09:26:06
+  doit_hours_per_day: 9.99
+
+two:
+  Project: 
+  name: MyString
+  description: MyString
+  start_date: 2013-02-26 09:26:06
+  end_date: 2013-02-26 09:26:06
+  doit_hours_per_day: 9.99

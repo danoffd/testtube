@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  Project: 
+  actor_singular_name: MyString
+  actor_plural_name: MyString
+  use_an_instead_of_a: false
+
+two:
+  Project: 
+  actor_singular_name: MyString
+  actor_plural_name: MyString
+  use_an_instead_of_a: false

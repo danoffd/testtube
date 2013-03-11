@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  BaselineTask: 
+  UserStory: 
+  is_overridden: false
+  name: MyString
+  description: MyText
+  doit_loe_hours: 9.99
+
+two:
+  BaselineTask: 
+  UserStory: 
+  is_overridden: false
+  name: MyString
+  description: MyText
+  doit_loe_hours: 9.99

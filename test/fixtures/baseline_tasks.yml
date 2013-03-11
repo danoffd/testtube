@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ModelStoryType: 
+  name: MyString
+  description: MyString
+  small_doit_loe_hours: 9.99
+  is_sensitive_to_size: false
+  review_team_size: 1
+
+two:
+  ModelStoryType: 
+  name: MyString
+  description: MyString
+  small_doit_loe_hours: 9.99
+  is_sensitive_to_size: false
+  review_team_size: 1

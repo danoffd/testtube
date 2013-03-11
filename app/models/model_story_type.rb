@@ -1,0 +1,9 @@
+class ModelStoryType < ActiveRecord::Base
+  belongs_to :ProjectModel
+  has_many :baseline_tasks, :dependent => :destroy, :foreign_key => 'ModelStoryType_id'
+  has_many :user_stories, :dependent => :destroy, :foreign_key => 'ModelStoryType_id'
+
+  attr_accessible :story_type_name
+  validates :story_type_name, 
+    :uniqueness => {:message => "name must be unique", :scope => :ProjectModel_id}
+end

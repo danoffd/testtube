@@ -1,0 +1,8 @@
+class ProjectActor < ActiveRecord::Base
+  belongs_to :Project
+  attr_accessible :actor_plural_name, :actor_singular_name, :use_an_instead_of_a
+  validates :actor_singular_name, 
+    :uniqueness => {:message => "singular name must be unique", :scope => :Project_id}
+  validates :actor_plural_name, 
+    :uniqueness => {:message => "plural name must be unique", :scope => :Project_id}
+end

@@ -1,0 +1,23 @@
+<h1>Create a new story</h1>
+<%= form_for @story do |story| %>
+  <% if @story.errors.any? %>
+    <h2>Errors</h2>
+    <ul>
+      <% @story.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <p>
+    <%= story.label :title %><br/>
+    <%= story.text_field :title %>
+  </p>
+  <!-- <p> -->
+  <!--   <%= story.label :comments %><br/> -->
+  <!--   <%= story.text_area :comments %> -->
+  <!-- </p> -->
+  <p>
+    <%= story.submit "Save" %>
+  </p>
+<% end %>
+

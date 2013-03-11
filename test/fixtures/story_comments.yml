@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  UserStory: 
+  comment: MyText
+  comment_type: MyString
+  is_satisfied: false
+
+two:
+  UserStory: 
+  comment: MyText
+  comment_type: MyString
+  is_satisfied: false

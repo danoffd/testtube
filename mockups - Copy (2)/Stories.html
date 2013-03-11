@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>testtube - Stories</title>
+    <script src="javascript/jquery-1.9.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/testtube.css"/>
+    <script type="text/JavaScript" src="javascript/userstories.js"></script> 
+    <script type="text/JavaScript" src="javascript/TT.js"></script> 
+</head>
+<body>
+    <div id="wrapper">
+        <header class="page-header">
+            <img class="page-logo" src="images/madScience.jpg"/>
+            <menu class="app-menu">
+                <a href="#">Home</a>
+                <a href="#">Projects</a>
+                <a href="colorchart.html">Help</a>
+            </menu>
+            <h1 class="page-header"><b>Project testtube:</b> using myself to create myself</h1>
+
+            <menu class="project-menu">
+                <ul>
+                    <li><a href="#">Summary</a></li>
+                    <li><a href="stories.html" class="active">Stories</a></li>
+                    <li><a href="#">Actors</a></li>
+                    <li><a href="#">Risks</a></li>
+                    <li><a href="#">Resources</a></li>
+                </ul>
+            </menu>
+        </header>
+        <section class="main-body-section">
+            <h1>Work Breakdown</h1>
+            <p><a href="#popupStory?new" id="newStoryLink">Add a new story</a></p>
+            <div id="userStoryTree">
+                <p id="TTtreeDebugMessage"></p>
+                <ul class="tree-outer tree-node-list">
+                    <li>
+                        <div id="sibhold0" class="tree-sibling-dropzone">
+                            <div class="tree-node-nav"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div id="Div0" draggable="true" class="tree-node">
+                            <div class="tree-node-nav TT-expanded">
+                                <div class="tree-node-command"></div>
+                                <div class="tree-node-fill"></div>
+                            </div>
+                            <div class="tree-node-function"><img src="images/loe-toobig.png" /></div>
+                            <div class="tree-node-function"><img src="images/status-backlog.png" /></div>
+                            <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">enter the work required to complete a project</span> so I can use the information to analyze the effort required to complete a project</div>
+                        </div>
+                        <ul class="tree-inner tree-node-list">
+                            <li>
+                                <div id="Li1" class="tree-sibling-dropzone">
+                                    <div class="tree-node-nav"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div draggable="true" id="Li2" class="tree-node">
+                                    <div class="tree-node-nav">
+                                        <div class="tree-node-command"></div>
+                                        <div class="tree-node-fill"></div>
+                                    </div>
+                                    <div class="tree-node-function"><img src="images/loe-small.png" /></div>
+                                    <div class="tree-node-function"><img src="images/status-inprocess.png" /></div>
+                                    <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">add user stories</span> so I can see the detailed work items that comprise my project</div>
+                                </div>
+                                <div id="Li3" class="tree-sibling-dropzone">
+                                    <div class="tree-node-nav"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div draggable="true" id="Li4" class="tree-node">
+                                    <div class="tree-node-nav">
+                                        <div class="tree-node-command"></div>
+                                        <div class="tree-node-fill"></div>
+                                    </div>
+                                    <div class="tree-node-function"><img src="images/loe-small-medium.png" /></div>
+                                    <div class="tree-node-function"></div>
+                                    <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">arrange user stories accoring to epic and priority</span> so I can visualize the organization of work</div>
+                                </div>
+                                <div id="Li5" class="tree-sibling-dropzone">
+                                    <div class="tree-node-nav"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div draggable="true" id="Li6" class="tree-node">
+                                    <div class="tree-node-nav">
+                                        <div class="tree-node-command"></div>
+                                        <div class="tree-node-fill"></div>
+                                    </div>
+                                    <div class="tree-node-function"><img src="images/loe-medium.png" /></div>
+                                    <div class="tree-node-function"><img src="images/status-assigned.png" /></div>
+                                    <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">hide or show details</span> so I can view the work at various levels of detail</div>
+                                </div>
+                                <div id="Li7" class="tree-sibling-dropzone">
+                                    <div class="tree-node-nav"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div draggable="true" id="Li8" class="tree-node">
+                                    <div class="tree-node-nav">
+                                        <div class="tree-node-command"></div>
+                                        <div class="tree-node-fill"></div>
+                                    </div>
+                                    <div class="tree-node-function"><img src="images/loe-medium-large.png" /></div>
+                                    <div class="tree-node-function"><img src="images/status-pending.png" /></div>
+                                    <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">quickly assign LOE based on a fibonacci-type assignment</span> so I can gain a rough idea of LOE before assigning detailed estimates</div>
+                                </div>
+                                <div id="Li9" class="tree-sibling-dropzone">
+                                    <div class="tree-node-nav"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div draggable="true" id="Li10" class="tree-node">
+                                    <div class="tree-node-nav">
+                                        <div class="tree-node-command"></div>
+                                        <div class="tree-node-fill"></div>
+                                    </div>
+                                    <div class="tree-node-function"><img src="images/loe-large.png" /></div>
+                                    <div class="tree-node-function"><img src="images/status-writing.png" /></div>
+                                    <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">override the quick-assigned fibonacci values with detailed estimates</span> so I can provide more detailed estimates</div>
+                                </div>
+                                <div id="Li11" class="tree-sibling-dropzone">
+                                    <div class="tree-node-nav"></div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div id="sibhold1" class="tree-sibling-dropzone">
+                            <div class="tree-node-nav"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div draggable="true" id="Div1" class="tree-node">
+                            <div class="tree-node-nav">
+                                <div class="tree-node-command"></div>
+                                <div class="tree-node-fill"></div>
+                            </div>
+                            <div class="tree-node-function"><img src="images/loe-small-medium.png" /></div>
+                            <div class="tree-node-function"><img src="images/status-complete.png" /></div>
+                            <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">estimate the project with progressively more precise values</span> so I can provide as comprehensive an estimate as is possible</div>
+                        </div>
+                        <div id="sibhold2" class="tree-sibling-dropzone">
+                            <div class="tree-node-nav"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div draggable="true" id="Div2" class="tree-node">
+                            <div class="tree-node-nav">
+                                <div class="tree-node-command"></div>
+                                <div class="tree-node-fill"></div>
+                            </div>
+                            <div class="tree-node-function"><img src="images/loe-small-medium.png" /></div>
+                            <div class="tree-node-function"><img src="images/status-writing.png" /></div>
+                            <div class="tree-node-body"">As a <span class="story-actor">Manager</span> I want to <span class="story-wantto">plan the completion of the project by using the information captured during the estimation process</span> so I can use the esimation knowledge I gained and tie the work back to original estimates</div>
+                        </div>
+                        <div id="sibhold3" class="tree-sibling-dropzone">
+                            <div class="tree-node-nav"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div draggable="true" id="Div3" class="tree-node">
+                            <div class="tree-node-nav">
+                                <div class="tree-node-command"></div>
+                                <div class="tree-node-fill"></div>
+                            </div>
+                            <div class="tree-node-function"><img src="images/loe-small-medium.png" /></div>
+                            <div class="tree-node-function"><img src="images/status-writing.png" /></div>
+                            <div class="tree-node-body"">As a <span class="story-actor">Manager</span> I want to <span class="story-wantto">track the progress of the project</span> so I can understand my status at every point of the project lifecycle</div>
+                        </div>
+                        <div id="sibhold4" class="tree-sibling-dropzone">
+                            <div class="tree-node-nav"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div draggable="true" id="Div4" class="tree-node">
+                            <div class="tree-node-nav">
+                                <div class="tree-node-command"></div>
+                                <div class="tree-node-fill"></div>
+                            </div>
+                            <div class="tree-node-function"><img src="images/loe-small-medium.png" /></div>
+                            <div class="tree-node-function"><img src="images/status-writing.png" /></div>
+                            <div class="tree-node-body">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">retrospectively analyze my original estimates against time actually required to complete the work</span> so I can estimate the next project even more accurately</div>
+                        </div>
+                        <div id="sibhold5" class="tree-sibling-dropzone">
+                            <div class="tree-node-nav"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <aside id="popupWrapper">
+            <!-- Start of Login Dialog -->
+            <div id="popupStory" class="TTpopup">
+                <div id="edit-story" class="edit-story-container">
+                    <p id="editorSummary">change me on the fly</p>
+                    <div id= "edit-story-actor" class="TTrefined-list-combo">
+                        <p class="label-field-pair">
+                            <label for="refinedStoryInput">As a/an </label>
+                            <input class="TTrefined-list-input" name="refinedStoryInput" value="" tabindex="1" autocomplete="off" />
+                        </p>
+                        <div class="TTrefined-list-results">
+                                <div class="result">Estimator</div>
+                                <div class="result">Manager of people</div>
+                                <div class="result">Doer</div>
+                                <div class="result">Manager of projects</div>
+                        </div>
+                    </div>
+                    <p class="label-field-pair">
+                        <label for="iWantTo">I want to</label>
+                        <textarea name="iWantTo" tabindex="2" class="edit-story-wantto"></textarea>
+                    </p>
+                    <p class="label-field-pair">
+                        <label for="soICan">so I can</label>
+                        <textarea name="soICan" tabindex="3" class="edit-story-soican"></textarea>
+                    </p>
+                    <a href="javascript:$('#mask').hide();$('#popupStory').hide();" class="btn-close">Close</a>
+                    <a href="javascript:$('#mask').hide();$('#popupStory').hide();" class="btn-save">Save</a>
+                </div>
+            </div>
+            <!-- End of Login Dialog -->
+        </aside>
+    </div>
+    <div id="mask" class="TTpopup-background-mask"></div>
+</body>
+</html>

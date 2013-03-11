@@ -1,0 +1,7 @@
+class Story < ActiveRecord::Base
+  attr_accessible :comments, :points, :title
+
+  validates :title, :comments, :presence => true
+  validates :title, :length => {:minimum => 5}
+  validates :title, :uniqueness => {:message => "must be unique"}
+end
