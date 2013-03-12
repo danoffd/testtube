@@ -1,14 +1,15 @@
 Testtube::Application.routes.draw do
 
-  # get "stories/index" 
-  # get "stories/show" 
-  # get "stories/new"
-  # get "stories/edit"
-  # get "stories/create"
-  # get "stories/update"
-  # get "stories/destroy"
+  # get "user_stories/show"
 
- resources :stories
+  # get "user_stories/index"
+
+  # get "user_stories/new"
+
+  # get "user_stories/create"
+
+
+ resources :user_stories
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

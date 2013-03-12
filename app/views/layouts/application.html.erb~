@@ -1,14 +1,51 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Testtube</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <title>testtube - Stories</title>
+
+    <%= javascript_include_tag("jquery-1.9.1")%>
+    <%= javascript_include_tag("userstories")%>
+    <%= javascript_include_tag("TT")%>
+
+    <%= stylesheet_link_tag("testtube")%>
+
 </head>
 <body>
 
-<%= yield %>
 
+    <div id="wrapper">
+        <header class="page-header">
+            <div class="page-header-contents">
+                <h1 class="page-header"><p><b>Project testtube:</b> using myself to create myself</p></h1>
+                <div>
+                    <menu class="app-menu">
+                        <a href="#">Home</a>
+                        <a href="#">Projects</a>
+                        <a href="colorchart.html">Help</a>
+                    </menu>
+                </div>
+                <menu class="project-menu">
+                    <ul>
+                        <li><a href="#">Summary</a></li>
+                        <li><a href="stories.html" class="active">Stories</a></li>
+                        <li><a href="#">Actors</a></li>
+                        <li><a href="#">Risks</a></li>
+                        <li><a href="#">Resources</a></li>
+                    </ul>
+                </menu>
+              </div>
+            <%= image_tag "madScience.jpg" %>
+            <!-- <img class="page-logo" src="images/madScience.jpg"/> -->
+        </header>
+        <% flash.each do |key, value| %>
+           <p><%= value %></p>
+        <% end %>
+
+        <%= yield %>
+    </div>
+    <div id="mask" class="TTpopup-background-mask"></div>
 </body>
 </html>
+
