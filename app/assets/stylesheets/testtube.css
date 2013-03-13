@@ -404,6 +404,10 @@ ul.tree-node-list li {
     background-repeat:repeat;
 }
 
+/* special formatting for the selected nodes in the tree */
+.tree-node.selected{
+  background-color: red;
+}
 
 /*by default, the sibling dropzones should be filled with a vert line.
     might be overrridden later */

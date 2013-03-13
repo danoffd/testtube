@@ -11,7 +11,7 @@
                             </div>
                         </li>
                         <li>
-                            <div id="Div0" draggable="true" class="tree-node">
+                            <div id="Div0" draggable="true" class="tree-node selected">
                                 <div class="tree-node-nav TT-expanded">
                                     <div class="tree-node-command"></div>
                                     <div class="tree-node-fill"></div>

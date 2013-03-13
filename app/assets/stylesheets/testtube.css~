@@ -107,7 +107,7 @@ h1.page-header p{
     color: #66cc66;
     font-family: courier;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 24px;
     text-shadow:1px 1px 3px #FFF;
 }
 
@@ -404,6 +404,9 @@ ul.tree-node-list li {
     background-repeat:repeat;
 }
 
+.tree-node.selected{
+  background-color: red;
+}
 
 /*by default, the sibling dropzones should be filled with a vert line.
     might be overrridden later */
