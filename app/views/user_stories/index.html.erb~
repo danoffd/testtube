@@ -1,0 +1,545 @@
+        <section class="main-body-parts-continer">
+            <section class="main-body-section TTsliderCompanion full">
+                <h1>Work Breakdown</h1>
+                <p><a href="#popupStory?new" id="newStoryLink">Add a new story</a></p>
+                <div id="userStoryTree">
+                    <p id="TTtreeDebugMessage"></p>
+                    <ul class="tree-outer tree-node-list">
+                        <li>
+                            <div id="sibhold0" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div id="Div0" draggable="true" class="tree-node">
+                                <div class="tree-node-nav TT-expanded">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-toobig.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-backlog.png"  %></div>
+                                <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">enter the work required to complete a project</span> so I can use the information to analyze the effort required to complete a project</div>
+                            </div>
+                            <ul class="tree-inner tree-node-list">
+                                <li>
+                                    <div id="Li1" class="tree-sibling-dropzone">
+                                        <div class="tree-node-nav"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div draggable="true" id="Li2" class="tree-node">
+                                        <div class="tree-node-nav">
+                                            <div class="tree-node-command"></div>
+                                            <div class="tree-node-fill"></div>
+                                        </div>
+                                        <div class="tree-node-function"><%= image_tag "loe-small.png"  %></div>
+                                        <div class="tree-node-function"><%= image_tag "status-inprocess.png"  %></div>
+                                        <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">add user stories</span> so I can see the detailed work items that comprise my project</div>
+                                    </div>
+                                    <div id="Li3" class="tree-sibling-dropzone">
+                                        <div class="tree-node-nav"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div draggable="true" id="Li4" class="tree-node">
+                                        <div class="tree-node-nav">
+                                            <div class="tree-node-command"></div>
+                                            <div class="tree-node-fill"></div>
+                                        </div>
+                                        <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                        <div class="tree-node-function"></div>
+                                        <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">arrange user stories accoring to epic and priority</span> so I can visualize the organization of work</div>
+                                    </div>
+                                    <div id="Li5" class="tree-sibling-dropzone">
+                                        <div class="tree-node-nav"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div draggable="true" id="Li6" class="tree-node">
+                                        <div class="tree-node-nav">
+                                            <div class="tree-node-command"></div>
+                                            <div class="tree-node-fill"></div>
+                                        </div>
+                                        <div class="tree-node-function"><%= image_tag "loe-medium.png"  %></div>
+                                        <div class="tree-node-function"><%= image_tag "status-assigned.png"  %></div>
+                                        <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">hide or show details</span> so I can view the work at various levels of detail</div>
+                                    </div>
+                                    <div id="Li7" class="tree-sibling-dropzone">
+                                        <div class="tree-node-nav"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div draggable="true" id="Li8" class="tree-node">
+                                        <div class="tree-node-nav">
+                                            <div class="tree-node-command"></div>
+                                            <div class="tree-node-fill"></div>
+                                        </div>
+                                        <div class="tree-node-function"><%= image_tag "loe-medium-large.png"  %></div>
+                                        <div class="tree-node-function"><%= image_tag "status-pending.png"  %></div>
+                                        <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">quickly assign LOE based on a fibonacci-type assignment</span> so I can gain a rough idea of LOE before assigning detailed estimates</div>
+                                    </div>
+                                    <div id="Li9" class="tree-sibling-dropzone">
+                                        <div class="tree-node-nav"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div draggable="true" id="Li10" class="tree-node">
+                                        <div class="tree-node-nav">
+                                            <div class="tree-node-command"></div>
+                                            <div class="tree-node-fill"></div>
+                                        </div>
+                                        <div class="tree-node-function"><%= image_tag "loe-large.png"  %></div>
+                                        <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                        <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">override the quick-assigned fibonacci values with detailed estimates</span> so I can provide more detailed estimates</div>
+                                    </div>
+                                    <div id="Li11" class="tree-sibling-dropzone">
+                                        <div class="tree-node-nav"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div id="sibhold1" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div1" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-complete.png"  %></div>
+                                <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">estimate the project with progressively more precise values</span> so I can provide as comprehensive an estimate as is possible</div>
+                            </div>
+                            <div id="sibhold2" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div2" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body"">As a <span class="story-actor">Manager</span> I want to <span class="text-standout">plan the completion of the project by using the information captured during the estimation process</span> so I can use the esimation knowledge I gained and tie the work back to original estimates</div>
+                            </div>
+                            <div id="sibhold3" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div3" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body"">As a <span class="story-actor">Manager</span> I want to <span class="text-standout">track the progress of the project</span> so I can understand my status at every point of the project lifecycle</div>
+                            </div>
+                            <div id="sibhold4" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div4" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">retrospectively analyze my original estimates against time actually required to complete the work</span> so I can estimate the next project even more accurately</div>
+                            </div>
+                            <div id="sibhold5" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div5" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div6" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div7" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div8" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div9" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div10" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div11" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div12" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div13" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div14" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div15" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div16" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div17" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div18" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div19" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div20" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div21" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div22" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div23" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div24" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div25" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div26" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div27" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div28" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div29" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div30" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div31" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div32" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div33" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div34" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div35" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div36" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div37" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div38" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div39" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div40" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div41" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div42" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div43" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div44" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div draggable="true" id="Div45" class="tree-node">
+                                <div class="tree-node-nav">
+                                    <div class="tree-node-command"></div>
+                                    <div class="tree-node-fill"></div>
+                                </div>
+                                <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
+                                <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
+                                <div class="tree-node-body">dummy</div>
+                            </div>
+                            <div id="Div46" class="tree-sibling-dropzone">
+                                <div class="tree-node-nav"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <aside id="sliderChest">
+                <div class="TTsliderFrame">
+                    <div class="TTsliderDrawer closed" id="drawer-1">
+                        <div class="TTsliderDiv">
+                            <p>
+                                1aaaaaaaa<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                1ssssssss<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                1dddddddd<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                1ffffffff<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                1gggggggg<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                            </p>
+                        </div>
+                        <%= image_tag "pullhandle.png" %>
+                    </div>
+                    <div class="TTsliderDrawer closed" id="drawer-2">
+                        <div class="TTsliderDiv">
+                            <p>
+                                !!!!!!!!<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                @@@@@@@@<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                ########<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                $$$$$$$$<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                %%%%%%%%<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                !!!!!!!!<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                @@@@@@@@<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                ########<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                $$$$$$$$<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                %%%%%%%%<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                            </p>
+                        </div>
+                        <%= image_tag "pullhandle.png" %>
+                    </div>
+                    <div class="TTsliderDrawer closed" id="drawer-3">
+                        <div class="TTsliderDiv">
+                            <p>
+                                11111111<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                22222222<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                33333333<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                44444444<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                55555555<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                66666666<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                77777777<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                            </p>
+                        </div>
+                        <%= image_tag "pullhandle.png" %>
+                    </div>
+                    <div class="TTsliderDrawer closed" id="drawer-4">
+                        <div class="TTsliderDiv">
+                            <p>
+                                +++<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                ---<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                ***<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                ///<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                                %%%<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
+                            </p>
+                        </div>
+                        <%= image_tag "pullhandle.png" %>
+                    </div>
+                </div>
+            </aside>
+        </section>
+        <aside id="popupWrapper">
+            <div id="popupStory" class="TTpopup">
+                <div id="edit-story" class="edit-story-container">
+                    <p id="editorSummary">change me on the fly</p>
+                    <div id= "edit-story-actor" class="TTrefined-list-combo">
+                        <p class="label-field-pair">
+                            <label for="refinedStoryInput">As a/an </label>
+                            <input class="TTrefined-list-input" name="refinedStoryInput" value="" tabindex="1" autocomplete="off" />
+                        </p>
+                        <div class="TTrefined-list-results">
+                                <div class="result">Estimator</div>
+                                <div class="result">Manager of people</div>
+                                <div class="result">Doer</div>
+                                <div class="result">Manager of projects</div>
+                        </div>
+                    </div>
+                    <p class="label-field-pair">
+                        <label for="iWantTo">I want to</label>
+                        <textarea name="iWantTo" tabindex="2" class="edit-story-wantto"></textarea>
+                    </p>
+                    <p class="label-field-pair">
+                        <label for="soICan">so I can</label>
+                        <textarea name="soICan" tabindex="3" class="edit-story-soican"></textarea>
+                    </p>
+                    <a href="javascript:$('#mask').hide();$('#popupStory').hide();" class="btn-close">Close</a>
+                    <a href="javascript:$('#mask').hide();$('#popupStory').hide();" class="btn-save">Save</a>
+                </div>
+            </div>
+        </aside>
