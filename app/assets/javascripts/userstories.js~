@@ -3,7 +3,7 @@
 $("document").ready(function () {
 
     TTwireUpTree(populateStoryEditor);
-    TTwireupRefinedListEvents("#tree-editor-actor", "#story-editor-wantto");
+    TTwireupRefinedListEvents("#story-editor-actor", "#story-editor-wantto");
     TTwireUpSliderChest();
 
     $("#story-editor-actor, #story-editor-wantto, #story-editor-soican").keyup(function (e) {

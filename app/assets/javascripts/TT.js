@@ -167,38 +167,6 @@ function TTselectRefinedListWithClick(e, clickedDiv, refinedListId, focusOnSelec
 //////////////////////////////////////////////////////////////////////////
 //   slider panel functions
 //////////////////////////////////////////////////////////////////////////
-//// decomposing pretty cool example:
-//// http://www.zocdoc.com/search.aspx?dr_specialty=98&address=Enter+a+City+and+State%2C+or+Zip&insurance_carrier=-1&insurance_plan=-1&button.x=166&button.y=21
-//bindHeader: function () { 
-//    var thisObj = this
-//        , windowJQ = $(window)
-//        , thisOffsetTop = thisObj.$el.offset().top
-//        , newFuncName = "scroll." + thisObj.cid; 
-//    thisObj.positionHeader(windowJQ, thisOffsetTop); 
-//    windowJQ.unbind(newFuncName).bind(newFuncName, function () { 
-//        thisObj.positionHeader(windowJQ, thisOffsetTop) }); 
-//    return 
-//}
-
-//positionHeader: function (windowJQ, thisOffsetTop) { 
-//    var thisObj = this
-//        , windowScrollTop = windowJQ.scrollTop()
-//        , b = 0
-//        , fancyShadeUnderWhenSliding = "selector-header-overlap"; 
-//    if (windowScrollTop > thisOffsetTop) { 
-//        // if the window has scrolled up so our objects top would be less than the top
-//        // of the window, set the new object top to window scroll top (which is probably 0)
-//        // minus the object's top (which should be a negative)... effectively adding
-//        // the difference to create the new top
-//        b = windowScrollTop - thisOffsetTop; 
-//        thisObj.$header.addClass(fancyShadeUnderWhenSliding) 
-//    } 
-//    else 
-//        thisObj.$header.removeClass(fancyShadeUnderWhenSliding); 
-//    thisObj.$header.css({ top: b + "px" }); 
-//    return 
-//}
-
 var nextTop = 20;
 
 function TTwireUpSliderChest()
@@ -520,11 +488,15 @@ function TTtreeDebugMessage(s)
   else elStatus.innerHTML = '&nbsp;';
 }
 
-function TTwireUpTree()
+var TTpopulateEditorFunction = undefined;
+
+function TTwireUpTree(populateEditorFunction)
 {
   TTtreeDebugMessage('Using HTML5 Drag and Drop');
   var treeDraggable = TTtreeDraggableElements();
   var treeDroppable = TTtreeDroppableElements();
+
+  TTpopulateEditorFunction = populateEditorFunction;
 
   treeDraggable.bind("dragstart", function (e)
   {
@@ -559,7 +531,7 @@ function TTwireUpTree()
   // and space bar to expand/collapse
   treeNodes.keyup(function (e)
   {
-    TTtreeNodeKeyUp(e, $(this)[0]);
+    TTtreeNodeKeyUp(e, $(this));
   });
 
   // wire up the key press event.  These are the actions that the
@@ -575,7 +547,65 @@ function TTwireUpTree()
     TTtreeNodeClick(e, $(this));
   });
 
+  treeNodes.dblclick(function (e)
+  {
+    TTeditTreeNode(e, $(this));
+  });
+
+  treeNodes.focus(function (e)
+  {
+    TTsetTreeNodeFocus(e, $(this));
+  });
+
   TTreindexTree(9000);
+}
+
+function TTeditorDelete()
+{
+  var jqEditor = $("#tree-editor");
+  var jqNode = jqEditor.parent();
+  TTclearAndSaveTreeEditor(undefined, jqEditor);
+  TTdeleteTreeNode(jqNode);
+}
+
+function TTeditorCancel()
+{
+  TTclearAndSaveTreeEditor(undefined, $("#tree-editor"));
+}
+
+function TTeditorClose()
+{
+  TTclearAndSaveTreeEditor(undefined, $("#tree-editor"));
+}
+
+function TTeditorDetails()
+{
+  alert("show me the details!!!!");
+}
+
+function TTdeleteTreeNode(jqNode)
+{
+  var containingLI = jqNode.parent();
+  var containingUL = containingLI.parent();
+
+  //  TODO:  Call external function to delete the data
+ 
+  // need to move the selected item what will be the next one in the 
+  // tree.  We can reuse the arrow key functions, but need to hide
+  // the current node first so its not selected
+  containingLI.hide();
+  newNode = TTtreeStep(undefined, jqNode, false);
+
+  // remove the LI from the containing list
+  containingLI.remove();
+
+  // remove the UL from the LI that contains it if there are
+  // no more children in it
+  if (containingUL.has(".tree-node").length == 0)
+  {
+    containingUL.remove();
+    TTreindexTree(9000, newNode.attr("id"));
+  }
 }
 
 function TTreindexTree(startingIndex, initialSelectionId)
@@ -657,8 +687,71 @@ function TTtoggleTreeNode(jNode)
   }
 }
 
-var TTshouldSelectNext = false;
+function TTsetTreeNodeFocus(event, jqNode)
+{
+  var treeEditor =  $("#tree-editor");
 
+  // if the editor is currently visible, and the current node
+  // is not the same one thats being selected, then we need to
+  // close the editor
+  if (treeEditor.parent().hasClass("tree-node")
+      && treeEditor.parent().attr("id") != jqNode.attr("id"))
+  {
+    TTclearAndSaveTreeEditor(event,treeEditor);
+  }
+}
+
+function TTeditTreeNode(event, jqElement)
+{
+  var editor = $("#tree-editor");
+
+  // if the editor is already editing a node, clear it
+  TTclearAndSaveTreeEditor(event, editor);
+
+  // first, relocate the tree-node-body into the editor
+  editor.prepend(jqElement.children(".tree-node-body"));
+
+  // then, move the editor into tree node
+  jqElement.append(editor);
+
+  // finally call an external function to populate the editor controls
+  TTpopulateEditorFunction(editor, jqElement);
+
+  // need to unbind the events from the node so user can type
+  // without triggering them
+  jqElement.off('keyup');
+  jqElement.off('keydown');
+}
+
+function TTclearAndSaveTreeEditor(event, jqEditor)
+{
+  var editingBody = jqEditor.children(".tree-node-body");
+  if (editingBody.length > 0)
+  {
+    // TODO: call extrnal function to save
+   
+    var jqNode = jqEditor.parent();
+    // move the editing body back to the tree-node.  it had
+    // been inserted into the editor
+    jqNode.append(editingBody);
+
+    // move the tree editor back to the closet
+    $("#hidden-closet").append(jqEditor);
+ 
+    // need to re-wire key press events since we unhooked them
+    // when we opened the editor
+    jqNode.keyup(function (e)
+    {
+      TTtreeNodeKeyUp(e, $(this));
+    });
+    jqNode.keydown(function (e)
+    {
+      TTtreeNodeKeyDown(e, $(this));
+    });  
+  }
+}
+
+var TTshouldSelectNext = false;
 function TTtreeNodeClick(event, jqElement)
 {
   var isShiftKey = event.shiftKey;
@@ -764,7 +857,7 @@ function TTtreeNodeClick(event, jqElement)
   }
 }
 
-function TTtreeNodeKeyUp(event, element)
+function TTtreeNodeKeyUp(event, jqNode)
 {
   event = event || window.event;
   var charCode = event.charCode || event.keyCode;
@@ -773,7 +866,7 @@ function TTtreeNodeKeyUp(event, element)
 
   if (charCode == 13)
   { // enter key, edit the row
-    alert("Fix me to edit the row");
+    TTeditTreeNode(event, jqNode);
   }
   else if (charCode == 32)
   { // space bar, expand/contract tree node
@@ -785,7 +878,7 @@ function TTtreeNodeKeyUp(event, element)
   }
   else if (charCode == 46)
   { // delete key, warn and delete
-    alert("Fix me to warn about the delete and delete");
+    TTdeleteTreeNode(jqNode);
   }
   else if (charCode == 40)
   { // down arrow key
@@ -843,7 +936,7 @@ function TTtreeNodeKeyDown(event, jqNode)
   }
 }
 
-function TTtreeStep(event, jqNode, isUp)
+function TTfindNextVisibleTreeNode(jqNode, isUp)
 {
   // this should be the LI that contains the current node
   var containingLI = jqNode.parent();
@@ -865,7 +958,8 @@ function TTtreeStep(event, jqNode, isUp)
       nodeToSelect = containingLI.parent().parent().children(".tree-node:visible:first");
       if (nodeToSelect.length == 0)
       {
-        nodeToSelect = $(".tree-node:visible:last");
+        // if we have run out of things to move to, just stay at the first one in the tree
+        nodeToSelect = $(".tree-node:visible:first");
       }
     }
     else if (nextLI.has("ul").length > 0)
@@ -904,7 +998,9 @@ function TTtreeStep(event, jqNode, isUp)
         // must have hit the end of the list
         if (nextLI == undefined)
         {
-          nodeToSelect = $(".tree-node:visible:first");
+          // if we have run out of nodes, to select, just stay on the
+          // last one in the list
+          nodeToSelect = $(".tree-node:visible:last");
         }
         else
         {
@@ -913,11 +1009,18 @@ function TTtreeStep(event, jqNode, isUp)
       }
     }
   }
+  return nodeToSelect;
+}
 
+function TTtreeStep(event, jqNode, isUp)
+{
+  var nodeToSelect = TTfindNextVisibleTreeNode(jqNode, isUp);
 
   // mark the selected node as selected
   nodeToSelect.addClass("selected");
   nodeToSelect.focus();
+
+  return nodeToSelect;
 }
 
 function TTgetFirstUncleRecursively(nodeLI)

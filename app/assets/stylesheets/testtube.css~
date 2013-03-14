@@ -73,7 +73,7 @@ input {
     Custom styles
 ----------------------------------------------------------------------- */
 
-.text-standout {
+.story-wantto {
     color: #f58b26;
 }
 
@@ -143,18 +143,18 @@ p.label-field-pair {
 }
 
 p.label-field-pair input, p.label-field-pair textarea{
-    left:80px;
-    width: 280px;
-    vertical-align:top;
+  left:80px;
+  width: 100%;
+  vertical-align:top;
   border:1px solid #cccccc;
   font-size:15px;
   padding:3px;
   margin-top:2px 0 0 0;
+  box-sizing: border-box;
 }
 
 p.label-field-pair textarea{
-    width: 480px;
-    height: 55px;
+    height: 3em;
 }
   
 
@@ -404,8 +404,9 @@ ul.tree-node-list li {
     background-repeat:repeat;
 }
 
+/* special formatting for the selected nodes in the tree */
 .tree-node.selected{
-  background-color: red;
+  background-color: #525252;
 }
 
 /*by default, the sibling dropzones should be filled with a vert line.
@@ -469,6 +470,40 @@ ul.tree-node-list li {
    -webkit-padding-start: 5px;
 }
 
+.tree-editor{
+  border-style: inset;
+  border-width: 4px;
+  border-color: #aaaaaa;
+  background-color: #cccccc;
+  color: #333333;
+  border-radius: 12px;
+  margin-left: 50px;
+  padding: 8px;
+}
+
+.tree-editor .tree-node-body{
+  margin: 3px;
+  border-style: outset;
+  border-color: #555555;
+  border-radius: 12px;
+  color: #FFF4a5;
+  background-color:#222222;
+  padding: 5px 10px;
+}
+
+.tree-editor-right, .tree-editor-left{
+  position: relative;
+  width: 50%;
+  float:left;
+  min-width: 350px;
+  padding: 5px 5px;
+  box-sizing: border-box;
+}
+
+.tree-editor-controls{
+  width: 100%;
+  clear: both;
+}
 
 /*  ----------------------------------------------------------
     Project menu

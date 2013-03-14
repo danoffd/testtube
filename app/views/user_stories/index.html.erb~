@@ -4,7 +4,7 @@
                 <p><a href="#popupStory?new" id="newStoryLink">Add a new story</a></p>
                 <div id="userStoryTree">
                     <p id="TTtreeDebugMessage"></p>
-                    <ul class="tree-outer tree-node-list">
+                    <ul id="treeNodeList_1" class="tree-outer tree-node-list">
                         <li>
                             <div id="sibhold0" class="tree-sibling-dropzone">
                                 <div class="tree-node-nav"></div>
@@ -18,9 +18,9 @@
                                 </div>
                                 <div class="tree-node-function"><%= image_tag "loe-toobig.png"  %></div>
                                 <div class="tree-node-function"><%= image_tag "status-backlog.png"  %></div>
-                                <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">enter the work required to complete a project</span> so I can use the information to analyze the effort required to complete a project</div>
+                                <div class="tree-node-body">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">enter the work required to complete a project</span> so I can <span class="story-soican">use the information to analyze the effort required to complete a project</span></div>
                             </div>
-                            <ul class="tree-inner tree-node-list">
+                            <ul id="treeNodeList_2" class="tree-inner tree-node-list">
                                 <li>
                                     <div id="Li1" class="tree-sibling-dropzone">
                                         <div class="tree-node-nav"></div>
@@ -34,7 +34,13 @@
                                         </div>
                                         <div class="tree-node-function"><%= image_tag "loe-small.png"  %></div>
                                         <div class="tree-node-function"><%= image_tag "status-inprocess.png"  %></div>
-                                        <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">add user stories</span> so I can see the detailed work items that comprise my project</div>
+                                        <div class="tree-node-body">
+                                          As an 
+                                          <span class="story-actor">Estimator</span> 
+                                          I want to 
+                                          <span class="story-wantto">add user stories</span> 
+                                          so I can see the detailed work items that comprise my project
+                                        </div>
                                     </div>
                                     <div id="Li3" class="tree-sibling-dropzone">
                                         <div class="tree-node-nav"></div>
@@ -48,7 +54,7 @@
                                         </div>
                                         <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
                                         <div class="tree-node-function"></div>
-                                        <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">arrange user stories accoring to epic and priority</span> so I can visualize the organization of work</div>
+                                        <div class="tree-node-body">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">arrange user stories accoring to epic and priority</span> so I can <span class="story-soican">visualize the organization of work</span></div>
                                     </div>
                                     <div id="Li5" class="tree-sibling-dropzone">
                                         <div class="tree-node-nav"></div>
@@ -62,7 +68,7 @@
                                         </div>
                                         <div class="tree-node-function"><%= image_tag "loe-medium.png"  %></div>
                                         <div class="tree-node-function"><%= image_tag "status-assigned.png"  %></div>
-                                        <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">hide or show details</span> so I can view the work at various levels of detail</div>
+                                        <div class="tree-node-body">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">hide or show details</span> so I can <span class="story-soican">view the work at various levels of detail</span></div>
                                     </div>
                                     <div id="Li7" class="tree-sibling-dropzone">
                                         <div class="tree-node-nav"></div>
@@ -76,7 +82,7 @@
                                         </div>
                                         <div class="tree-node-function"><%= image_tag "loe-medium-large.png"  %></div>
                                         <div class="tree-node-function"><%= image_tag "status-pending.png"  %></div>
-                                        <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">quickly assign LOE based on a fibonacci-type assignment</span> so I can gain a rough idea of LOE before assigning detailed estimates</div>
+                                        <div class="tree-node-body">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">quickly assign LOE based on a fibonacci-type assignment</span> so I can <span class="story-soican">gain a rough idea of LOE before assigning detailed estimates</span></div>
                                     </div>
                                     <div id="Li9" class="tree-sibling-dropzone">
                                         <div class="tree-node-nav"></div>
@@ -90,7 +96,7 @@
                                         </div>
                                         <div class="tree-node-function"><%= image_tag "loe-large.png"  %></div>
                                         <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
-                                        <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">override the quick-assigned fibonacci values with detailed estimates</span> so I can provide more detailed estimates</div>
+                                        <div class="tree-node-body">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">override the quick-assigned fibonacci values with detailed estimates</span> so I can <span class="story-soican">provide more detailed estimates</span></div>
                                     </div>
                                     <div id="Li11" class="tree-sibling-dropzone">
                                         <div class="tree-node-nav"></div>
@@ -109,7 +115,7 @@
                                 </div>
                                 <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
                                 <div class="tree-node-function"><%= image_tag "status-complete.png"  %></div>
-                                <div class="tree-node-body"">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">estimate the project with progressively more precise values</span> so I can provide as comprehensive an estimate as is possible</div>
+                                <div class="tree-node-body">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">estimate the project with progressively more precise values</span> so I can <span class="story-soican">provide as comprehensive an estimate as is possible</span></div>
                             </div>
                             <div id="sibhold2" class="tree-sibling-dropzone">
                                 <div class="tree-node-nav"></div>
@@ -123,7 +129,7 @@
                                 </div>
                                 <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
                                 <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
-                                <div class="tree-node-body"">As a <span class="story-actor">Manager</span> I want to <span class="text-standout">plan the completion of the project by using the information captured during the estimation process</span> so I can use the esimation knowledge I gained and tie the work back to original estimates</div>
+                                <div class="tree-node-body">As a <span class="story-actor">Manager</span> I want to <span class="story-wantto">plan the completion of the project by using the information captured during the estimation process</span> so I can <span class="story-soican">use the esimation knowledge I gained and tie the work back to original estimates</span></div>
                             </div>
                             <div id="sibhold3" class="tree-sibling-dropzone">
                                 <div class="tree-node-nav"></div>
@@ -137,7 +143,7 @@
                                 </div>
                                 <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
                                 <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
-                                <div class="tree-node-body"">As a <span class="story-actor">Manager</span> I want to <span class="text-standout">track the progress of the project</span> so I can understand my status at every point of the project lifecycle</div>
+                                <div class="tree-node-body">As a <span class="story-actor">Manager</span> I want to <span class="story-wantto">track the progress of the project</span> so I can <span class="story-soican">understand my status at every point of the project lifecycle</span></div>
                             </div>
                             <div id="sibhold4" class="tree-sibling-dropzone">
                                 <div class="tree-node-nav"></div>
@@ -151,7 +157,7 @@
                                 </div>
                                 <div class="tree-node-function"><%= image_tag "loe-small-medium.png"  %></div>
                                 <div class="tree-node-function"><%= image_tag "status-writing.png"  %></div>
-                                <div class="tree-node-body">As an <span class="story-actor">Estimator</span> I want to <span class="text-standout">retrospectively analyze my original estimates against time actually required to complete the work</span> so I can estimate the next project even more accurately</div>
+                                <div class="tree-node-body">As an <span class="story-actor">Estimator</span> I want to <span class="story-wantto">retrospectively analyze my original estimates against time actually required to complete the work</span> so I can <span class="story-soican">estimate the next project even more accurately</span></div>
                             </div>
                             <div id="sibhold5" class="tree-sibling-dropzone">
                                 <div class="tree-node-nav"></div>
@@ -542,4 +548,45 @@
                     <a href="javascript:$('#mask').hide();$('#popupStory').hide();" class="btn-save">Save</a>
                 </div>
             </div>
-        </aside>
+            </aside>
+            <asside style="display:none" id="hidden-closet">
+              <div class="tree-editor" id="tree-editor">
+                <div class="tree-editor-controls">
+                  <div class="tree-editor-controls-body">
+                    <div class="tree-editor-left">
+                      <div id= "tree-editor-actor" class="TTrefined-list-combo">
+                        <p class="label-field-pair">
+                            <label for="refinedStoryInput">As a/an </label>
+                            <input id="story-editor-actor" class="TTrefined-list-input" name="refinedStoryInput" value="" tabindex="1" autocomplete="off" />
+                        </p>
+                        <div class="TTrefined-list-results">
+                          <div class="result">Estimator</div>
+                          <div class="result">Manager of people</div>
+                          <div class="result">Doer</div>
+                          <div class="result">Manager of projects</div>
+                        </div>
+                      </div>
+                      <p class="label-field-pair">
+                          <label for="iWantTo">I want to</label>
+                          <textarea id="story-editor-wantto" name="iWantTo" tabindex="2" class="edit-story-wantto"></textarea>
+                      </p>
+                      <p class="label-field-pair">
+                        <label for="soICan">so I can</label>
+                        <textarea id="story-editor-soican" name="soICan" tabindex="3" class="edit-story-soican"></textarea>
+                      </p>
+                    </div>
+                    <div class="tree-editor-right">
+                      this is where the right side should go
+                    </div>
+                  </div>
+
+                  <div class="tree-editor-controls">
+                    <a href="javascript:TTeditorDelete();" class="btn-delete">Delete</a>
+                    <a href="javascript:TTeditorCancel();" class="btn-cancel">Cancel</a>
+                    <a href="javascript:TTeditorClose();" class="btn-save">Close</a>
+                    <a href="javascript:TTeditorDetails()" class="btn-details">Details</a>
+                  </div>
+                </div>
+              </div>
+            </asside>
+          
