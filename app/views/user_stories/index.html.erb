@@ -2,7 +2,7 @@
             <section class="main-body-section TTsliderCompanion full">
                 <h1>Work Breakdown</h1>
                 <p><a href="#popupStory?new" id="newStoryLink">Add a new story</a></p>
-                <div id="userStoryTree">
+                <div id="userStoryTree" class="tree">
                     <p id="TTtreeDebugMessage"></p>
                     <ul id="treeNodeList_1" class="tree-outer tree-node-list">
                         <li>
@@ -557,7 +557,7 @@
                       <div id= "tree-editor-actor" class="TTrefined-list-combo">
                         <p class="label-field-pair">
                             <label for="refinedStoryInput">As a/an </label>
-                            <input id="story-editor-actor" class="TTrefined-list-input" name="refinedStoryInput" value="" tabindex="1" autocomplete="off" />
+                            <input id="story-editor-actor" class="TTrefined-list-input" name="refinedStoryInput" value="" tabindex="3400" autocomplete="off" />
                         </p>
                         <div class="TTrefined-list-results">
                           <div class="result">Estimator</div>
@@ -568,11 +568,11 @@
                       </div>
                       <p class="label-field-pair">
                           <label for="iWantTo">I want to</label>
-                          <textarea id="story-editor-wantto" name="iWantTo" tabindex="2" class="edit-story-wantto"></textarea>
+                          <textarea id="story-editor-wantto" name="iWantTo" tabindex="3401" class="edit-story-wantto"></textarea>
                       </p>
                       <p class="label-field-pair">
                         <label for="soICan">so I can</label>
-                        <textarea id="story-editor-soican" name="soICan" tabindex="3" class="edit-story-soican"></textarea>
+                        <textarea id="story-editor-soican" name="soICan" tabindex="3402" class="edit-story-soican"></textarea>
                       </p>
                     </div>
                     <div class="tree-editor-right">
@@ -581,10 +581,10 @@
                   </div>
 
                   <div class="tree-editor-controls">
-                    <a href="javascript:TTeditorDelete();" class="btn-delete" onclick="if (!confirm('Are you sure you want to delete this story?')) return false;">Delete</a>
-                    <a href="javascript:TTeditorCancel();" class="btn-cancel">Cancel</a>
-                    <a href="javascript:TTeditorClose();" class="btn-save">Close</a>
-                    <a href="javascript:TTeditorDetails()" class="btn-details">Details</a>
+                    <a href="javascript:TTeditorDelete();" class="btn-delete" onclick="if (!confirm('Are you sure you want to delete this story?')) return false;" tabindex="3482">Delete</a>
+                    <a href="javascript:TTeditorCancel();" class="btn-cancel" tabindex="3481">Cancel</a>
+                    <a href="javascript:TTeditorClose();" class="btn-save" tabindex="3480">Close</a>
+                    <a href="javascript:TTeditorDetails()" class="btn-details" tabindex="3483">Details</a>
                   </div>
                 </div>
               </div>

@@ -492,11 +492,15 @@ var TTpopulateEditorFunction = undefined;
 
 function TTwireUpTree(populateEditorFunction)
 {
-  TTtreeDebugMessage('Using HTML5 Drag and Drop');
-  var treeDraggable = TTtreeDraggableElements();
-  var treeDroppable = TTtreeDroppableElements();
-
   TTpopulateEditorFunction = populateEditorFunction;
+  TTwireUpTreeNodes($(".tree"));
+  TTreindexTree(9000);
+}
+
+function TTwireUpTreeNodes(jqNodesToWire)
+{
+  var treeDraggable = TTtreeDraggableElements(jqNodesToWire);
+  var treeDroppable = TTtreeDroppableElements(jqNodesToWire);
 
   treeDraggable.bind("dragstart", function (e)
   {
@@ -524,7 +528,7 @@ function TTwireUpTree(populateEditorFunction)
     TThandleDrop(e);
   });
 
-  var treeNodes = $(".tree-node");
+  var treeNodes = treeDraggable;
 
   // wire up the key up event.  These are the actions
   // taken when user releases the key...  such as enterkey to edit
@@ -557,7 +561,6 @@ function TTwireUpTree(populateEditorFunction)
     TTsetTreeNodeFocus(e, $(this));
   });
 
-  TTreindexTree(9000);
 }
 
 function TTeditorDelete()
@@ -570,12 +573,12 @@ function TTeditorDelete()
 
 function TTeditorCancel()
 {
-  TTclearAndSaveTreeEditor(undefined, $("#tree-editor"));
+  TTclearAndSaveTreeEditor(undefined, $("#tree-editor"), true);
 }
 
 function TTeditorClose()
 {
-  TTclearAndSaveTreeEditor(undefined, $("#tree-editor"));
+  TTclearAndSaveTreeEditor(undefined, $("#tree-editor"), true);
 }
 
 function TTeditorDetails()
@@ -610,6 +613,8 @@ function TTdeleteTreeNode(jqNode)
 
 function TTreindexTree(startingIndex, initialSelectionId)
 {
+  // this adds tab indexes to each node.  Causes problems, so removing
+  // tabbing all together.  It is replaced with other keyboard functions
   $(".tree-outer .tree-node").each(function (e)
   {
     $(this).attr("tabindex", startingIndex++);
@@ -660,14 +665,14 @@ function TTreindexTree(startingIndex, initialSelectionId)
 
 }
 
-function TTtreeDraggableElements()
+function TTtreeDraggableElements(nodesToWire)
 {
-  return $(".tree-node");
+  return nodesToWire.find(".tree-node");
 }
 
-function TTtreeDroppableElements()
+function TTtreeDroppableElements(nodesToWire)
 {
-  return $(".tree-node, .tree-sibling-dropzone");
+  return nodesToWire.find(".tree-node, .tree-sibling-dropzone");
 }
 
 function TTtoggleTreeNode(jNode)
@@ -723,7 +728,7 @@ function TTeditTreeNode(event, jqElement)
   jqElement.off('keydown');
 }
 
-function TTclearAndSaveTreeEditor(event, jqEditor)
+function TTclearAndSaveTreeEditor(event, jqEditor, setFocusToCurrentNode)
 {
   var editingBody = jqEditor.children(".tree-node-body");
   if (editingBody.length > 0)
@@ -748,6 +753,12 @@ function TTclearAndSaveTreeEditor(event, jqEditor)
     {
       TTtreeNodeKeyDown(e, $(this));
     });  
+
+    if (setFocusToCurrentNode != undefined
+        && setFocusToCurrentNode == true)
+    {
+      jqNode.focus();
+    }
   }
 }
 
@@ -874,7 +885,7 @@ function TTtreeNodeKeyUp(event, jqNode)
   }
   else if (charCode == 45)
   { // insert key, create a child
-    alert("Fix me to insert a new child");
+    TTinsertNewTreeNode(jqNode);
   }
   else if (charCode == 46)
   { // delete key, warn and delete
@@ -934,6 +945,52 @@ function TTtreeNodeKeyDown(event, jqNode)
   {
     event.preventDefault();
   }
+}
+
+
+var TTtreeNodeCounter = 1;
+function TTinsertNewTreeNode(jqNode)
+{
+  //if the current node is a parent, add the new node as the last child.
+  //if current node is childless, insert the new node as a lower sibling
+  
+  //create the new node
+  //  TODO:  pretty lazy approach here
+  var newNode = $('\
+<li> \
+<div draggable="true" class="tree-node">\
+<div class="tree-node-nav">\
+    <div class="tree-node-command"></div>\
+    <div class="tree-node-fill"></div>\
+</div>\
+<div class="tree-node-function"></div>\
+<div class="tree-node-function"></div>\
+<div class="tree-node-body">\
+  As an \
+  <span class="story-actor"></span> \
+  I want to \
+  <span class="story-wantto"></span> \
+  so I can\
+  <span class="story-soican"></span> \
+</div>\
+</div>\
+<div id="Li3" class="tree-sibling-dropzone">\
+<div class="tree-node-nav"></div>\
+</div>\
+</li>');
+
+  // insert the new node as a sibling after current node
+  jqNode.after(newNode);
+
+  // wire up the events for the new node
+  TTwireUpTreeNodes(newNode);
+
+  var newTreeNode = newNode.find(".tree-node");
+  newTreeNode.attr("id", "treenodeid_" + TTtreeNodeCounter++);
+
+  TTreindexTree(9000, newTreeNode.attr("id"));
+  // startup the editor
+  TTeditTreeNode(undefined, newNode.find(".tree-node"));
 }
 
 function TTfindNextVisibleTreeNode(jqNode, isUp)
@@ -1059,8 +1116,9 @@ function TThandleDragEnd(e)
   //TTtreeDraggingElement.className = undefined;
   TTtreeDraggingElement = undefined;
 
-  var treeDraggable = TTtreeDraggableElements();
-  var treeDroppable = TTtreeDroppableElements();
+  var nodesToReset = $("li").has("tree-node");
+  var treeDraggable = TTtreeDraggableElements(nodesToReset);
+  var treeDroppable = TTtreeDroppableElements(nodesToReset);
 
   // reset all of the elements
   for (var i = 0; i < treeDroppable.length; i++)

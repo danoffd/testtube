@@ -3,6 +3,18 @@
 $("document").ready(function () {
 
     TTwireUpTree(populateStoryEditor);
+
+    var editBoxes = $(".tree-editor textarea");
+    editBoxes.keyup(function (e)
+    {
+      treeEditorKeyUp(e, $(this));
+    });
+
+    editBoxes.keydown(function (e)
+    {
+      treeEditorKeyDown(e, $(this));
+    });
+
     TTwireupRefinedListEvents("#tree-editor-actor", "#story-editor-wantto");
     TTwireUpSliderChest();
 
@@ -32,17 +44,46 @@ $("document").ready(function () {
         else if (mode == "new") {
             $(storyEditorId + " .refined-list-input").focus();
         }
-
     });
-
-
 });
+
+function treeEditorKeyDown(event, jqBox)
+{
+  event = event || window.event;
+  var charCode = event.charCode || event.keyCode;
+  if (charCode == 13)
+  {
+    // prevents rapid fire of return key
+    event.preventDefault();
+  }
+}
+
+function treeEditorKeyUp(event, jqBox)
+{
+  event = event || window.event;
+  var charCode = event.charCode || event.keyCode;
+  if (charCode == 13)
+  {
+    alert("do we even get here?");
+  }
+}
 
 function populateStoryEditor(jqEditor, jqTreeNode)
 {
-  jqEditor.find("#story-editor-actor").val(jqTreeNode.find(".story-actor").text());
+  var actorName = $.trim(jqTreeNode.find(".story-actor").text());
+  jqEditor.find("#story-editor-actor").val(actorName);
   jqEditor.find("#story-editor-wantto").val(jqTreeNode.find(".story-wantto").text());
   jqEditor.find("#story-editor-soican").val(jqTreeNode.find(".story-soican").text());
+
+  // if the actor was blank, set focus to the actor input
+  if (actorName == "")
+  {
+    jqEditor.find("#story-editor-actor").focus();
+  }
+  else
+  {
+    jqEditor.find("#story-editor-wantto").focus();
+  }
 }
 
 
@@ -51,12 +92,32 @@ function populateStoryEditor(jqEditor, jqTreeNode)
 //////////////////////////////////////////////////////////////////////////
 function updateStorySummary() {
   var editorControl = $("#tree-editor");
-  editorControl.find(".tree-node-body").html('As a <span class="story-actor">'
-       + $("#story-editor-actor").val()
-        + '</span> I want to <span class="story-wantto">'
-        + $("#story-editor-wantto").val()
-        + '</span> so I can <span class="story-soican">'
-        + $("#story-editor-soican").val()
-        + '</span>');
+
+  var actorName = $.trim($("#story-editor-actor").val());
+  var wantto = $("#story-editor-wantto").val();
+  var soican = $("#story-editor-soican").val();
+
+  if (actorName == "")
+  {
+    actorName = "...";
+  }
+
+  var displayHtml = 'As a <span class="story-actor">' + actorName + '</span>';
+
+  if (actorName != "")
+  {
+    if (wantto == "")
+    {
+      wantto = "...";
+    }
+    displayHtml += ' I want to <span class="story-wantto">' + wantto + '</span>'
+  }
+
+  if (soican != "")
+  {
+    displayHtml += ' so I can <span class="story-soican">' + soican + '</span>';
+  }
+
+  editorControl.find(".tree-node-body").html(displayHtml);
 }
 
