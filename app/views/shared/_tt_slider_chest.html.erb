@@ -1,0 +1,17 @@
+<!-- slider chest simulates overhead view of a chest of drawers stuck
+to the left hand side of the page.  It does not scroll past the
+top of the page so functions within can be used no matter how far
+down on the main page the user is working.-->
+
+
+<div class="TTsliderFrame">
+  <% @slider_drawers.each_with_index do |drawer, i| %>
+    <div class="TTsliderDrawer closed" id="tt_scd_<%=i%>">
+        <div class="TTsliderDiv">
+          <h1><%= drawer[:drawer_header] %></h1>
+          <p><%= render drawer[:partial_name] %></p>
+        </div>
+        <%= image_tag "pullhandle.png" %>
+    </div>
+  <% end %>
+</div>

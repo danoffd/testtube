@@ -25,7 +25,7 @@ class UserStoriesController < ApplicationController
 
     drawer = {\
       :partial_name => "drawer_assign_to_buckets"\
-      , :drawer_header => "Work Buckets"\
+      , :drawer_header => "Buckets"\
       , :handle_text => "buckets"\
     }
     retval.push(drawer)

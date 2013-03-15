@@ -1,8 +1,7 @@
         <section class="main-body-parts-continer">
             <section class="main-body-section TTsliderCompanion full">
                 <h1>Work Breakdown</h1>
-                <p><a href="#popupStory?new" id="newStoryLink">Add a new story</a></p>
-                <div id="userStoryTree">
+                <div id="userStoryTree" class="tree">
                     <p id="TTtreeDebugMessage"></p>
                     <ul id="treeNodeList_1" class="tree-outer tree-node-list">
                         <li>
@@ -461,63 +460,7 @@
                 </div>
             </section>
             <aside id="sliderChest">
-                <div class="TTsliderFrame">
-                    <div class="TTsliderDrawer closed" id="drawer-1">
-                        <div class="TTsliderDiv">
-                            <p>
-                                1aaaaaaaa<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                1ssssssss<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                1dddddddd<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                1ffffffff<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                1gggggggg<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                            </p>
-                        </div>
-                        <%= image_tag "pullhandle.png" %>
-                    </div>
-                    <div class="TTsliderDrawer closed" id="drawer-2">
-                        <div class="TTsliderDiv">
-                            <p>
-                                !!!!!!!!<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                @@@@@@@@<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                ########<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                $$$$$$$$<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                %%%%%%%%<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                !!!!!!!!<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                @@@@@@@@<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                ########<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                $$$$$$$$<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                %%%%%%%%<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                            </p>
-                        </div>
-                        <%= image_tag "pullhandle.png" %>
-                    </div>
-                    <div class="TTsliderDrawer closed" id="drawer-3">
-                        <div class="TTsliderDiv">
-                            <p>
-                                11111111<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                22222222<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                33333333<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                44444444<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                55555555<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                66666666<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                77777777<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                            </p>
-                        </div>
-                        <%= image_tag "pullhandle.png" %>
-                    </div>
-                    <div class="TTsliderDrawer closed" id="drawer-4">
-                        <div class="TTsliderDiv">
-                            <p>
-                                +++<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                ---<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                ***<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                ///<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                %%%<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                            </p>
-                        </div>
-                        <%= image_tag "pullhandle.png" %>
-                    </div>
-                </div>
+            <%= render 'shared/tt_slider_chest'  %>
             </aside>
         </section>
         <aside id="popupWrapper">

@@ -1,7 +1,6 @@
         <section class="main-body-parts-continer">
             <section class="main-body-section TTsliderCompanion full">
                 <h1>Work Breakdown</h1>
-                <p><a href="#popupStory?new" id="newStoryLink">Add a new story</a></p>
                 <div id="userStoryTree" class="tree">
                     <p id="TTtreeDebugMessage"></p>
                     <ul id="treeNodeList_1" class="tree-outer tree-node-list">
@@ -461,94 +460,9 @@
                 </div>
             </section>
             <aside id="sliderChest">
-                <div class="TTsliderFrame">
-                    <div class="TTsliderDrawer closed" id="drawer-1">
-                        <div class="TTsliderDiv">
-                            <p>
-                                1aaaaaaaa<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                1ssssssss<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                1dddddddd<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                1ffffffff<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                1gggggggg<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                            </p>
-                        </div>
-                        <%= image_tag "pullhandle.png" %>
-                    </div>
-                    <div class="TTsliderDrawer closed" id="drawer-2">
-                        <div class="TTsliderDiv">
-                            <p>
-                                !!!!!!!!<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                @@@@@@@@<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                ########<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                $$$$$$$$<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                %%%%%%%%<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                !!!!!!!!<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                @@@@@@@@<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                ########<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                $$$$$$$$<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                %%%%%%%%<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                            </p>
-                        </div>
-                        <%= image_tag "pullhandle.png" %>
-                    </div>
-                    <div class="TTsliderDrawer closed" id="drawer-3">
-                        <div class="TTsliderDiv">
-                            <p>
-                                11111111<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                22222222<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                33333333<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                44444444<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                55555555<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                66666666<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                77777777<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                            </p>
-                        </div>
-                        <%= image_tag "pullhandle.png" %>
-                    </div>
-                    <div class="TTsliderDrawer closed" id="drawer-4">
-                        <div class="TTsliderDiv">
-                            <p>
-                                +++<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                ---<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                ***<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                ///<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                                %%%<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>0<br>
-                            </p>
-                        </div>
-                        <%= image_tag "pullhandle.png" %>
-                    </div>
-                </div>
+            <%= render 'shared/tt_slider_chest'  %>
             </aside>
         </section>
-        <aside id="popupWrapper">
-            <div id="popupStory" class="TTpopup">
-                <div id="edit-story" class="edit-story-container">
-                    <p id="editorSummary">change me on the fly</p>
-                    <div id= "edit-story-actor" class="TTrefined-list-combo">
-                        <p class="label-field-pair">
-                            <label for="refinedStoryInput">As a/an </label>
-                            <input class="TTrefined-list-input" name="refinedStoryInput" value="" tabindex="1" autocomplete="off" />
-                        </p>
-                        <div class="TTrefined-list-results">
-                                <div class="result">Estimator</div>
-                                <div class="result">Manager of people</div>
-                                <div class="result">Doer</div>
-                                <div class="result">Manager of projects</div>
-                        </div>
-                    </div>
-                    <p class="label-field-pair">
-                        <label for="iWantTo">I want to</label>
-                        <textarea name="iWantTo" tabindex="2" class="edit-story-wantto"></textarea>
-                    </p>
-                    <p class="label-field-pair">
-                        <label for="soICan">so I can</label>
-                        <textarea name="soICan" tabindex="3" class="edit-story-soican"></textarea>
-                    </p>
-                    <a href="javascript:$('#mask').hide();$('#popupStory').hide();" class="btn-close">Close</a>
-                    <a href="javascript:$('#mask').hide();$('#popupStory').hide();" class="btn-save">Save</a>
-                </div>
-            </div>
-            </aside>
             <asside style="display:none" id="hidden-closet">
               <div class="tree-editor" id="tree-editor">
                 <div class="tree-editor-controls">
