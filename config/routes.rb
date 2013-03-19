@@ -4,7 +4,7 @@ Testtube::Application.routes.draw do
 
   get "user_stories" => "user_stories#index", :as => 'user_stories'
 
-  get "user_stories/new"
+  post "user_stories/save"
 
   get "user_stories/create"
 

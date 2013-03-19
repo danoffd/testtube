@@ -3,7 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>testtube - <%= @page_title || Estimation Tool %></title>
+    <title>testtube - <%= @page_title || "Project Page" %></title>
 
     <%= javascript_include_tag("jquery-1.9.1")%>
     <%= javascript_include_tag("userstories")%>
@@ -22,10 +22,19 @@
                 <div>
                     <menu class="app-menu">
                         <a href="#">Home</a>
-                        <a href="#">Projects</a>
-                        <a href="colorchart.html">Help</a>
+                        <%= link_to "Projects", projects_path %>
+                        <a href="#">Help</a>
                     </menu>
                 </div>
+                <menu class="project-menu">
+                    <ul>
+                        <li><a href="#">Summary</a></li>
+                        <li><%= link_to "Stories", {:controller => "user_stories", :action => "index", :project_id => params[:project_id]}, :class => "active" %></li>
+                        <li><a href="#">Actors</a></li>
+                        <li><a href="#">Risks</a></li>
+                        <li><a href="#">Resources</a></li>
+                    </ul>
+                </menu>
               </div>
             <%= image_tag "madScience.jpg", :class => "page-logo" %>
         </header>
@@ -38,4 +47,5 @@
     <div id="mask" class="TTpopup-background-mask"></div>
 </body>
 </html>
+
 

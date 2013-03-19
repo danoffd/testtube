@@ -11,10 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226145530) do
+ActiveRecord::Schema.define(:version => 20130318000008) do
+
+  create_table "actors", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "actor_singular_name", :limit => 50
+    t.string   "actor_plural_name",   :limit => 50
+    t.boolean  "use_an_instead_of_a"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "actors", ["project_id"], :name => "index_actors_on_project_id"
 
   create_table "baseline_tasks", :force => true do |t|
-    t.integer  "ModelStoryType_id"
+    t.integer  "story_type_id"
     t.string   "name"
     t.string   "description"
     t.decimal  "small_doit_loe_hours", :precision => 10, :scale => 2
@@ -24,30 +35,10 @@ ActiveRecord::Schema.define(:version => 20130226145530) do
     t.datetime "updated_at",                                          :null => false
   end
 
-  add_index "baseline_tasks", ["ModelStoryType_id"], :name => "index_baseline_tasks_on_ModelStoryType_id"
-
-  create_table "model_story_types", :force => true do |t|
-    t.integer  "ProjectModel_id"
-    t.string   "story_type_name"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
-  add_index "model_story_types", ["ProjectModel_id"], :name => "index_model_story_types_on_ProjectModel_id"
-
-  create_table "project_actors", :force => true do |t|
-    t.integer  "Project_id"
-    t.string   "actor_singular_name"
-    t.string   "actor_plural_name"
-    t.boolean  "use_an_instead_of_a"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-  end
-
-  add_index "project_actors", ["Project_id"], :name => "index_project_actors_on_Project_id"
+  add_index "baseline_tasks", ["story_type_id"], :name => "index_baseline_tasks_on_story_type_id"
 
   create_table "project_models", :force => true do |t|
-    t.integer  "Project_id"
+    t.integer  "project_id"
     t.string   "name"
     t.string   "description"
     t.datetime "start_date"
@@ -57,44 +48,54 @@ ActiveRecord::Schema.define(:version => 20130226145530) do
     t.datetime "updated_at",                                       :null => false
   end
 
-  add_index "project_models", ["Project_id"], :name => "index_project_models_on_Project_id"
+  add_index "project_models", ["project_id"], :name => "index_project_models_on_project_id"
 
   create_table "projects", :force => true do |t|
-    t.string   "name"
+    t.string   "name",        :limit => 50
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
-  create_table "story_comments", :force => true do |t|
-    t.integer  "UserStory_id"
-    t.text     "comment"
-    t.string   "comment_type"
+  create_table "story_notes", :force => true do |t|
+    t.integer  "user_story_id"
+    t.text     "note"
+    t.string   "note_type"
     t.boolean  "is_satisfied"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
-  add_index "story_comments", ["UserStory_id"], :name => "index_story_comments_on_UserStory_id"
+  add_index "story_notes", ["user_story_id"], :name => "index_story_notes_on_user_story_id"
 
   create_table "story_tasks", :force => true do |t|
-    t.integer  "BaselineTask_id"
-    t.integer  "UserStory_id"
+    t.integer  "baseline_task_id"
+    t.integer  "user_story_id"
     t.boolean  "is_overridden"
     t.string   "name"
     t.text     "description"
-    t.decimal  "doit_loe_hours",  :precision => 10, :scale => 2
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
+    t.decimal  "doit_loe_hours",   :precision => 10, :scale => 2
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
 
-  add_index "story_tasks", ["BaselineTask_id"], :name => "index_story_tasks_on_BaselineTask_id"
-  add_index "story_tasks", ["UserStory_id"], :name => "index_story_tasks_on_UserStory_id"
+  add_index "story_tasks", ["baseline_task_id"], :name => "index_story_tasks_on_baseline_task_id"
+  add_index "story_tasks", ["user_story_id"], :name => "index_story_tasks_on_user_story_id"
+
+  create_table "story_types", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "story_type_name"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "story_types", ["project_id"], :name => "index_story_types_on_project_id"
 
   create_table "user_stories", :force => true do |t|
-    t.integer  "ProjectModel_id"
-    t.integer  "ProjectActor_id"
-    t.integer  "ModelStoryType_id"
+    t.integer  "project_id"
+    t.integer  "actor_id"
+    t.integer  "story_type_id"
+    t.integer  "parent_user_story_id"
     t.string   "want_to"
     t.string   "so_i_can"
     t.decimal  "doit_loe_hours_calculated", :precision => 10, :scale => 2
@@ -107,8 +108,8 @@ ActiveRecord::Schema.define(:version => 20130226145530) do
     t.datetime "updated_at",                                               :null => false
   end
 
-  add_index "user_stories", ["ModelStoryType_id"], :name => "index_user_stories_on_ModelStoryType_id"
-  add_index "user_stories", ["ProjectActor_id"], :name => "index_user_stories_on_ProjectActor_id"
-  add_index "user_stories", ["ProjectModel_id"], :name => "index_user_stories_on_ProjectModel_id"
+  add_index "user_stories", ["actor_id"], :name => "index_user_stories_on_actor_id"
+  add_index "user_stories", ["project_id"], :name => "index_user_stories_on_project_id"
+  add_index "user_stories", ["story_type_id"], :name => "index_user_stories_on_story_type_id"
 
 end

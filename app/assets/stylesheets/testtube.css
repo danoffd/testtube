@@ -137,6 +137,14 @@ menu.app-menu {
     color: #CC9933;
 }
 
+.main-body-section a {
+  color: #bbf
+}
+
+.page-header a {
+  color: #bbf
+}
+
 p.label-field-pair {
     position: relative;
     padding: 3px;

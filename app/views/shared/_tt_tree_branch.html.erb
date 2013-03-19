@@ -1,0 +1,34 @@
+<!-- tt_tree_branch displays a single list of nodes.  It may add nodes
+that need to recursively include other branches-->
+<ul class="tree-outer tree-node-list">
+    <li>
+        <div id="sibholdxxx" class="tree-sibling-dropzone">
+            <div class="tree-node-nav"></div>
+        </div>
+    </li>
+    <% nodes.each do |node| %>
+    <li>
+      <div id="tn-<%= node.id %>" draggable="true" class="tree-node" data-storyid="<%=node.id%>">
+            <div class="tree-node-nav TT-expanded">
+                <div class="tree-node-command"></div>
+                <div class="tree-node-fill"></div>
+            </div>
+            <div class="tree-node-function"><%= image_tag "loe-toobig.png"  %></div>
+            <div class="tree-node-function"><%= image_tag "status-backlog.png"  %></div>
+            <div class="tree-node-body">
+              As a 
+              <span class="story-actor"><%=node.Actor.actor_singular_name%></span> 
+              I want to 
+              <span class="story-wantto"><%=node.want_to%></span> 
+              so I can 
+              <span class="story-soican"><%=node.so_i_can%></span>
+            </div>
+          </div>
+          <%= render "shared/tt_tree_branch", :nodes => node.child_user_stories if node.child_user_stories.length > 0  %>
+        <div id="tndz-<%= node.id %>" class="tree-sibling-dropzone">
+            <div class="tree-node-nav"></div>
+        </div>
+    </li>
+    <% end %>
+</ul>
+      

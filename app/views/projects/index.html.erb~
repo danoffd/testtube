@@ -1,0 +1,12 @@
+<section class="main-body-parts-continer main-body-section">
+<h1>Projects</h1>
+<% @projects.each do |project| %>
+  <h2><%= project.name %> - <%= project.description %></h2>
+  <% project.project_models.each do |model| %>
+    <p><%= model.name %> (<%= model.description %>)</p>
+    <p>
+    <%= link_to "Stories", {:controller => "user_stories", :action => "index", :project_model_id => model.id} %>
+    </p>
+  <% end %>
+<% end %>
+</section>

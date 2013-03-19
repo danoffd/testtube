@@ -1,8 +1,8 @@
 class CreateStoryTasks < ActiveRecord::Migration
   def change
     create_table :story_tasks do |t|
-      t.references :BaselineTask
-      t.references :UserStory
+      t.integer :baseline_task_id
+      t.integer :user_story_id
       t.boolean :is_overridden
       t.string :name
       t.text :description
@@ -10,7 +10,7 @@ class CreateStoryTasks < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :story_tasks, :BaselineTask_id
-    add_index :story_tasks, :UserStory_id
+    add_index :story_tasks, :baseline_task_id
+    add_index :story_tasks, :user_story_id
   end
 end

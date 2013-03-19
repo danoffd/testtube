@@ -734,7 +734,17 @@ function TTclearAndSaveTreeEditor(event, jqEditor, setFocusToCurrentNode)
   if (editingBody.length > 0)
   {
     // TODO: call extrnal function to save
-   
+    var editorForm = $("#tree-editor-form");
+
+    $.ajax(
+    {
+      type: editorForm.attr("method"),
+      url: editorForm.attr("action"),
+      data: editorForm.serialize(),
+      success: function(data) { alert("success: " + data); },
+      error: function(jqXHR, stat, err) { alert("error: " + err); },
+    });
+
     var jqNode = jqEditor.parent();
     // move the editing body back to the tree-node.  it had
     // been inserted into the editor
@@ -958,7 +968,7 @@ function TTinsertNewTreeNode(jqNode)
   //  TODO:  pretty lazy approach here
   var newNode = $('\
 <li> \
-<div draggable="true" class="tree-node">\
+<div draggable="true" class="tree-node" data-storyid="new">\
 <div class="tree-node-nav">\
     <div class="tree-node-command"></div>\
     <div class="tree-node-fill"></div>\
@@ -1113,10 +1123,9 @@ function TThandleDragEnd(e)
 
   // reset the element style
   $(TTtreeDraggingElement).removeClass('moving');
-  //TTtreeDraggingElement.className = undefined;
   TTtreeDraggingElement = undefined;
 
-  var nodesToReset = $("li").has("tree-node");
+  var nodesToReset = $("li").has(".tree-sibling-dropzone");
   var treeDraggable = TTtreeDraggableElements(nodesToReset);
   var treeDroppable = TTtreeDroppableElements(nodesToReset);
 

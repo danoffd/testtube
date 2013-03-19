@@ -6,7 +6,7 @@
 @project = Project.where(:name => @projectName).first
 if @project == nil
   puts "++++++++ Project not found, creating it"
-  @project = Project.create(:name=>@projectName, :description=>"supports mad science")
+  @project = Project.create(:name=>@projectName, :description=>"using myself to create myself")
 end
 
 puts "++++++++ Using this project:"
@@ -14,10 +14,10 @@ puts @project.inspect
 
 # ###########################################################
 # create actors
-@actorDoer = @project.project_actors.where(:actor_singular_name => "Doer").first
+@actorDoer = @project.actors.where(:actor_singular_name => "Doer").first
 if @actorDoer == nil
   puts "++++++++  No Doer found, creating one"
-  @actorDoer = @project.project_actors.create( \
+  @actorDoer = @project.actors.create( \
     :actor_singular_name => "Doer", \
     :actor_plural_name => "Doers", \
     :use_an_instead_of_a =>false)
@@ -25,10 +25,10 @@ end
 puts "+++++++++ Using this doer"
 puts @actorDoer.inspect 
 
-@actorEstimator = @project.project_actors.where(:actor_singular_name => "Estimator").first
+@actorEstimator = @project.actors.where(:actor_singular_name => "Estimator").first
 if @actorEstimator == nil
   puts "++++++++  No Estimator found, creating one"
-  @actorEstimator = @project.project_actors.create( \
+  @actorEstimator = @project.actors.create( \
     :actor_singular_name => "Estimator", \
     :actor_plural_name => "Estimators", \
     :use_an_instead_of_a =>true)
@@ -36,10 +36,10 @@ end
 puts "+++++++++ Using this estimator"
 puts @actorEstimator.inspect 
 
-@actorReviewer = @project.project_actors.where(:actor_singular_name => "Reviewer").first
+@actorReviewer = @project.actors.where(:actor_singular_name => "Reviewer").first
 if @actorReviewer == nil
   puts "++++++++  No Reviewer found, creating one"
-  @actorReviewer = @project.project_actors.create( \
+  @actorReviewer = @project.actors.create( \
     :actor_singular_name => "Reviewer", \
     :actor_plural_name => "Reviewers", \
     :use_an_instead_of_a =>false)
@@ -48,22 +48,11 @@ puts "+++++++++ Using this Reviewer"
 puts @actorReviewer.inspect 
 
 
-# ###########################################################
-# Create a model
-@model = @project.project_models(:name => "First guess").first
-if @model == nil
-  puts "+++++++++ no model found, creating one"
-  @model = @project.project_models.create( \
-     :name => "First guess", \
-     :description => "taking an initial stab at the estimate", \
-     :start_date => Date.parse("25-02-2013"), \
-     :end_date => Date.parse("30-03-2013"), \
-     :doit_hours_per_day => 6.5)
-
   #################################
   # - Development story type
-  @storyTypeDev = @model.model_story_types.create( \
-     :story_type_name => "Development")
+@storyTypeDev = Project.where(:name => @projectName).first
+if (@storyTypeDev == nil)
+  @storyTypeDev = @project.story_types.create(:story_type_name => "Development")
 
   @storyTypeDev.baseline_tasks.create( \
      :name => "Get smart", \
@@ -117,20 +106,20 @@ if @model == nil
   
   
   #################################
-  # - Spike story type
-  @storyTypeSpike = @model.model_story_types.create( \
-     :story_type_name => "Spike")
+  # - tracer story type
+  @storyTypeSpike = @project.story_types.create( \
+     :story_type_name => "Tracer")
 
   @storyTypeSpike.baseline_tasks.create( \
      :name => "Define objectives", \
-     :description => "Define the objectives of the spike", \
+     :description => "Define the objectives of the tracer", \
      :small_doit_loe_hours => 0.5, \
      :is_sensitive_to_size => true, \
      :review_team_size => 2)
 
   @storyTypeSpike.baseline_tasks.create( \
      :name => "Do it", \
-     :description => "Do whatever work is required by the spike", \
+     :description => "Do whatever work is required by the tracer", \
      :small_doit_loe_hours => 1, \
      :is_sensitive_to_size => true, \
      :review_team_size => 2)
@@ -144,7 +133,7 @@ if @model == nil
 
   #################################
   # - Minor task story type
-  @storyTypeTask = @model.model_story_types.create( \
+  @storyTypeTask = @project.story_types.create( \
      :story_type_name => "Minor Task")
 
   @storyTypeTask.baseline_tasks.create( \
@@ -163,7 +152,7 @@ if @model == nil
 
   #################################
   # - Epic
-  @storyTypeEpic = @model.model_story_types.create( \
+  @storyTypeEpic = @project.story_types.create( \
      :story_type_name => "Epic")
 
   @storyTypeEpic.baseline_tasks.create( \
@@ -179,57 +168,57 @@ if @model == nil
      :small_doit_loe_hours => 2, \
      :is_sensitive_to_size => true, \
      :review_team_size => 5)
-end
 
+end
 
 # ###########################################################
 # Create some stories
 puts "+++++++++Creating story: enter work required"
 
-@storyDefineProject = @model.user_stories.create( \
-  :ProjectActor_id => @actorEstimator.id, \
-  :ModelStoryType_id => @storyTypeEpic.id, \
+@storyDefineProject = @project.user_stories.create( \
+  :actor_id => @actorEstimator.id, \
+  :story_type_id => @storyTypeEpic.id, \
   :want_to => "enter the work required to complete a project", \
   :so_i_can => "further my understanding of the scope and the effort required to complete it", \
   :priority => 1, \
   :is_fully_recorded => false, \
   :is_estimate_final => false)
 
-@storyDefineProject.story_comments.create( \
-  :comment_type => "feedback", \
-  :comment => "this is going to be wicked hard, dont underestimate it", \
+@storyDefineProject.story_notes.create( \
+  :note_type => "feedback", \
+  :note => "this is going to be wicked hard, dont underestimate it", \
   :is_satisfied => false)
 
-@storyEstimateProject = @model.user_stories.create( \
-  :ProjectActor_id => @actorEstimator.id, \
-  :ModelStoryType_id => @storyTypeEpic.id, \
+@storyEstimateProject = @project.user_stories.create( \
+  :actor_id => @actorEstimator.id, \
+  :story_type_id => @storyTypeEpic.id, \
   :want_to => "estimate the project with progressively more detailed information", \
   :so_i_can => "provide as comprehensive an estimate as is possible", \
   :priority => 2, \
   :is_fully_recorded => false, \
   :is_estimate_final => false)
 
-@storyPlanProject = @model.user_stories.create( \
-  :ProjectActor_id => @actorEstimator.id, \
-  :ModelStoryType_id => @storyTypeEpic.id, \
+@storyPlanProject = @project.user_stories.create( \
+  :actor_id => @actorEstimator.id, \
+  :story_type_id => @storyTypeEpic.id, \
   :want_to => "use the recorded project information to plan the completion of the project", \
   :so_i_can => "communicate timelines and resource plans", \
   :priority => 3, \
   :is_fully_recorded => false, \
   :is_estimate_final => false)
 
-@storyTrackProject = @model.user_stories.create( \
-  :ProjectActor_id => @actorEstimator.id, \
-  :ModelStoryType_id => @storyTypeEpic.id, \
+@storyTrackProject = @project.user_stories.create( \
+  :actor_id => @actorEstimator.id, \
+  :story_type_id => @storyTypeEpic.id, \
   :want_to => "track the progress of the project", \
   :so_i_can => "understand at every point of the project lifecycle where I am", \
   :priority => 4, \
   :is_fully_recorded => false, \
   :is_estimate_final => false)
 
-@storyAssessProject = @model.user_stories.create( \
-  :ProjectActor_id => @actorEstimator.id, \
-  :ModelStoryType_id => @storyTypeEpic.id, \
+@storyAssessProject = @project.user_stories.create( \
+  :actor_id => @actorEstimator.id, \
+  :story_type_id => @storyTypeEpic.id, \
   :want_to => "analyze estimates against actual", \
   :so_i_can => "estimate the next project even better", \
   :priority => 5, \

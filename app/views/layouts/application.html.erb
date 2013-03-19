@@ -3,7 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>testtube - Stories</title>
+    <title>testtube - <%= @page_title || "Estimation tool for big kids" %></title>
 
     <%= javascript_include_tag("jquery-1.9.1")%>
     <%= javascript_include_tag("userstories")%>
@@ -26,18 +26,8 @@
                         <a href="colorchart.html">Help</a>
                     </menu>
                 </div>
-                <menu class="project-menu">
-                    <ul>
-                        <li><a href="#">Summary</a></li>
-                        <li><a href="stories.html" class="active">Stories</a></li>
-                        <li><a href="#">Actors</a></li>
-                        <li><a href="#">Risks</a></li>
-                        <li><a href="#">Resources</a></li>
-                    </ul>
-                </menu>
               </div>
             <%= image_tag "madScience.jpg", :class => "page-logo" %>
-            <!-- <img class="page-logo" src="images/madScience.jpg"/> -->
         </header>
         <% flash.each do |key, value| %>
            <p><%= value %></p>

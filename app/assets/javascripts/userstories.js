@@ -15,10 +15,10 @@ $("document").ready(function () {
       treeEditorKeyDown(e, $(this));
     });
 
-    TTwireupRefinedListEvents("#tree-editor-actor", "#story-editor-wantto");
+    TTwireupRefinedListEvents("#story-editor-actor", "#story-editor-wantto");
     TTwireUpSliderChest();
 
-    $("#story-editor-actor, #story-editor-wantto, #story-editor-soican").keyup(function (e) {
+    $("#story-editor-actor-input, #story-editor-wantto, #story-editor-soican").keyup(function (e) {
         updateStorySummary();
     });
 
@@ -71,14 +71,15 @@ function treeEditorKeyUp(event, jqBox)
 function populateStoryEditor(jqEditor, jqTreeNode)
 {
   var actorName = $.trim(jqTreeNode.find(".story-actor").text());
-  jqEditor.find("#story-editor-actor").val(actorName);
+  jqEditor.find("#story-editor-id").val(jqTreeNode.attr("data-storyid"));
+  jqEditor.find("#story-editor-actor-input").val(actorName);
   jqEditor.find("#story-editor-wantto").val(jqTreeNode.find(".story-wantto").text());
   jqEditor.find("#story-editor-soican").val(jqTreeNode.find(".story-soican").text());
 
   // if the actor was blank, set focus to the actor input
   if (actorName == "")
   {
-    jqEditor.find("#story-editor-actor").focus();
+    jqEditor.find("#story-editor-actor-input").focus();
   }
   else
   {
@@ -93,7 +94,7 @@ function populateStoryEditor(jqEditor, jqTreeNode)
 function updateStorySummary() {
   var editorControl = $("#tree-editor");
 
-  var actorName = $.trim($("#story-editor-actor").val());
+  var actorName = $.trim($("#story-editor-actor-input").val());
   var wantto = $("#story-editor-wantto").val();
   var soican = $("#story-editor-soican").val();
 

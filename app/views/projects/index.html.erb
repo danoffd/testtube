@@ -1,2 +1,13 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<section class="main-body-parts-continer main-body-section">
+<h1>Projects</h1>
+<% @projects.each do |project| %>
+  <h2><%= project.name %> - <%= project.description %></h2>
+    <p>
+    <%= link_to "Stories", {:controller => "user_stories", :action => "index", :project_id => project.id} %>
+    </p>
+  <% project.project_models.each do |model| %>
+    <p><%= model.name %> (<%= model.description %>)</p>
+  <% end %>
+<% end %>
+</section>
+

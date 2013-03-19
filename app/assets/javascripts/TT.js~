@@ -528,7 +528,7 @@ function TTwireUpTreeNodes(jqNodesToWire)
     TThandleDrop(e);
   });
 
-  var treeNodes = jqNodesToWire;
+  var treeNodes = treeDraggable;
 
   // wire up the key up event.  These are the actions
   // taken when user releases the key...  such as enterkey to edit
@@ -734,7 +734,17 @@ function TTclearAndSaveTreeEditor(event, jqEditor, setFocusToCurrentNode)
   if (editingBody.length > 0)
   {
     // TODO: call extrnal function to save
-   
+    var editorForm = $("#tree-editor-form");
+
+    $.ajax(
+    {
+      type: editorForm.attr("method"),
+      url: editorForm.attr("action"),
+      data: editorForm.serialize(),
+      success: function(data) { alert("success: " + data); },
+      error: function(jqXHR, stat, err) { alert("error: " + err); },
+    });
+
     var jqNode = jqEditor.parent();
     // move the editing body back to the tree-node.  it had
     // been inserted into the editor
@@ -1113,10 +1123,9 @@ function TThandleDragEnd(e)
 
   // reset the element style
   $(TTtreeDraggingElement).removeClass('moving');
-  //TTtreeDraggingElement.className = undefined;
   TTtreeDraggingElement = undefined;
 
-  var nodesToReset = $("li").has("tree-node");
+  var nodesToReset = $("li").has(".tree-sibling-dropzone");
   var treeDraggable = TTtreeDraggableElements(nodesToReset);
   var treeDroppable = TTtreeDroppableElements(nodesToReset);
 

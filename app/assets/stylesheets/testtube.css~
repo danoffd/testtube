@@ -137,6 +137,10 @@ menu.app-menu {
     color: #CC9933;
 }
 
+.main-body-section a {
+  color: #bbf
+}
+
 p.label-field-pair {
     position: relative;
     padding: 3px;
@@ -207,7 +211,7 @@ p.label-field-pair textarea{
 }
 
 /*  ----------------------------------------------------------
-    generic popup control
+    slider chest
 ----------------------------------------------------------*/
 #sliderChest {
     position: absolute;
@@ -309,8 +313,6 @@ p.label-field-pair textarea{
 
 .TTsliderDiv {
     background-image:url(/assets/sidenav-bkg.png);
-    /* background-image:url(/assets/sidenav-bkg.png);\
- */
     width: 100%;
     height: 100%;
     overflow:auto;

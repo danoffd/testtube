@@ -1,0 +1,14 @@
+<!-- refined list combo works like google search.  The 'dropdown' box
+will auto-populate based on whats typed, and user may select from the 
+list. -->
+<div id="<%= control_id %>" class="TTrefined-list-combo">
+  <p class="label-field-pair">
+  <input id="<%= input_id %>" class="TTrefined-list-input" name="<%= input_id %>" value="" tabindex="<%= tab_index %>" autocomplete="off" />
+  </p>
+  <div class="TTrefined-list-results">
+    <% list_items.each do |item| %>
+      <div class="result"><%= item %></div>
+    <% end %>
+  </div>
+</div>
+
