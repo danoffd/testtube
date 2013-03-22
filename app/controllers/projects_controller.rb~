@@ -1,5 +1,21 @@
 class ProjectsController < ApplicationController
   def index
-    @models = ProjectModel.all
+    @projects = Project.all
+    @dummy_project = Project.new
+  end
+
+  def save
+    puts "save me:  " +  params[:project][:id]
+
+    if params[:project][:id] == ""
+      puts "creating project"
+      project = Project.new(params[:project])
+    else
+      puts "updating project"
+    end
+
+    project.save!
+
+    render :nothing => true
   end
 end

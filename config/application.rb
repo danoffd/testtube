@@ -58,5 +58,9 @@ module Testtube
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+
+    #suggested by "Devise" to avoid Heroku from accessing the database while precompiling assets
+    config.assets.initialize_on_precompile = false
   end
 end

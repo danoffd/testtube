@@ -6,7 +6,6 @@
     <title>testtube - <%= @page_title || "Estimation tool for big kids" %></title>
 
     <%= javascript_include_tag("jquery-1.9.1")%>
-    <%= javascript_include_tag("userstories")%>
     <%= javascript_include_tag("TT")%>
 
     <%= stylesheet_link_tag("testtube")%>
@@ -18,22 +17,41 @@
     <div id="wrapper">
         <header class="page-header">
             <div class="page-header-contents">
-                <h1 class="page-header"><p><b>Project testtube:</b> using myself to create myself</p></h1>
+          <div class="page-header-headings">
+                <h1 class="page-header"><p>A chemistry set for the big kids</p></h1>
+          </div>
                 <div>
                     <menu class="app-menu">
                         <a href="#">Home</a>
                         <a href="#">Projects</a>
                         <a href="colorchart.html">Help</a>
+                      </menu>
+                      <br/>
+                    <menu class="app-menu">
+                        <% if user_signed_in? %>
+                          Logged in as <strong><%= current_user.email %></strong><br/>
+                            <%= link_to "Edit Profile", edit_user_registration_path %>
+                            <%= button_to "Logout", destroy_user_session_path, :method => :delete %>
+                          <% else %>
+                            <%= link_to "Sign up", new_user_registration_path %>
+                            <%= link_to "Login", new_user_session_path %>
+                        <% end %>
                     </menu>
                 </div>
               </div>
-            <%= image_tag "madScience.jpg", :class => "page-logo" %>
+              <a href="/projects">
+                <%= image_tag "logo-6.png", :class => "page-logo" %>
+              </a>
         </header>
-        <% flash.each do |key, value| %>
+       <div class="main-body-section">
+         <% flash.each do |key, value| %>
            <p><%= value %></p>
-        <% end %>
+         <% end %>
+         <!-- <p class="notice"><%= notice %></p> -->
+         <!-- <p class="alert"><%= alert %></p> -->
 
-        <%= yield %>
+         <%= yield %>
+       </div>
     </div>
     <div id="mask" class="TTpopup-background-mask"></div>
 </body>

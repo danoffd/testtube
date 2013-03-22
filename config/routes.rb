@@ -1,17 +1,16 @@
 Testtube::Application.routes.draw do
 
+  root :to => 'projects#index'
+
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+
   get "user_stories/show"
-
   get "user_stories" => "user_stories#index", :as => 'user_stories'
-
   post "user_stories/save"
-
   get "user_stories/create"
 
-
- # resources :user_stories
-  
   get "projects" => "projects#index", :as => 'projects'
+  post "projects/save"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

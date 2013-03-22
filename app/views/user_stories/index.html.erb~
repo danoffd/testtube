@@ -1,10 +1,13 @@
-<% @page_title = "User Stories"
+<% @page_title = "User Stories" %>
+<%= javascript_include_tag("TT_tree")%>
+<%= javascript_include_tag("user_stories")%>
+<%= javascript_include_tag("TT_sliderChest")%>
 
 <section class="main-body-parts-continer">
     <section class="main-body-section TTsliderCompanion full">
         <h1>Work Breakdown</h1>
         <div id="userStoryTree" class="tree">
-          <p id="TTtreeDebugMessage"></p>
+          <!-- <p id="TTtreeDebugMessage"></p> -->
 
           <%= render "shared/tt_tree_branch", :nodes => @root_user_stories %>
         </div>

@@ -4,7 +4,7 @@ a story, this control 'wraps' the node of the story to edit and
 injects it into the tree while its being edited-->
 <div class="tree-editor" id="tree-editor">
   <%= form_for @dummy_story, :url => {:action => 'save'}, :remote => true, :html => { :'data-type' => 'html', :id => 'tree-editor-form'} do |f| %>
-  <%= f.hidden_field :user_story_id, :id => "story-editor-id" %>
+  <%= f.hidden_field :id, :id => "story-editor-id" %>
   <div class="tree-editor-controls">
     <div class="tree-editor-controls-body">
       <div class="tree-editor-left">
@@ -15,7 +15,7 @@ injects it into the tree while its being edited-->
           , :list_items => @all_actors %>
         
         <p class="label-field-pair">
-            <%= f.label :want_to %>
+            <%= f.label :want_to, "I want to" %>
             <%= f.text_area :want_to, :id => "story-editor-wantto", :tabindex => 3401 %>
         </p>
         <p class="label-field-pair">

@@ -1,13 +1,41 @@
-<section class="main-body-parts-continer main-body-section">
+<%= javascript_include_tag("projects")%>
+
+<section class="main-body-parts-continer">
 <h1>Projects</h1>
+<p><a href="#popup-edit-project?new" id="newProjectLink" class="TTpopupLink">Start a new project</a></p>
+
 <% @projects.each do |project| %>
-  <h2><%= project.name %> - <%= project.description %></h2>
-    <p>
-    <%= link_to "Stories", {:controller => "user_stories", :action => "index", :project_id => project.id} %>
-    </p>
-  <% project.project_models.each do |model| %>
-    <p><%= model.name %> (<%= model.description %>)</p>
-  <% end %>
+  <div class="TTprojectCard">
+    
+    <h2><%= project.name %> - <%= project.description %></h2>
+      <p>
+      <%= link_to "Stories", {:controller => "user_stories", :action => "index", :project_id => project.id} %>
+      </p>
+    <% project.project_models.each do |model| %>
+      <p><%= model.name %> (<%= model.description %>)</p>
+    <% end %>
+  </div>
 <% end %>
 </section>
+
+<aside id="popupWrapper">
+    <div id="popup-edit-project" class="TTpopup">
+      <div id="popup-edit-project-body" class="TTpopupBody">
+        <h1>Project Summary</h1>
+        <%= form_for @dummy_project, :url => {:action => 'save'}, :remote => true, :html => { :'data-type' => 'html', :id => 'project-editor-form'} do |f| %>
+          <%= f.hidden_field :id, :id => "project-editor-projectid" %>
+          <p class="label-field-pair">
+            <%= f.label :name %>
+            <%= f.text_field :name, :id => "project-editor-name", :tabindex => 5401 %>
+          </p>
+          <p class="label-field-pair">
+            <%= f.label :description %>
+            <%= f.text_area :description, :id => "project-editor-description", :tabindex => 5402 %>
+          </p>
+          <a href="javascript:$('#mask').hide();$('#popup-edit-project').hide();" class="btn-close" tabindex=5491>Cancel</a>
+          <a href="javascript:$('#mask').hide();$('#popup-edit-project').hide();TTcreateProject($('#project-editor-form'));" class="btn-save" tabindex=5490>Save</a>
+        <% end %>
+      </div>
+    </div>
+</aside>
 

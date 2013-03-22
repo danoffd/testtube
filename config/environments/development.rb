@@ -34,4 +34,15 @@ Testtube::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # required for "devise" authentication 
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # for google oauth2
+  ENV["GOOGLE_KEY"] = "308002915583.apps.googleusercontent.com"
+  ENV["GOOGLE_SECRET"] = "6RIp2a6XEY2Y7N9wPUSL36xH"
+
+  #for facebook
+  ENV["FACEBOOK_APP_ID"] = "356921324425009"
+  ENV["FACEBOOK_APP_SECRET"] = "426bf4494db8f93a9f3fba7354e1bb08"
 end

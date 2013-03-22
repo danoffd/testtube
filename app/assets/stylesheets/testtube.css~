@@ -80,19 +80,26 @@ input {
 header.page-header {
    background-image:url(/assets/header-bkg.png);
    background-color:#f58b26;
-   height: 78px;
+   height: 108px;
    padding:0;
    margin:0;
 }
 
 .page-header-contents {
-    margin-left:100px;
+    margin-left:120px;
     position:relative;
 }
 
+.page-header-headings{
+  height: 68px;
+    margin:0;
+    float:left;
+    padding-top: 12px;
+}
+
 img.page-logo {
-   height:72px;
-   width:72px;
+   height:100px;
+   width:100px;
    float: left;
    vertical-align:middle;
    padding: 3px;
@@ -104,19 +111,24 @@ img.page-logo {
 h1.page-header p{
     margin:0;
     padding:0;
+}
+
+.page-header-headings h1{
+    font-size: 24px;
+    margin: 0 0 5px 0;
     color: #66cc66;
     font-family: courier;
     font-weight: normal;
-    font-size: 24px;
     text-shadow:1px 1px 3px #FFF;
 }
 
-h1.page-header{
-    margin:0;
-    float:left;
-    padding-top: 12px;
-    height:40px;
+.page-header-headings h2{
+    font-size: 14px;
+    margin: 10px 0 5px 20px;
+    color: white;
 }
+
+
 
 menu.app-menu {
     text-align:right;
@@ -138,6 +150,10 @@ menu.app-menu {
 }
 
 .main-body-section a {
+  color: #bbf
+}
+
+.page-header a {
   color: #bbf
 }
 
@@ -483,6 +499,10 @@ ul.tree-node-list li {
   padding: 8px;
 }
 
+.tree-editor a {
+  color: #34B;
+}
+
 .tree-editor .tree-node-body{
   margin: 3px;
   border-style: outset;
@@ -567,4 +587,23 @@ menu.project-menu ul li a.active {
 
 
 
+/* -----------------------------------------------------------------------
+   project 
+----------------------------------------------------------------------- */
+.TTprojectCard{
+  border-style: outset;
+  border-width: 6px;
+  border-color: #aaaaaa;
+  background-color: #cccccc;
+  color: #333333;
+  border-radius: 20px;
+  padding: 8px;
+  margin: 0 10px 10px 0;
+  float: left;
+  max-width: 400px;
+}
+
+.TTprojectCard a {
+  color: #44f;
+}
 
