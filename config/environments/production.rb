@@ -64,4 +64,9 @@ Testtube::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  
+  # omniauth for google.
+  ENV["GOOGLE_KEY"] = "308002915583.apps.googleusercontent.com"
+  ENV["GOOGLE_SECRET"] = "6RIp2a6XEY2Y7N9wPUSL36xH"
+
 end
