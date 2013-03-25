@@ -13,17 +13,17 @@
       <div class="page-header-contents">
         <div class="page-header-headings<%= " project" if defined?(@project) %>">
           <% if defined?(@project) %>
-            <p><%= @project.name %></p>
+            <p><%= @project.name %> (<%= @project.description %>)</p>
           <% end %>
         </div>
         <%= render "shared/tt_app_menu"  %>
         <menu class="tube-menu">
           <ul>
             <li>
-            <%= link_to image_tag("tub-black-home-2.png"), {:action => 'index', :controller => 'welcome'}, :class => 'home' %>
+            <%= link_to image_tag("tub-black-home-2.png"), {:action => 'index', :controller => '/welcome'}, :class => 'home' %>
             </li>
             <li>
-            <%= link_to image_tag("tubes-red-projects-2.png"), {:action => 'index', :controller => 'projects'}, :class => 'projects' %>
+            <%= link_to image_tag("tubes-red-projects-2.png"), {:action => 'index', :controller => '/projects'}, :class => 'projects' %>
             </li>
             <!-- <li><%= link_to "Stories", {:controller => "user_stories", :action => "index", :project_id => params[:project_id]}, :class => "active" %></li> -->
           </ul>

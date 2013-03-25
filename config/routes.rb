@@ -2,7 +2,7 @@ Testtube::Application.routes.draw do
 
   get "welcome" => "welcome#index", :as => 'welcome'
 
-  root :to => 'projects#index'
+  root :to => 'welcome#index'
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 

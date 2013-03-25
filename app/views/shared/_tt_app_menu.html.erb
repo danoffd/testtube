@@ -2,19 +2,13 @@
 hand corner of the pages -->
 <div style="float: right">
   <menu class="app-menu">
-    <%= link_to "Home", welcome_path %>
-    <%= link_to "Projects", projects_path %>
-    <a href="#">Help</a>
-  </menu>
-    <br/>
-  <menu class="app-menu">
     <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong><br/>
-      <%= link_to "Edit Profile", edit_user_registration_path %>
+      <%= link_to current_user.email, edit_user_registration_path %>
       <%= button_to "Logout", destroy_user_session_path, :method => :delete %>
     <% else %>
       <%= link_to "Sign up", new_user_registration_path %>
       <%= link_to "Login", new_user_session_path %>
+      <%# <%= link_to "Login2", :controller => "devise", :action => "sign_in" %>
     <% end %>
   </menu>
 </div>

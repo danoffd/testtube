@@ -20,12 +20,12 @@
         <menu class="tube-menu">
           <ul>
             <li>
-            <%= link_to image_tag("tub-black-home-2.png"), {:action => 'index', :controller => 'welcome'}, :class => 'home' %>
+            <%= link_to image_tag("tub-black-home-2.png"), {:action => 'index', :controller => '/welcome'}, :class => 'home' %>
             </li>
             <li>
-            <%= link_to image_tag("tubes-red-projects-2.png"), {:action => 'index', :controller => 'projects'}, :class => 'projects' %>
+            <%= link_to image_tag("tubes-red-projects-2.png"), {:action => 'index', :controller => '/projects'}, :class => 'projects' %>
             </li>
-            <!-- <li><%= link_to "Stories", {:controller => "user_stories", :action => "index", :project_id => params[:project_id]}, :class => "active" %></li> -->
+            <!-- <li><%= link_to "Stories", {:controller => "/user_stories", :action => "index", :project_id => params[:project_id]}, :class => "active" %></li> -->
           </ul>
         </menu>
       </div>
