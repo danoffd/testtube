@@ -13,7 +13,9 @@ body
     padding:0;
     margin:0;
     position:relative;
-    background-color:#202020;
+    background-color:#737373;
+
+   background-image:url(/assets/stainless-2.png)
 }
 
 p {
@@ -78,9 +80,8 @@ input {
 }
 
 header.page-header {
-   background-image:url(/assets/header-bkg.png);
-   background-color:#f58b26;
-   height: 108px;
+   background-image:url(/assets/whiteboard-3-fixed.png);
+   /* background-color:#f58b26; */
    padding:0;
    margin:0;
 }
@@ -91,10 +92,26 @@ header.page-header {
 }
 
 .page-header-headings{
-  height: 68px;
     margin:0;
     float:left;
-    padding-top: 12px;
+    padding: 0;
+   background-image:url(/assets/chemset.png);
+   background-repeat: no-repeat;
+   min-height: 60px;
+   min-width: 800px;
+   position:relative;
+}
+
+.page-header-headings.project{
+   background-image:url(/assets/project.png);
+}
+
+.page-header-headings.project p{
+  margin: 5px 0 0 230px;
+  color: #05245b;
+  font-family: Comic Sans, Comic Sans MS, cursive;
+  font-size: 26px;
+  font-style: italic;
 }
 
 img.page-logo {
@@ -115,7 +132,7 @@ h1.page-header p{
 
 .page-header-headings h1{
     font-size: 24px;
-    margin: 0 0 5px 0;
+    margin: 0;
     color: #66cc66;
     font-family: courier;
     font-weight: normal;
@@ -132,14 +149,19 @@ h1.page-header p{
 
 menu.app-menu {
     text-align:right;
+    color: white;
+    float:right;
 }
 
 .story-actor {
     font-weight:bold;
 }
+
+.main-body-parts-container{
+  margin: 10px 20px;
+}
+
 .main-body-section {
-   margin-left:5px;
-   padding: 10px;
    min-height: 400px;
    color: #FFF4a5;
    float:left;
@@ -526,6 +548,80 @@ ul.tree-node-list li {
   width: 100%;
   clear: both;
 }
+
+/*  ----------------------------------------------------------
+   tubemenu = menu that looks like testtubes
+----------------------------------------------------------*/
+menu.tube-menu{
+    /*position:absolute;
+    left: 120px;*/
+    bottom:0;
+    margin:0;
+    clear:both;
+    position:relative;
+    height: 50px;
+}
+
+menu.tube-menu ul{
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+
+menu.tube-menu img {
+  width: 140px;
+}
+
+menu.tube-menu ul li {
+    display:inline; 
+    /*width: 150px;
+    height: 34px;*/
+    float: left;
+    padding: 0;
+    margin: 0 10px 0 0;
+    text-align:center;
+    height: 50px;
+    overflow: hidden;
+}
+
+menu.tube-menu ul li a{
+    bottom:0;
+    padding:6px 10px; 
+    position: relative;
+    overflow:hidden;
+    
+    transition: top 0.3s ease-out, left 0.3s ease-out;
+    -webkit-transition: top 0.3s ease-out, left 0.3s ease-out;
+    -moz-transition: top 0.3s ease-out, left 0.3s ease-out;
+    -o-transition: top 0.3s ease-out, left 0.3s ease-out;
+    -ms-transition: top 0.3s ease-out, left 0.3s ease-out;
+}
+
+/* hover state shows a linear gradient and opacity it brought down to 0.9 and also shows a very slight grey shadow on top */
+menu.tube-menu a.home { 
+  top: 22px;
+}
+ 
+menu.tube-menu a.projects { 
+  top: 22px;
+}
+
+menu.tube-menu a.selected.home { 
+  top: 8px;
+  left: -4px;
+}
+ 
+menu.tube-menu a.selected.projects { 
+  top: 0px;
+  left: -10px;
+}
+ 
+/* another RGBA background, now with an opacity of 0.8 */
+menu.tube-menu ul li a.active { 
+    /* background: rgba(32,32,32,1.0) !important;  */
+    /* color: #CC9933; */
+}
+
 
 /*  ----------------------------------------------------------
     Project menu

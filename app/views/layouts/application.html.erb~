@@ -1,59 +1,46 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <title>testtube - <%= @page_title || "Estimation tool for big kids" %></title>
-
     <%= javascript_include_tag("jquery-1.9.1")%>
     <%= javascript_include_tag("TT")%>
-
     <%= stylesheet_link_tag("testtube")%>
-
 </head>
 <body>
-
-
-    <div id="wrapper">
-        <header class="page-header">
-            <div class="page-header-contents">
-          <div class="page-header-headings">
-                <h1 class="page-header"><p>A chemistry set for the big kids</p></h1>
-          </div>
-                <div>
-                    <menu class="app-menu">
-                        <a href="#">Home</a>
-                        <a href="#">Projects</a>
-                        <a href="colorchart.html">Help</a>
-                      </menu>
-                      <br/>
-                    <menu class="app-menu">
-                        <% if user_signed_in? %>
-                          Logged in as <strong><%= current_user.email %></strong><br/>
-                            <%= link_to "Edit Profile", edit_user_registration_path %>
-                            <%= button_to "Logout", destroy_user_session_path, :method => :delete %>
-                          <% else %>
-                            <%= link_to "Sign up", new_user_registration_path %>
-                            <%= link_to "Login", new_user_session_path %>
-                        <% end %>
-                    </menu>
-                </div>
-              </div>
-              <a href="/projects">
-                <%= image_tag "logo-6.png", :class => "page-logo" %>
-              </a>
-        </header>
-       <div class="main-body-section">
-         <% flash.each do |key, value| %>
-           <p><%= value %></p>
-         <% end %>
-         <p class="notice"><%= notice %></p>
-         <p class="alert"><%= alert %></p>
-
-         <%= yield %>
-       </div>
+  <div id="wrapper">
+    <header class="page-header">
+      <div class="page-header-contents">
+        <div class="page-header-headings<%= " project" if defined?(@project) %>">
+          <% if defined?(@project) %>
+            <p><%= @project.name %></p>
+          <% end %>
+        </div>
+        <%= render "shared/tt_app_menu"  %>
+        <menu class="tube-menu">
+          <ul>
+            <li>
+            <%= link_to image_tag("tub-black-home-2.png"), {:action => 'index', :controller => 'welcome'}, :class => 'home' %>
+            </li>
+            <li>
+            <%= link_to image_tag("tubes-red-projects-2.png"), {:action => 'index', :controller => 'projects'}, :class => 'projects' %>
+            </li>
+            <!-- <li><%= link_to "Stories", {:controller => "user_stories", :action => "index", :project_id => params[:project_id]}, :class => "active" %></li> -->
+          </ul>
+        </menu>
+      </div>
+      <a href="/projects">
+        <%= image_tag "logo-7.png", :class => "page-logo" %>
+      </a>
+    </header>
+    <div class="main-body-section">
+      <% flash.each do |key, value| %>
+        <p><%= value %></p>
+      <% end %>
+      <%= yield %>
     </div>
-    <div id="mask" class="TTpopup-background-mask"></div>
+ </div>
+ <div id="mask" class="TTpopup-background-mask"></div>
 </body>
 </html>
 

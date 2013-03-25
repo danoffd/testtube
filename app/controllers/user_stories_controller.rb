@@ -1,7 +1,5 @@
 class UserStoriesController < ApplicationController
 
-  layout "project_layout"
-
   before_filter :find_project
 
   def show
@@ -96,6 +94,7 @@ class UserStoriesController < ApplicationController
   def find_project
     if params[:project_id]
       @project = Project.find_by_id(params[:project_id])
+      puts "*********  found project"
     end
   end
 end

@@ -5,6 +5,7 @@
 
 $(window).load(function () {
   TTwireUpPopupEvents();
+  TTwireTubeMenu();
 });
 
 //////////////////////////////////////////////////////////////////////////
@@ -25,6 +26,25 @@ if (typeof String.prototype.endsWith != 'function')
   };
 }
 
+
+
+//////////////////////////////////////////////////////////////////////////
+// tube menu
+
+function TTwireTubeMenu()
+{
+  // when the mouse hovers an item
+  $(".tube-menu a").mouseover(function (e)
+  {
+    $(this).addClass("selected");
+  });
+
+  // when the mouse leaves an item
+  $(".tube-menu a").mouseleave(function (e)
+  {
+    $(this).removeClass("selected");
+  });
+}
 
 //////////////////////////////////////////////////////////////////////////
 //   Refined list control provides google-like selector functionality

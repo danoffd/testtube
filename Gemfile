@@ -28,10 +28,12 @@ gem 'omniauth-facebook', '1.4.0'
 # gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
+gem 'cancan'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
-# To use Jbuilder templates for JSON
+# To use Jbuilder templates for JSO
 # gem 'jbuilder'
 
 # Use unicorn as the app server

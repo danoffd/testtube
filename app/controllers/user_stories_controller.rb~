@@ -1,7 +1,5 @@
 class UserStoriesController < ApplicationController
 
-  layout "project_layout"
-
   before_filter :find_project
 
   def show
@@ -27,7 +25,7 @@ class UserStoriesController < ApplicationController
 
     puts "++++++ in save"
     story_type = StoryType.where(:story_type_name => "Development").first
-    actor = ProjectActor.where(:actor_singular_name => "Doer").first
+    actor = Actor.where(:actor_singular_name => "Doer").first
     puts "++++++ gonna save: " + params[:user_story][:want_to]
     puts params.inspect
 
