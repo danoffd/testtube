@@ -1,18 +1,44 @@
 Testtube::Application.routes.draw do
-
-  # get "welcome" => "welcome#index", :as => 'welcome'
-
+  
   root :to => 'welcome#index'
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  resources :welcome, :only => [:index]
+  resources :projects, :only => [:index, :show, :update] do
+    member do
+      post :save
+      # post :add_user, :as => "add_user"
+      # match "/remove_user/:project_user_id" => "projects#remove_user", :as => "remove_user", :via => [:delete]
+      # match "/update_user/:project_user_id" => "projects#update_user", :as => "update_user", :via => [:put]
+    end
 
-  get "user_stories/show"
-  get "user_stories" => "user_stories#index", :as => 'user_stories'
-  post "user_stories/save"
-  get "user_stories/create"
+    resources :project_models, :only => [:index, :show], :shallow => true
+    resources :project_users, :only => [:create, :update, :destroy], :shallow => true
+  
+    resources :user_stories, :only => [:index, :show, :create], :shallow => true do
+      member do
+        post :save
+      end
+    end
 
-  get "projects" => "projects#index", :as => 'projects'
-  post "projects/save"
+  end
+
+  # get "project_models/index"
+  # get "project_models/show"
+
+  # get "welcome" => "welcome#index", :as => 'welcome'
+
+
+  # get "user_stories/show"
+  # get "user_stories" => "user_stories#index", :as => 'user_stories'
+  # post "user_stories/save"
+  # get "user_stories/create"
+
+  # get "projects" => "projects#index", :as => 'projects'
+  # post "projects/save"
+  # # post "projects/add_user"
+  # # delete "/projects/:project_id/remove_user/:id"
+  # match "/projects/:id" => "projects#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

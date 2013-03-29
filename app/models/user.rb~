@@ -31,7 +31,9 @@ class User < ActiveRecord::Base
 
 
   def password_required?
+    # dont require password if using open id for authentication
     super && provider.blank?
-    
   end
+
 end
+

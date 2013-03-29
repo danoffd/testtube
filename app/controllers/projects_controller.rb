@@ -1,13 +1,31 @@
 class ProjectsController < ApplicationController
+  # load_and_authorize_resource
+
   def index
     @projects = Project.all
     @dummy_project = Project.new
+    @dummy_project.id = -1
+  end
+
+  def destroy
+    puts "***********removing: " + params.inspect 
+    @project = Project.find(params[:id])
+    @project.destroy
+    render :nothing => true
+    
+  end
+  
+  def show
+    @project = Project.find_by_id(params[:id])
+    @new_user = User.new
+    @dummy_pu = ProjectUser.new
+    @dummy_pu.id = -1
   end
 
   def save
     puts "save me:  " +  params[:project][:id]
 
-    if params[:project][:id] == ""
+    if params[:project][:id] == "-1"
       puts "creating project"
       project = Project.new(params[:project])
     
@@ -33,6 +51,15 @@ class ProjectsController < ApplicationController
       puts "updating project"
     end
 
+    render :nothing => true
+  end
+
+  def update
+    puts "************ saving project" + params.inspect 
+    @project = Project.find(params[:id])
+    puts "************ project:" + @project.inspect 
+    @project.update_attributes!(params[:project])
+    puts "************ done!" 
     render :nothing => true
   end
 end

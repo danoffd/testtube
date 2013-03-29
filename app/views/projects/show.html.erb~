@@ -1,0 +1,85 @@
+<%= javascript_include_tag("projects") %>
+
+<section class="main-body-parts-container project-show">
+<div class="parts">
+  <div class="chunk">
+    <h2>Info</h2>
+    <p>project infor here<br><%= @project.name %> (<%= @project.description %>)</p>
+    <%= form_for @project, :remote => true, \
+      :html => {:'data-type' => 'html', :id => 'edit-project-form'}
+      do |f| %>
+      <table class="form-fields">
+        <tr>
+          <td><%= f.label :name %></td>
+          <td><%= f.text_field :name, :class => "project-changer" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :description %></td>
+          <td><%= f.text_area :description, :class => "project-changer" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :is_public %></td>
+          <td>
+            <%= f.check_box :is_public, :class => "project-changer" %>
+            <span>(<strong>anybody</strong> who finds, sees it)</span>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+  <div class="chunk">
+    <h2>Status</h2>
+    <p>Coming soon.  Include informaiton on the status of the project.  Number of stories, completeness, doneness, estimate, confidence, etc.</p>
+  </div>
+</div>
+<div class="users">
+  <div class="chunk">
+    <h2>Project Users.</h2>
+    <%= form_for @new_user, \
+      :url => project_project_users_path(@project.id), \
+      :remote => true, \
+      :html => {:'data-type' => 'html', :id => 'new-user-form'} \
+      do |f| %>
+      <div class="add-user-wrapper">
+         <%= f.label :email %>
+         <%= f.text_field :email, :class => "new-user", :id => "new-user-email", :placeholder => "Enter Email" %>
+         
+         <%= hidden_field_tag "project_id", @project.id %>
+        <a id="new-user-link" href="#">Add</a>
+      </div>
+    <% end %>
+    <table class="table project-users">
+      <tr>
+        <th class="user">User</th>
+        <th class="role">Role</th>
+        <th class="remove">Remove</th>
+      </tr>
+      <% @project.project_users.each do |pu| %>
+        <tr>
+          <td><%= pu.user.email %></td>
+          <td>
+            <%= select_tag "role_" + pu.id.to_s, \
+              options_for_select(ProjectUser::ROLES.map{|role| [ role[1], role[0] ]}, pu.role), \
+              :class => "role-selector", \
+              :datapuid => pu.id.to_s %>
+          </td>
+          <td>
+            <a href="javascript:TTremoveProjectUser('<%= project_user_path(pu, :project_id => @project.id) %>');">Remove</a>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <aside class="hidden-closet">
+    <%= form_for @dummy_pu, \
+      :url => project_user_path(@dummy_pu.id), \
+      :remote => true, \
+      :html => {:'data-type' => 'html', :id => 'change-project-user-form'} \
+      do |f| %>
+        <%= hidden_field_tag :project_id, @project.id %>
+        <%= hidden_field_tag :project_user_id, @dummy_pu.id %>
+        <%= hidden_field_tag :role, "set me please" %>
+    <% end %>
+  </aside>
+</div>
+</section>

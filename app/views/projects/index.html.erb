@@ -7,9 +7,14 @@
 <% @projects.each do |project| %>
   <div class="TTprojectCard">
     
-    <h2><%= project.name %> - <%= project.description %></h2>
+    <h2>
+      <%= link_to(project.name, project_path(project)) %>
+    </h2>
+    <%= link_to "Delete", project, method: :delete, data: {confirm: "There is no way to get it back. Are you sure you want to delete this project?"}, remote: true %>
+    <p><%= project.description %></p>
       <p>
       <%= link_to "Stories", {:controller => "user_stories", :action => "index", :project_id => project.id} %>
+      <%= link_to "Models", {:controller => "project_models", :action => "index", :project_id => project.id} %>
       </p>
     <% project.project_models.each do |model| %>
       <p><%= model.name %> (<%= model.description %>)</p>
@@ -22,7 +27,10 @@
     <div id="popup-edit-project" class="TTpopup">
       <div id="popup-edit-project-body" class="TTpopupBody">
         <h1>Project Summary</h1>
-        <%= form_for @dummy_project, :url => {:action => 'save'}, :remote => true, :html => { :'data-type' => 'html', :id => 'project-editor-form'} do |f| %>
+        <%= form_for @dummy_project, \
+          :url => save_project_path(@dummy_project), \
+          :html => { :'data-type' => 'html', :id => 'project-editor-form'} \
+          do |f| %>
           <%= f.hidden_field :id, :id => "project-editor-projectid" %>
           <p class="label-field-pair">
             <%= f.label :name %>

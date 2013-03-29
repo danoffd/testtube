@@ -3,7 +3,12 @@ control within tree that contains it.  When the user wants to edit
 a story, this control 'wraps' the node of the story to edit and
 injects it into the tree while its being edited-->
 <div class="tree-editor" id="tree-editor">
-  <%= form_for @dummy_story, :url => {:action => 'save'}, :remote => true, :html => { :'data-type' => 'html', :id => 'tree-editor-form'} do |f| %>
+  <%# <%= form_for @dummy_story, :url => {:action => 'save'}, :remote => true, :html => { :'data-type' => 'html', :id => 'tree-editor-form'} do |f| %>
+    <%= form_for @dummy_story, \
+      :url => save_user_story_path, \
+      :remote => true, \
+      :html => { :'data-type' => 'html', :id => 'tree-editor-form'} \
+    do |f| %>
   <%= f.hidden_field :id, :id => "story-editor-id" %>
   <div class="tree-editor-controls">
     <div class="tree-editor-controls-body">
@@ -19,7 +24,7 @@ injects it into the tree while its being edited-->
             <%= f.text_area :want_to, :id => "story-editor-wantto", :tabindex => 3401 %>
         </p>
         <p class="label-field-pair">
-            <%= f.label :so_i_can %>
+            <%= f.label :so_i_can, "so I can" %>
             <%= f.text_area :so_i_can, :id => "story-editor-soican", :tabindex => 3402 %>
         </p>
       </div>
