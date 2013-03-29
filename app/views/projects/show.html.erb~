@@ -5,9 +5,7 @@
   <div class="chunk">
     <h2>Info</h2>
     <p>project infor here<br><%= @project.name %> (<%= @project.description %>)</p>
-    <%= form_for @project, :remote => true, \
-      :html => {:'data-type' => 'html', :id => 'edit-project-form'}
-      do |f| %>
+    <%= form_for @project, :remote => true do |f| %>
       <table class="form-fields">
         <tr>
           <td><%= f.label :name %></td>

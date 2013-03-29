@@ -28,7 +28,7 @@
       <div id="popup-edit-project-body" class="TTpopupBody">
         <h1>Project Summary</h1>
         <%= form_for @dummy_project, \
-          :url => save_project_path(@dummy_project), \
+          :url => projects_path(@dummy_project), \
           :html => { :'data-type' => 'html', :id => 'project-editor-form'} \
           do |f| %>
           <%= f.hidden_field :id, :id => "project-editor-projectid" %>

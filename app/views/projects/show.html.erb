@@ -70,7 +70,7 @@
   </div>
   <aside class="hidden-closet">
     <%= form_for @dummy_pu, \
-      :url => project_user_path(@dummy_pu.id), \
+      :url => project_user_path(@project, @dummy_pu.id), \
       :remote => true, \
       :html => {:'data-type' => 'html', :id => 'change-project-user-form'} \
       do |f| %>

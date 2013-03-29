@@ -4,7 +4,7 @@ Testtube::Application.routes.draw do
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   resources :welcome, :only => [:index]
-  resources :projects, :only => [:index, :show, :update, :destroy] do
+  resources :projects, :only => [:index, :show, :update, :destroy, :create] do
     member do
       post :save
       # post :add_user, :as => "add_user"
