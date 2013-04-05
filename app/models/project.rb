@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
   # scope :mine, joins(:project_users).where('project_users.user_id = ?', (@user ||= User.new).id)
   scope :view, (lambda do |user_id|
     user_id = (user_id.nil?) ? "-1" : user_id.to_s
-     where("is_public = true or exists (select 1 from project_users where projects.id = project_users.project_id and project_users.user_id = ? and project_users.role = 'view')", user_id)
+     where("is_public = true or exists (select 1 from project_users where projects.id = project_users.project_id and project_users.user_id = ?)", user_id)
    end)
 
   scope :admin, (lambda do |user_id|
@@ -23,7 +23,7 @@ class Project < ActiveRecord::Base
    end)
 
   def view?(user)
-     project_users.any?{|project_user| project_user.user == user && project_user.role == "admin"}
+     project_users.any?{|project_user| project_user.user == user}
   end
 
   def admin?(user)

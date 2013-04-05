@@ -26,6 +26,22 @@ if (typeof String.prototype.endsWith != 'function')
   };
 }
 
+//http://stackoverflow.com/questions/1909441/jquery-keyup-delay
+// framework function to allow a js method to be fired after some delay in typing
+// usage:
+// $('input').keyup(function() {
+//     delay(function(){
+//       alert('Time elapsed!');
+//     }, 1000 );
+// });
+// 
+var TTfireAfterDelay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -36,7 +52,6 @@ function TTwireTubeMenu()
   // when the mouse hovers an item
   $(".tube-menu a").mouseover(function (e)
   {
-    alert("selected");
     $(this).addClass("selected");
   });
 

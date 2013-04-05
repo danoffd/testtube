@@ -5,11 +5,9 @@ Testtube::Application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
   resources :welcome, :only => [:index]
   resources :projects, :only => [:index, :show, :update, :destroy, :create] do
+    #custom actions that perform instance level function
     member do
       post :save
-      # post :add_user, :as => "add_user"
-      # match "/remove_user/:project_user_id" => "projects#remove_user", :as => "remove_user", :via => [:delete]
-      # match "/update_user/:project_user_id" => "projects#update_user", :as => "update_user", :via => [:put]
     end
 
     resources :project_models, :only => [:index, :show], :shallow => true

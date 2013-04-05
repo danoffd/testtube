@@ -15,7 +15,16 @@ $("document").ready(function () {
 
   $(".project-changer").change(function(e)
   {
-    TTupdateProject(e, $(this));
+      TTupdateProject(e);
+  });
+
+  $(".project-changer-delay").keyup(function(e)
+  {
+    $(this).siblings(".delay-status").attr("src", "/assets/saving-animated.gif");
+    TTfireAfterDelay(function()
+    {
+      TTupdateProject(e);
+    }, 400);
   });
 
   $(".role-selector").change(function(e)
@@ -24,16 +33,35 @@ $("document").ready(function () {
   });
 });
 
-function TTupdateProject(event, jqSource)
+function TTupdateProject(event)
 {
+  var jqSource = $(event.currentTarget);
   var jqForm = jqSource.parents("form");
   $.ajax(
   {
     type: jqForm.attr("method"),
     url: jqForm.attr("action"),
     data: jqForm.serialize(),
-    success: function(data) {alert("saved project");},
+    success: function(data) { TTshowSaveSuccess(data); },
     error: function(jqXHR, stat, err) {alert("error saving project");}
+  });
+}
+
+function TTshowSaveSuccess(data)
+{
+  var workingItems = $(".delay-status[src='/assets/saving-animated.gif']");
+  workingItems.attr("src", "/assets/saved.png");
+  workingItems.fadeOut(2000, function()
+  {
+    // workingItems.removeAttr("src");
+    workingItems.attr("src", "/assets/nothingness.gif");
+
+    // not sure why, but the saved image flashes back if we dont delay the reset...
+    setTimeout(function () 
+    {
+      workingItems.show();
+    }, 200);
+    
   });
 }
 
@@ -72,11 +100,13 @@ function TTcreateProject(jqForm)
 {
   $.ajax(
   {
+    headers: { 
+        Accept : "text/javascript"
+    },
     type: jqForm.attr("method"),
     url: jqForm.attr("action"),
     data: jqForm.serialize(),
-    success: function(data) {alert("created project");},
-    error: function(jqXHR, stat, err) {alert("error creating project");}
+    error: function(jqXHR, stat, err) {alert("We encountered an error while creating the project.");}
   });
 }
 

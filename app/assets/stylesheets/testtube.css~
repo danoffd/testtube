@@ -200,7 +200,7 @@ table.form-fields td:first-child {
 
 table.form-fields textarea {
   width: 100%;
-  height: 20px;
+  height: 35px;
 }
 
 .label-field-pair-horiz label {

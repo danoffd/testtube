@@ -1,24 +1,21 @@
 class ProjectsController < ApplicationController
   load_and_authorize_resource
 
-  scope :mine, joins(:project_users).where('project_users.user_id = ?', @user.id)
-
   def index
-    # @projects = Project.all
     @projects = [] if @projects == nil  #cancan leaves this nil if none were passed
     @dummy_project = Project.new
   end
 
   def destroy
     puts "***********removing: " + params.inspect 
-    # @project = Project.find(params[:id])
     @project.destroy
-    render :nothing => true
+
+    flash[:notice] = "Project has been purged"
+    redirect_to projects_path
     
   end
   
   def show
-    # @project = Project.find_by_id(params[:id])
     @new_user = User.new
     @dummy_pu = ProjectUser.new
   end
@@ -30,6 +27,10 @@ class ProjectsController < ApplicationController
     project = Project.new(params[:project])
   
     project.save!
+
+    projectUser = project.project_users.create( \
+      :user_id => current_user.id, \
+      :role => "admin")
 
     actorUser = project.actors.create( \
       :actor_singular_name => "User", \
@@ -47,7 +48,11 @@ class ProjectsController < ApplicationController
         :is_fully_recorded => false, \
         :is_estimate_final => false)
 
-    render :nothing => true
+    respond_to do |format|
+      format.html { render :nothing => true }
+      format.js 
+    end
+    
   end
 
   def update

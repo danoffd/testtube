@@ -21,12 +21,15 @@ class Ability
     # you're gonna want to remember this...  read this as:
     # :canCan action to authorize
     #    , obj Type to authorize 
-    #    , rails scope to use when there is not project to check (e.g. index)
+    #    , rails scope to use when there is not a project to check (e.g. index)
     #    , block to use when the project is there (e.g. update)
     can :read, Project, Project.view(user.id) do |project|
       project.view?(user)
     end
-    can :update, Project, Project.admin(user.id) do |project|
+    can :update, Project do |project|
+      project.admin?(user)
+    end
+    can :delete, Project do |project|
       project.admin?(user)
     end
     if !user.id.nil?

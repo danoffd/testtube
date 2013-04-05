@@ -23,10 +23,10 @@ class Project < ActiveRecord::Base
    end)
 
   def view?(user)
-     project_users.any?{|project_user| project_user.user == user && project_user.role == "admin"}
+     project_users.any?{|project_user| project_user.user == user}
   end
 
-  def administer?(user)
+  def admin?(user)
      project_users.any?{|project_user| project_user.user == user && project_user.role == "admin"}
   end
 end

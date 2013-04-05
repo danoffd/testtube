@@ -199,8 +199,12 @@ table.form-fields td:first-child {
 }
 
 table.form-fields textarea {
-  width: 100%;
+  width: 260px;
   height: 35px;
+}
+
+table.form-fields label {
+  width: 260px;
 }
 
 .label-field-pair-horiz label {

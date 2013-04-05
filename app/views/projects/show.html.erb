@@ -9,11 +9,17 @@
       <table class="form-fields">
         <tr>
           <td><%= f.label :name %></td>
-          <td><%= f.text_field :name, :class => "project-changer" %></td>
+          <td>
+            <%= f.text_field :name, :class => "project-changer-delay" %>
+            <img class="delay-status" src=""></img>
+          </td>
         </tr>
         <tr>
           <td><%= f.label :description %></td>
-          <td><%= f.text_area :description, :class => "project-changer" %></td>
+          <td>
+            <%= f.text_area :description, :class => "project-changer-delay" %>
+            <img class="delay-status" src=""></img>
+          </td>
         </tr>
         <tr>
           <td><%= f.label :is_public %></td>
@@ -23,6 +29,9 @@
           </td>
         </tr>
       </table>
+    <% end %>
+    <%= form_for @project, :method => :delete do  %>   
+      <%= submit_tag "Purge this project", confirm: "Are you sure you want to permanently remove this project?" %> 
     <% end %>
   </div>
   <div class="chunk">
