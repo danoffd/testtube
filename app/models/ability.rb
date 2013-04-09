@@ -15,7 +15,7 @@ class Ability
     # end
 
     
-    # alias_action :edit, :destroy, :to => :update
+    # alias_action :destroy, :to => :delete
 
 
     # you're gonna want to remember this...  read this as:
@@ -35,6 +35,21 @@ class Ability
     if !user.id.nil?
       can :create, Project 
     end
+
+    # User Stories
+    can :read, UserStory do |user_story|
+      user_story.project.view?(user)
+    end
+    can :update, UserStory do |user_story|
+      user_story.project.contribute?(user)
+    end
+    can :create, UserStory do |user_story|
+      user_story.project.contribute?(user)
+    end
+    can :destroy, UserStory do |user_story|
+      user_story.project.contribute?(user)
+    end
+
     
     # can :read, Project, Project.mine(user.id) do |project|
     #   puts "********  Evaluating read project permissions for: " + project.inspect

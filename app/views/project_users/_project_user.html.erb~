@@ -1,0 +1,13 @@
+
+        <tr id="project-user-<%= project_user.id %>" class="project-user">
+          <td><%= project_user.user.email %></td>
+          <td>
+            <%= select_tag "role_" + project_user.id.to_s, \
+              options_for_select(ProjectUser::ROLES.map{|role| [ role[1], role[0] ]}, project_user.role), \
+              :class => "role-selector", \
+              :datapuid => project_user.id.to_s %>
+          </td>
+          <td>
+            <a href="javascript:TTremoveProjectUser('<%= project_user_path(project_user, :project_id => @project.id) %>');">Remove</a>
+          </td>
+        </tr>

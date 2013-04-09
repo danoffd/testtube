@@ -1,0 +1,6 @@
+var newRow = $("#project-user-<%= @project_user.id %>");
+
+newRow.find("td:first").prepend("<img class='confirm-image' src='/assets/saved.png'/>");
+var image = newRow.find("td:first").children(".confirm-image");
+image.fadeOut(2000, function(){image.remove()});
+

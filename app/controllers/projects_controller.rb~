@@ -24,22 +24,22 @@ class ProjectsController < ApplicationController
     puts "save me:  " +  params[:project][:id]
 
     puts "creating project"
-    project = Project.new(params[:project])
+    @project = Project.new(params[:project])
   
-    project.save!
+    @project.save!
 
-    projectUser = project.project_users.create( \
+    projectUser = @project.project_users.create( \
       :user_id => current_user.id, \
       :role => "admin")
 
-    actorUser = project.actors.create( \
+    actorUser = @project.actors.create( \
       :actor_singular_name => "User", \
       :actor_plural_name => "Users", \
       :use_an_instead_of_a =>false)
 
-    storyType = project.story_types.create(:story_type_name => "Basic Task")
+    storyType = @project.story_types.create(:story_type_name => "Basic Task")
 
-    firstStory = project.user_stories.create( \
+    firstStory = @project.user_stories.create( \
         :actor_id => actorUser.id, \
         :story_type_id => storyType.id, \
         :want_to => "start a project with an initial dummy story", \

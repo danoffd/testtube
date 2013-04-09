@@ -1,8 +1,43 @@
 class UserStoriesController < ApplicationController
+  load_and_authorize_resource :project
+  load_and_authorize_resource :user_story, :through => :project, :shallow => true
 
-  before_filter :find_project
+  # before_filter :find_project
 
   def show
+  end
+  
+  def new
+    # need the list of actors to include in the story
+    # editor combo box
+    @all_actors = get_actors
+
+    @user_story = @project.user_stories.new
+    puts "*************creating new form: " + params.inspect
+    respond_to do |format|
+      format.html { render :nothing => true }
+      format.js 
+    end
+  end
+
+  def destroy
+    @user_story.delete
+
+    respond_to do |format|
+      format.html { render :nothing => true }
+      format.js 
+    end
+  end
+
+  def edit
+    # need the list of actors to include in the story
+    # editor combo box
+    @all_actors = get_actors
+
+    respond_to do |format|
+      format.html { render :nothing => true }
+      format.js 
+    end
   end
 
   def index
@@ -18,45 +53,70 @@ class UserStoriesController < ApplicationController
     # They will contain the rest of the stories recursively
     @root_user_stories = get_root_user_stories
 
-    @dummy_story = UserStory.new(:id => -1)
+    @user_story = @project.user_stories.new
+
+    puts "***********new user story: " + @user_story.inspect
   end
 
-  def save
-
-    puts "++++++ in save"
+  def update
+    puts "++++++ in update: " + params.inspect
     story_type = StoryType.where(:story_type_name => "Development").first
-    actor = Actor.where(:actor_singular_name => "Doer").first
+
     puts "++++++ gonna save: " + params[:user_story][:want_to]
     puts params.inspect
 
+    @user_story = UserStory.find(params[:user_story][:id])
+    @user_story.want_to = params[:user_story][:want_to]
+    @user_story.so_i_can = params[:user_story][:so_i_can]
+    @user_story.is_estimate_final = false
+    @user_story.actor = find_or_create_actor(params[:user_story][:actor_name])
    
-    if params[:user_story][:id] == "new"
-      @story = UserStory.new(params[:user_story])
-    
-      
-      @story.priority = 5
-      @story.Actor_id = actor.id
-      @story.StoryType_id = story_type.id
-      @story.Project_id = @project.id
-    else
-      @story = UserStory.find(params[:user_story][:id])
-      @story.want_to = params[:user_story][:want_to]
-      @story.so_i_can = params[:user_story][:so_i_can]
-    end
+    puts @user_story.inspect
 
-    @story.is_fully_recorded = false
-    @story.is_estimate_final = false
-   
-    puts @story.inspect
-
-    @story.save!
+    @user_story.save!
 
     puts "++++++ saved"
 
-    render :nothing => true
+    respond_to do |format|
+      format.html { render :nothing => true }
+      format.js 
+    end
   end
 
   def create
+    puts "++++++ in create"
+    story_type = StoryType.where(:story_type_name => "Development").first
+    puts "++++++ gonna save: " + params.inspect
+   
+    @user_story = @project.user_stories.new(params[:user_story])
+    @user_story.priority = 5
+    @user_story.story_type = story_type
+    @user_story.is_fully_recorded = false
+    @user_story.is_estimate_final = false
+    @user_story.actor = find_or_create_actor(params[:user_story][:actor_name])
+   
+    puts @user_story.inspect
+
+    @user_story.save!
+
+    puts "++++++ saved"
+
+    respond_to do |format|
+      format.html { render :nothing => true }
+      format.js 
+    end
+  end
+
+  def find_or_create_actor(actor_name)
+    actor = Actor.where(:actor_singular_name => actor_name, :project_id => @project.id).first
+    if actor.nil?
+      actor = @project.actors.create!(\
+        :actor_singular_name => actor_name, \
+        :actor_plural_name => actor_name.pluralize(2), \
+        :use_an_instead_of_a => false)
+    end
+    puts "++++++ Actor:" + actor.inspect
+    actor
   end
 
   def get_root_user_stories
@@ -88,7 +148,10 @@ class UserStoriesController < ApplicationController
   end
 
   def get_actors
-    return Actor.all
+    if @project.nil?
+      @project = Project.find(@user_story.project_id)
+    end
+    @project.actors
   end
 
 end

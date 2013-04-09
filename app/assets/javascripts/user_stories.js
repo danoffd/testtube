@@ -15,17 +15,7 @@ $("document").ready(function () {
       treeEditorKeyDown(e, $(this));
     });
 
-    TTwireupRefinedListEvents("#story-editor-actor", "#story-editor-wantto");
     TTwireUpSliderChest();
-
-    $("#story-editor-actor-input, #story-editor-wantto, #story-editor-soican").keyup(function (e) {
-        updateStorySummary();
-    });
-
-    // dont allow return keys in the story components
-    $('#edit-story textarea').keypress(function (e) {
-        if (e.keyCode == 13) return false;
-    });
 
     $("#newStoryLink").click(function (e) {
         //Cancel the link behavior
@@ -46,6 +36,33 @@ $("document").ready(function () {
         }
     });
 });
+
+function updateTreeNode(jqOriginalNode, jqNewNode)
+{
+  jqOriginalNode.replaceWith(jqNewNode);
+  TTconfirmNodeSave(jqNewNode.children(".tree-node-body"));
+  TTwireUpTreeNodes(jqNewNode.parent("li"));
+  TTreindexTree(9000, jqNewNode.attr("id"));
+}
+
+function wireUpUserStoryEditor(toNode)
+{
+  // need to unbind the events from the node so user can type
+  // without triggering them
+  toNode.off('keyup');
+  toNode.off('keydown');
+
+  TTwireupRefinedListEvents("#story-editor-actor", "#story-editor-wantto");
+
+  $("#story-editor-actor-input, #story-editor-wantto, #story-editor-soican").keyup(function (e) {
+    updateStorySummary();
+  });
+
+  // dont allow return keys in the story components
+  $('#edit-story textarea').keypress(function (e) {
+    if (e.keyCode == 13) return false;
+  });
+}
 
 function treeEditorKeyDown(event, jqBox)
 {
@@ -71,10 +88,10 @@ function treeEditorKeyUp(event, jqBox)
 function populateStoryEditor(jqEditor, jqTreeNode)
 {
   var actorName = $.trim(jqTreeNode.find(".story-actor").text());
-  jqEditor.find("#story-editor-id").val(jqTreeNode.attr("data-storyid"));
-  jqEditor.find("#story-editor-actor-input").val(actorName);
-  jqEditor.find("#story-editor-wantto").val(jqTreeNode.find(".story-wantto").text());
-  jqEditor.find("#story-editor-soican").val(jqTreeNode.find(".story-soican").text());
+  // jqEditor.find("#story-editor-id").val(jqTreeNode.attr("data-storyid"));
+  // jqEditor.find("#story-editor-actor-input").val(actorName);
+  // jqEditor.find("#story-editor-wantto").val(jqTreeNode.find(".story-wantto").text());
+  // jqEditor.find("#story-editor-soican").val(jqTreeNode.find(".story-soican").text());
 
   // if the actor was blank, set focus to the actor input
   if (actorName == "")

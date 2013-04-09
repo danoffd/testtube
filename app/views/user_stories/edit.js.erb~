@@ -1,0 +1,18 @@
+// grab the root of the node we need to edit
+var node = $('#tn-<%= @user_story.id %>');
+
+// insert the editor into the node we are editing
+node.prepend('<%= j render("editor_intree") %>');
+
+// insert the body text into the editor so the editor can update in real time
+node.children("#tree-editor").prepend(node.children(".tree-node-body"));
+
+wireUpUserStoryEditor(node);
+
+var confirmHost = node.children(".tree-node-body");
+
+alert("injecting: " + confirmHost);
+
+confirmHost.prepend("<img src='/assets/saved.png'/>");
+confirmHost.children("img").fadeOut(2000);
+

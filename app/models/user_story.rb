@@ -1,9 +1,8 @@
 class UserStory < ActiveRecord::Base
-  belongs_to :Project
-  belongs_to :Actor \
-    , :class_name => "Actor" \
+  belongs_to :project
+  belongs_to :actor \
     , :foreign_key => "actor_id"
-  belongs_to :StoryType
+  belongs_to :story_type
   belongs_to :parent_user_story \
     , :class_name => "UserStory" \
     , :foreign_key => "parent_user_story_id"
@@ -24,13 +23,18 @@ class UserStory < ActiveRecord::Base
     :project_id,
     :actor_id,
     :story_type_id,
-    :parent_user_story_id
+    :parent_user_story_id,
+    :actor_name
+
+  attr_accessor :actor_name
   
   validates :want_to, 
     :uniqueness => {:message => "the want to clause must be unique", :scope => :project_id}
   validates :want_to, :presence => true
   validates :project_id, :presence => true
   validates :actor_id, :presence => true
-  validates :story_type_id, :presence => true
-  validates :so_i_can, :presence => true
+
+  def actor_name
+    actor.actor_singular_name if !actor.nil?
+  end
 end

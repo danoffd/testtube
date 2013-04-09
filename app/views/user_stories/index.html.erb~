@@ -1,12 +1,12 @@
 <% @page_title = "User Stories" %>
-<%= javascript_include_tag("TT_tree")%>
-<%= javascript_include_tag("TT_sliderChest")%>
-<%= javascript_include_tag("user_stories")%>
+<%# <%= javascript_include_tag("TT_tree")%>
+<%# <%= javascript_include_tag("TT_sliderChest")%>
+<%# <%= javascript_include_tag("user_stories")%>
 
-<section class="main-body-parts-container">
-    <section class="main-body-section TTsliderCompanion full">
+<section>
+    <section class="main-body-parts-container main-body-section TTsliderCompanion full">
         <h1>Work Breakdown</h1>
-        <div id="userStoryTree" class="tree">
+        <div id="userStoryTree" class="tree" data-new-url=<%= new_project_user_story_path(@project) %>>
           <!-- <p id="TTtreeDebugMessage"></p> -->
 
           <%= render "shared/tt_tree_branch", :nodes => @root_user_stories %>
@@ -17,6 +17,8 @@
     </aside>
 </section>
 <asside style="display:none" id="hidden-closet">
-  <%= render "editor_intree"  %>
+  <div class="tree-editor" id="tree-editor">
+    <%= render "editor_intree"  %>
+  </div>
 </asside>
   

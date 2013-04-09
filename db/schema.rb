@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328151132) do
+ActiveRecord::Schema.define(:version => 20130405225920) do
 
   create_table "actors", :force => true do |t|
     t.integer  "project_id"
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(:version => 20130328151132) do
 
   add_index "baseline_tasks", ["story_type_id"], :name => "index_baseline_tasks_on_story_type_id"
 
+  create_table "invitees", :force => true do |t|
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "project_models", :force => true do |t|
     t.integer  "project_id"
     t.string   "name"
@@ -56,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20130328151132) do
     t.string   "role"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "invitee_id"
   end
 
   create_table "projects", :force => true do |t|

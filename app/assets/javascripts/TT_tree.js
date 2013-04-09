@@ -93,6 +93,7 @@ function TTwireUpTreeNodes(jqNodesToWire)
 
 function TTeditorDelete()
 {
+  alert("TODO:  What does this do?  TT_tree.js/TTeditorDelete");
   var jqEditor = $("#tree-editor");
   var jqNode = jqEditor.parent();
   TTclearAndSaveTreeEditor(undefined, jqEditor);
@@ -114,28 +115,70 @@ function TTeditorDetails()
   alert("show me the details!!!!");
 }
 
-function TTdeleteTreeNode(jqNode)
+function TThandleEditorDeleteClick()
 {
-  var containingLI = jqNode.parent();
+  TTdeleteTreeNode($("#tree-editor").parents(".tree-node:first"));
+  // var deleteForm = $("#tree-editor-delete-form");
+
+  // $.ajax(
+  // {
+  //   headers: { Accept : "text/javascript" },
+  //   type: deleteForm.attr("method"),
+  //   url: deleteForm.attr("action"),
+  //   data: deleteForm.serialize(),
+  //   error: function(jqXHR, stat, err) { alert("error deleting: " + err); },
+  // });
+}
+
+function TThandleServerNodeDelete(jqNode)
+{
+  var containingLI = jqNode.parents("li:first");
   var containingUL = containingLI.parent();
 
-  //  TODO:  Call external function to delete the data
- 
   // need to move the selected item what will be the next one in the 
   // tree.  We can reuse the arrow key functions, but need to hide
   // the current node first so its not selected
-  containingLI.hide();
-  newNode = TTtreeStep(undefined, jqNode, false);
-
-  // remove the LI from the containing list
-  containingLI.remove();
-
-  // remove the UL from the LI that contains it if there are
-  // no more children in it
-  if (containingUL.has(".tree-node").length == 0)
+ 
+  // move the editing body back to the tree-node.  it had
+  // been inserted into the editor
+  var jqEditor = $("#tree-editor");
+  if (jqEditor != undefined)
   {
-    containingUL.remove();
-    TTreindexTree(9000, newNode.attr("id"));
+    var editingBody = jqEditor.children(".tree-node-body");
+    jqNode.append(editingBody);
+    jqEditor.remove();
+  }
+  newNode = TTtreeStep(undefined, jqNode, false);
+  
+  containingLI.fadeOut(1000, function()
+  {
+    // remove the LI from the containing list
+    containingLI.remove();
+
+    // remove the UL from the LI that contains it if there are
+    // no more children in it
+    if (containingUL.has(".tree-node").length == 0)
+    {
+      containingUL.remove();
+      TTreindexTree(9000, newNode.attr("id"));
+    }
+  });
+}
+
+function TTdeleteTreeNode(jqNode)
+{
+  var deleteForm = jqNode.find(".tn-delete-form");
+
+  if (confirm("Are you sure you want to delete this story?"))
+  {
+    $.ajax(
+    {
+      headers: { Accept : "text/javascript" },
+      type: deleteForm.attr("method"),
+      url: deleteForm.attr("action"),
+      data: deleteForm.serialize(),
+      error: function(jqXHR, stat, err) { alert("error deleting: " + err); },
+    });
   }
 }
 
@@ -236,24 +279,21 @@ function TTsetTreeNodeFocus(event, jqNode)
 
 function TTeditTreeNode(event, jqElement)
 {
+
   var editor = $("#tree-editor");
 
   // if the editor is already editing a node, clear it
   TTclearAndSaveTreeEditor(event, editor);
 
-  // first, relocate the tree-node-body into the editor
-  editor.prepend(jqElement.children(".tree-node-body"));
-
-  // then, move the editor into tree node
-  jqElement.append(editor);
-
-  // finally call an external function to populate the editor controls
-  TTpopulateEditorFunction(editor, jqElement);
-
-  // need to unbind the events from the node so user can type
-  // without triggering them
-  jqElement.off('keyup');
-  jqElement.off('keydown');
+  // make a call to get the html for the editor form.  server returns JS
+  // that inserts the form to edit the node with
+  $.ajax(
+  {
+    headers: { Accept : "text/javascript" },
+    type: "get",
+    url: jqElement.attr("data-edit-url"),
+    error: function(jqXHR, stat, err) {alert("Error getting form to edit tree node");}
+  });
 }
 
 function TTclearAndSaveTreeEditor(event, jqEditor, setFocusToCurrentNode)
@@ -266,10 +306,10 @@ function TTclearAndSaveTreeEditor(event, jqEditor, setFocusToCurrentNode)
 
     $.ajax(
     {
+      headers: { Accept : "text/javascript" },
       type: editorForm.attr("method"),
       url: editorForm.attr("action"),
       data: editorForm.serialize(),
-      success: function(data) { alert("success: " + data); },
       error: function(jqXHR, stat, err) { alert("error: " + err); },
     });
 
@@ -279,7 +319,8 @@ function TTclearAndSaveTreeEditor(event, jqEditor, setFocusToCurrentNode)
     jqNode.append(editingBody);
 
     // move the tree editor back to the closet
-    $("#hidden-closet").append(jqEditor);
+    //$("#hidden-closet").append(jqEditor);
+    jqEditor.remove();
  
     // need to re-wire key press events since we unhooked them
     // when we opened the editor
@@ -489,46 +530,19 @@ function TTtreeNodeKeyDown(event, jqNode)
 var TTtreeNodeCounter = 1;
 function TTinsertNewTreeNode(jqNode)
 {
-  //if the current node is a parent, add the new node as the last child.
-  //if current node is childless, insert the new node as a lower sibling
-  
-  //create the new node
-  //  TODO:  pretty lazy approach here
-  var newNode = $('\
-<li> \
-<div draggable="true" class="tree-node" data-storyid="new">\
-<div class="tree-node-nav">\
-    <div class="tree-node-command"></div>\
-    <div class="tree-node-fill"></div>\
-</div>\
-<div class="tree-node-function"></div>\
-<div class="tree-node-function"></div>\
-<div class="tree-node-body">\
-  As an \
-  <span class="story-actor"></span> \
-  I want to \
-  <span class="story-wantto"></span> \
-  so I can\
-  <span class="story-soican"></span> \
-</div>\
-</div>\
-<div id="Li3" class="tree-sibling-dropzone">\
-<div class="tree-node-nav"></div>\
-</div>\
-</li>');
+  //find the tree that is the parent of it all.  It contains the URL we need to use
+  var tree = jqNode.parents(".tree:first");
 
-  // insert the new node as a sibling after current node
-  jqNode.after(newNode);
 
-  // wire up the events for the new node
-  TTwireUpTreeNodes(newNode);
-
-  var newTreeNode = newNode.find(".tree-node");
-  newTreeNode.attr("id", "treenodeid_" + TTtreeNodeCounter++);
-
-  TTreindexTree(9000, newTreeNode.attr("id"));
-  // startup the editor
-  TTeditTreeNode(undefined, newNode.find(".tree-node"));
+  // make a call to get the html for the editor form.  server returns JS
+  // that inserts the form to edit the node with
+  $.ajax(
+  {
+    headers: { Accept : "text/javascript" },
+    type: "get",
+    url: tree.attr("data-new-url") + "?after=" + jqNode.attr("id"),
+    error: function(jqXHR, stat, err) {alert("error creating form for new user story: " + err);}
+  });
 }
 
 function TTfindNextVisibleTreeNode(jqNode, isUp)

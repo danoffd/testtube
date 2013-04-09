@@ -3,18 +3,15 @@ control within tree that contains it.  When the user wants to edit
 a story, this control 'wraps' the node of the story to edit and
 injects it into the tree while its being edited-->
 <div class="tree-editor" id="tree-editor">
-  <%# <%= form_for @dummy_story, :url => {:action => 'save'}, :remote => true, :html => { :'data-type' => 'html', :id => 'tree-editor-form'} do |f| %>
-    <%= form_for @dummy_story, \
-      :url => save_user_story_path(@dummy_story), \
-      :remote => true, \
-      :html => { :'data-type' => 'html', :id => 'tree-editor-form'} \
-    do |f| %>
+  <%= form_for ([@project, @user_story]), :remote => true,\
+    :html => { :'data-type' => 'html', :id => 'tree-editor-form'} do |f| %>
   <%= f.hidden_field :id, :id => "story-editor-id" %>
   <div class="tree-editor-controls">
     <div class="tree-editor-controls-body">
       <div class="tree-editor-left">
         <label for="story-editor-actor">As a/an</label>
         <%= render "shared/tt_refined_list" \
+          , :f => f \
           , :control_id => "story-editor-actor" \
           , :tab_index => "3400" \
           , :list_items => @all_actors %>
@@ -32,14 +29,14 @@ injects it into the tree while its being edited-->
         this is where the right side should go
       </div>
     </div>
-
     <div class="tree-editor-controls">
-      <a href="javascript:TTeditorDelete();" class="btn-delete" onclick="if (!confirm('Are you sure you want to delete this story?')) return false;" tabindex="3482">Delete</a>
+      
+      <%# <%= link_to "Delete", project_user_story_path(@project,@user_story), method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
+      <a href="javascript:TThandleEditorDeleteClick();" class="btn-delete" tabindex="3482">Delete</a>
       <a href="javascript:TTeditorCancel();" class="btn-cancel" tabindex="3481">Cancel</a>
       <a href="javascript:TTeditorClose();" class="btn-save" tabindex="3480">Close</a>
       <a href="javascript:TTeditorDetails()" class="btn-details" tabindex="3483">Details</a>
     </div>
   </div>
-  <% end %>
+<% end %>
 </div>
-

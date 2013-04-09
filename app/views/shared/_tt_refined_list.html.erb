@@ -3,7 +3,7 @@ will auto-populate based on whats typed, and user may select from the
 list. -->
 <div id="<%= control_id %>" class="TTrefined-list-combo">
   <p class="label-field-pair">
-  <input id="<%= control_id %>-input" class="TTrefined-list-input" name="<%= control_id %>-input" value="" tabindex="<%= tab_index %>" autocomplete="off" />
+  <%= f.text_field :actor_name, :class => "TTrefined-list-input", :tabindex => tab_index, :autocomplete => "off", :id => control_id + "-input" %>
   </p>
   <div class="TTrefined-list-results">
     <% list_items.each do |item| %>

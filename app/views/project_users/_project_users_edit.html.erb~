@@ -1,0 +1,25 @@
+    <%= form_for @new_user, \
+      :url => project_project_users_path(@project.id), \
+      :remote => true, \
+      :html => {:'data-type' => 'html', :id => 'new-user-form'} \
+      do |f| %>
+      <div class="add-user-wrapper">
+         <%= f.label :email %>
+         <%= f.text_field :email, :class => "new-user", :id => "new-user-email", :placeholder => "Enter Email" %>
+         
+         <%= hidden_field_tag "project_id", @project.id %>
+        <a id="new-user-link" href="#">Add</a>
+      </div>
+    <% end %>
+    <table class="table project-users" id="project-user-table">
+      <tr>
+        <th class="user">User</th>
+        <th class="role">Role</th>
+        <th class="remove">Remove</th>
+      </tr>
+      <tbody>
+        <%= render @project.project_users %>
+      </tbody>
+      <%# <% @project.project_users.each do |pu| %>
+      <%# <% end %>
+    </table>

@@ -43,6 +43,12 @@ var TTfireAfterDelay = (function(){
   };
 })();
 
+function TTconfirmNodeSave(jqNode)
+{
+  jqNode.prepend("<img class='confirm-image' src='/assets/saved.png'/>");
+  var image = jqNode.children(".confirm-image");
+  image.fadeOut(1500, function(){image.remove()});
+}
 
 //////////////////////////////////////////////////////////////////////////
 // tube menu

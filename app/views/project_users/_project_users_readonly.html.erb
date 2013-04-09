@@ -1,0 +1,14 @@
+    <table class="table project-users">
+      <tr>
+        <th class="user">User</th>
+        <th class="role">Role</th>
+      </tr>
+      <% @project.project_users.each do |pu| %>
+        <tr>
+          <td><%= pu.user.email %></td>
+          <td>
+            <%= pu.role %>
+          </td>
+        </tr>
+      <% end %>
+    </table>

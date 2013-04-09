@@ -55,6 +55,8 @@ function TTshowSaveSuccess(data)
   {
     // workingItems.removeAttr("src");
     workingItems.attr("src", "/assets/nothingness.gif");
+
+    // not sure why, but the saved image flashes back if we dont delay the reset...
     setTimeout(function () 
     {
       workingItems.show();
@@ -74,10 +76,11 @@ function TTchangeProjectRole(jqSelect, event)
 
   $.ajax(
   {
+    headers: { Accept : "text/javascript" },
     type: "put",
     url: "/project_users/" +  jqSelect.attr("datapuid"),
     data: changeForm.serialize(),
-    success: function(data) {alert("changed role");},
+    success: function(data) {},
     error: function(jqXHR, stat, err) {alert("error changing role");}
   });
 }
@@ -86,10 +89,11 @@ function TTaddProjectUser(jqForm)
 {
   $.ajax(
   {
+    headers: { Accept : "text/javascript" },
     type: jqForm.attr("method"),
     url: jqForm.attr("action"),
     data: jqForm.serialize(),
-    success: function(data) {alert("added user");},
+    success: function(data) {},
     error: function(jqXHR, stat, err) {alert("error adding user");}
   });
 }
@@ -98,9 +102,7 @@ function TTcreateProject(jqForm)
 {
   $.ajax(
   {
-    headers: { 
-        Accept : "text/javascript"
-    },
+    headers: { Accept : "text/javascript" },
     type: jqForm.attr("method"),
     url: jqForm.attr("action"),
     data: jqForm.serialize(),
@@ -112,9 +114,10 @@ function TTremoveProjectUser(removeUserPath)
 {
   $.ajax(
   {
+    headers: { Accept : "text/javascript" },
     type: "delete",
     url: removeUserPath,
-    success: function(data) {alert("removed projectUser");},
+    success: function(data) { },
     error: function(jqXHR, stat, err) {alert("failed to remove user");}
   });
 }

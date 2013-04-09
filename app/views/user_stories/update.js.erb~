@@ -1,0 +1,4 @@
+// grab the root of the node we need to edit
+var node = $('#tn-<%= @user_story.id %>');
+var newNode = $('<%= j render(@user_story) %>');
+

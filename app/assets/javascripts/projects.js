@@ -76,10 +76,10 @@ function TTchangeProjectRole(jqSelect, event)
 
   $.ajax(
   {
+    headers: { Accept : "text/javascript" },
     type: "put",
     url: "/project_users/" +  jqSelect.attr("datapuid"),
     data: changeForm.serialize(),
-    success: function(data) {alert("changed role");},
     error: function(jqXHR, stat, err) {alert("error changing role");}
   });
 }
@@ -88,10 +88,10 @@ function TTaddProjectUser(jqForm)
 {
   $.ajax(
   {
+    headers: { Accept : "text/javascript" },
     type: jqForm.attr("method"),
     url: jqForm.attr("action"),
     data: jqForm.serialize(),
-    success: function(data) {alert("added user");},
     error: function(jqXHR, stat, err) {alert("error adding user");}
   });
 }
@@ -100,9 +100,7 @@ function TTcreateProject(jqForm)
 {
   $.ajax(
   {
-    headers: { 
-        Accept : "text/javascript"
-    },
+    headers: { Accept : "text/javascript" },
     type: jqForm.attr("method"),
     url: jqForm.attr("action"),
     data: jqForm.serialize(),
@@ -114,9 +112,9 @@ function TTremoveProjectUser(removeUserPath)
 {
   $.ajax(
   {
+    headers: { Accept : "text/javascript" },
     type: "delete",
     url: removeUserPath,
-    success: function(data) {alert("removed projectUser");},
     error: function(jqXHR, stat, err) {alert("failed to remove user");}
   });
 }
