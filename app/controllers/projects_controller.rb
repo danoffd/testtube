@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
         :so_i_can => "change it to be what I want it to be", \
         :priority => 1, \
         :is_fully_recorded => false, \
-        :stack_rank = 0, \
+        :stack_rank => 0, \
         :is_estimate_final => false)
 
     respond_to do |format|
