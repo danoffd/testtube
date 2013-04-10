@@ -24,7 +24,8 @@ class UserStory < ActiveRecord::Base
     :actor_id,
     :story_type_id,
     :parent_user_story_id,
-    :actor_name
+    :actor_name,
+    :stack_rank
 
   attr_accessor :actor_name
   
@@ -33,6 +34,9 @@ class UserStory < ActiveRecord::Base
   validates :want_to, :presence => true
   validates :project_id, :presence => true
   validates :actor_id, :presence => true
+
+  # by default, sort by project, parent_user_story, stack_rank, priority, and id
+  default_scope order('project_id, parent_user_story_id, stack_rank, priority, id')
 
   def actor_name
     actor.actor_singular_name if !actor.nil?

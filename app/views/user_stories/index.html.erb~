@@ -4,21 +4,19 @@
 <%# <%= javascript_include_tag("user_stories")%>
 
 <section>
-    <section class="main-body-parts-container main-body-section TTsliderCompanion full">
-        <h1>Work Breakdown</h1>
-        <div id="userStoryTree" class="tree" data-new-url=<%= new_project_user_story_path(@project) %>>
-          <!-- <p id="TTtreeDebugMessage"></p> -->
-
-          <%= render "shared/tt_tree_branch", :nodes => @root_user_stories %>
-        </div>
-    </section>
-    <aside id="sliderChest">
+  <section class="main-body-parts-container main-body-section TTsliderCompanion full">
+    <h1>Work Breakdown</h1>
+    <div id="userStoryTree" class="tree" data-new-url=<%= new_project_user_story_path(@project) %>>
+      <!-- <p id="TTtreeDebugMessage"></p> -->
+      <%= render "shared/tt_tree_branch", :nodes => @root_user_stories %>
+    </div>
+  </section>
+  <aside>
+    <div id="user-story-menu">
+      <a href="#">here i am!!!</a>
+    </div>
+  </aside>
+  <aside id="sliderChest">
     <%= render "shared/tt_slider_chest"  %>
-    </aside>
+  </aside>
 </section>
-<asside style="display:none" id="hidden-closet">
-  <div class="tree-editor" id="tree-editor">
-    <%= render "editor_intree"  %>
-  </div>
-</asside>
-  

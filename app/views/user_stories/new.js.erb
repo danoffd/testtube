@@ -1,19 +1,24 @@
-
-var jqAfter = $("#<%= j params[:after] %>").parentsUntil("ul");
-
 var jqNewNode = $("<li><%= j render(@user_story) %>"
-  + '<div id="Li3" class="tree-sibling-dropzone">'
+  + '<div class="tree-sibling-dropzone">'
   + '<div class="tree-node-nav"></div>'
   + '</div></li>');
 
-// insert the new node as a sibling after current node
-jqAfter.after(jqNewNode);
+// find the element that contains the node
+var newTreeNode = jqNewNode.find(".tree-node");
+
+<% if params[:parent].present? %>
+  var jqParent = $("#tn-<%= j params[:parent] %>");
+  TTensureNodeParenthood(jqParent);
+  TTaddNewChild(jqParent, newTreeNode);
+<% else %>
+  var jqAfter = $("#tn-<%= j params[:after] %>").parentsUntil("ul");
+  // insert the new node as a sibling after current node
+  jqAfter.after(jqNewNode);
+<% end %>
 
 // wire up the events for the new node
 TTwireUpTreeNodes(jqNewNode);
 
-// find the element that contains the node
-var newTreeNode = jqNewNode.find(".tree-node");
 newTreeNode.attr("id", "tn-new");
  
 // insert the editor into the node we are editing

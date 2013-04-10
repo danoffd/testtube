@@ -6,6 +6,8 @@ injects it into the tree while its being edited-->
   <%= form_for ([@project, @user_story]), :remote => true,\
     :html => { :'data-type' => 'html', :id => 'tree-editor-form'} do |f| %>
   <%= f.hidden_field :id, :id => "story-editor-id" %>
+  <%= f.hidden_field :parent_user_story_id %>
+  <%= f.hidden_field :stack_rank %>
   <div class="tree-editor-controls">
     <div class="tree-editor-controls-body">
       <div class="tree-editor-left">
@@ -29,10 +31,8 @@ injects it into the tree while its being edited-->
         this is where the right side should go
       </div>
     </div>
-    <div class="tree-editor-controls">
-      
-      <%# <%= link_to "Delete", project_user_story_path(@project,@user_story), method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
-      <a href="javascript:TThandleEditorDeleteClick();" class="btn-delete" tabindex="3482">Delete</a>
+    <div class="tree-editor-controls tree-editor-commands">
+      <a href="javascript:TTdeleteTreeNode($('#tree-editor').parents('.tree-node:first'));" class="btn-delete" tabindex="3482">Delete</a>
       <a href="javascript:TTeditorCancel();" class="btn-cancel" tabindex="3481">Cancel</a>
       <a href="javascript:TTeditorClose();" class="btn-save" tabindex="3480">Close</a>
       <a href="javascript:TTeditorDetails()" class="btn-details" tabindex="3483">Details</a>

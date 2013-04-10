@@ -24,7 +24,8 @@ class UserStory < ActiveRecord::Base
     :actor_id,
     :story_type_id,
     :parent_user_story_id,
-    :actor_name
+    :actor_name,
+    :stack_rank
 
   attr_accessor :actor_name
   
@@ -33,8 +34,6 @@ class UserStory < ActiveRecord::Base
   validates :want_to, :presence => true
   validates :project_id, :presence => true
   validates :actor_id, :presence => true
-  validates :story_type_id, :presence => true
-  validates :so_i_can, :presence => true
 
   def actor_name
     actor.actor_singular_name if !actor.nil?

@@ -16,11 +16,13 @@
     so I can 
     <span class="story-soican"><%=user_story.so_i_can%></span>
   </div>
-  <%= form_for user_story, \
-    :url => project_user_story_path(@project,user_story)\
-    , :method => :delete, :remote => true \
-    , :html => { :'data-type' => 'html', :class => 'tn-delete-form'} do  %>   
-    <%# <%= link_to "Delete", "javascript:TThandleEditorDeleteClick();", data: {confirm: "Are you sure?"} %>
+  <% if !user_story.id.nil? %>
+    <%= form_for user_story, \
+      :url => project_user_story_path(@project,user_story)\
+      , :method => :delete, :remote => true \
+      , :html => { :'data-type' => 'html', :class => 'tn-delete-form'} do  %>   
+      <%# <%= link_to "Delete", "javascript:TThandleEditorDeleteClick();", data: {confirm: "Are you sure?"} %>
+    <% end %>
   <% end %>
 </div>
 

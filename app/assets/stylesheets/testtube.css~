@@ -199,8 +199,12 @@ table.form-fields td:first-child {
 }
 
 table.form-fields textarea {
-  width: 100%;
+  width: 260px;
   height: 35px;
+}
+
+table.form-fields label {
+  width: 260px;
 }
 
 .label-field-pair-horiz label {
@@ -423,6 +427,7 @@ ul.tree-node-list {
    -webkit-padding-start: 20px;
     text-align:left;
     list-style: none;
+    clear:both;
 }
 
 ul.tree-node-list li {
@@ -433,7 +438,7 @@ ul.tree-node-list li {
 .tree-inner {
 }
 
-.tree-sibling-dropzone {
+.tree-sibling-dropzone, .tree-root-dropzone {
     height:3px;
 }
 

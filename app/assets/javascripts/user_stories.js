@@ -62,6 +62,14 @@ function wireUpUserStoryEditor(toNode)
   $('#edit-story textarea').keypress(function (e) {
     if (e.keyCode == 13) return false;
   });
+
+  // $("#tree-editor").scrollTop();
+  // $("div.tree-editor-commands").scrollTo();
+  // document.getElementById('tree-editor').scrollIntoView();
+
+  $('html, body').animate({
+    scrollTop: $("#tree-editor").offset().top
+  }, 800);
 }
 
 function treeEditorKeyDown(event, jqBox)

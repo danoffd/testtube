@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405225920) do
+ActiveRecord::Schema.define(:version => 20130409171643) do
 
   create_table "actors", :force => true do |t|
     t.integer  "project_id"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20130405225920) do
     t.boolean  "is_estimate_final"
     t.datetime "created_at",                                               :null => false
     t.datetime "updated_at",                                               :null => false
+    t.integer  "stack_rank"
   end
 
   add_index "user_stories", ["actor_id"], :name => "index_user_stories_on_actor_id"

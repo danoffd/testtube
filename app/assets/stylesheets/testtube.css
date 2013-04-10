@@ -427,6 +427,7 @@ ul.tree-node-list {
    -webkit-padding-start: 20px;
     text-align:left;
     list-style: none;
+    clear:both;
 }
 
 ul.tree-node-list li {
@@ -437,7 +438,7 @@ ul.tree-node-list li {
 .tree-inner {
 }
 
-.tree-sibling-dropzone {
+.tree-sibling-dropzone, .tree-root-dropzone {
     height:3px;
 }
 
@@ -551,6 +552,8 @@ ul.tree-node-list li {
   border-radius: 12px;
   margin-left: 50px;
   padding: 8px;
+  float: right;
+  margin:0;
 }
 
 .tree-editor a {

@@ -1,5 +1,21 @@
-// grab the root of the node we need to edit
+// returned from server after successful update of a user story node
+
+// get the tree node that contains the updated story
 var node = $('#tn-<%= @user_story.id %>');
+
+// generate the html of the updated story info
 var newNode = $('<%= j render(@user_story) %>');
+
+<% if @special_action == "parent_change" %>
+  TTchangeTreeNodeParent(node, $("#tn-<%= @new_parent_id %>"));
+<% end %>
+
+<% if @special_action == "sibling_change" %>
+  TTchangeTreeNodeSibling(node, $("#tn-<%= @new_bigbro_id %>"));
+<% end %>
+
+// call JS method to replace the node
 updateTreeNode(node, newNode);
+
+TTreindexTree(9000, newNode.attr("id"));
 

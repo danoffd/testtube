@@ -13,6 +13,24 @@ class UserStoriesController < ApplicationController
     @all_actors = get_actors
 
     @user_story = @project.user_stories.new
+
+    if params[:parent].present?
+      #requesting to add a child of a parent.  set the parent id to the specified
+      #parent, and set the stack rank to the the lowest number (highest priority) minus 10
+      @user_story.parent_user_story = @project.user_stories.find(params[:parent])
+      oldest_child = @user_story.parent_user_story.child_user_stories.first()
+      @user_story.stack_rank = oldest_child.nil? ? 10 : oldest_child.stack_rank - 10
+    elsif params["after"].present?
+      #requesting to add an element after another element.
+      #set the parent to the parent of the requested sibling, and the stack rank to the 
+      #siblings rank + 1
+      bigbro = @project.user_stories.find(params[:after])
+      @user_story.parent_user_story = bigbro.parent_user_story
+      @user_story.stack_rank = (bigbro.stack_rank || 0)  + 1
+    else
+      #not sure where we are adding it. 
+    end
+
     puts "*************creating new form: " + params.inspect
     respond_to do |format|
       format.html { render :nothing => true }
@@ -62,16 +80,61 @@ class UserStoriesController < ApplicationController
 
   def update
     puts "++++++ in update: " + params.inspect
-    story_type = StoryType.where(:story_type_name => "Development").first
+    @user_story = @project.user_stories.find(params[:id])
+    @special_action = params[:special_action]
 
-    puts "++++++ gonna save: " + params[:user_story][:want_to]
-    puts params.inspect
+    if @special_action == "parent_change"
+      # for the parent change action, insert the story as the first child of the dropped story
+      @new_parent_id = params[:new_parent]
+      if @new_parent_id.nil?
+        @user_story.parent_user_story = nil
+        current_first_story = @project.user_stories.where("parent_user_story_id = null").first
+      else
+        @user_story.parent_user_story = @project.user_stories.find(@new_parent_id)
+        current_first_story = @user_story.parent_user_story.child_user_stories.first()
+      end
+      @user_story.stack_rank = current_first_story.nil? ? 0 : current_first_story.stack_rank - 10
+    elsif @special_action == "sibling_change"
+      # for the sibling change action, insert the story after (in stack rank order) the big brother
+      @new_bigbro_id = params[:new_bigbro]
+      @bigbro_user_story = @project.user_stories.find(@new_bigbro_id)
 
-    @user_story = UserStory.find(params[:user_story][:id])
-    @user_story.want_to = params[:user_story][:want_to]
-    @user_story.so_i_can = params[:user_story][:so_i_can]
-    @user_story.is_estimate_final = false
-    @user_story.actor = find_or_create_actor(params[:user_story][:actor_name])
+      if !@bigbro_user_story.parent_user_story.nil?
+        # if bigbro is not a root story, need to reorder the siblings
+        all_siblings = @bigbro_user_story.parent_user_story.child_user_stories
+        counter = 0
+
+        puts "************* about to reorder: " + all_siblings.count.to_s
+        puts "bigbro: " + @bigbro_user_story.id.to_s
+        puts "moved: " + @user_story.id.to_s
+
+        all_siblings.each do |s|
+          puts "--" + s.id.to_s + "-" + s.want_to + " - current rank: " + s.stack_rank.to_s
+          if @user_story.id != s.id
+            counter += 10
+            if s.stack_rank != counter
+              puts "----- CHANGING!" + s.id.to_s + " ------ " + counter.to_s
+              s.stack_rank = counter
+              s.save!
+            end
+          end
+          if s.id == @bigbro_user_story.id
+            counter += 10
+            puts "--  MOVED " + @user_story.id.to_s + @user_story.want_to + " ------ " + counter.to_s
+            @user_story.stack_rank = counter
+          end
+        end
+      else
+        @user_story.stack_rank = 0
+      end
+      
+      @user_story.parent_user_story = @bigbro_user_story.parent_user_story
+    else
+      @user_story.want_to = params[:user_story][:want_to]
+      @user_story.so_i_can = params[:user_story][:so_i_can]
+      @user_story.is_estimate_final = false
+      @user_story.actor = find_or_create_actor(params[:user_story][:actor_name])
+    end
    
     puts @user_story.inspect
 

@@ -81,7 +81,7 @@ function TTwireUpTreeNodes(jqNodesToWire)
 
   treeNodes.dblclick(function (e)
   {
-    TTeditTreeNode(e, $(this));
+    TTeditTreeNode($(this));
   });
 
   treeNodes.focus(function (e)
@@ -89,45 +89,77 @@ function TTwireUpTreeNodes(jqNodesToWire)
     TTsetTreeNodeFocus(e, $(this));
   });
 
+  // treeNodes.bind("contextmenu", function(e) {
+  //   $('#user-story-menu').css({
+  //       top: e.pageY+'px',
+  //       left: e.pageX+'px'
+  //   }).show();
+
+  //   return false;
+  // });
+  
+  // setup the jquery contextmenu plugin:
+  // http://medialize.github.io/jQuery-contextMenu/demo.html
+  // $(function(){
+      $.contextMenu({
+          selector: '.tree-node', 
+          callback: function(key, options) {
+            TThandleStoryMenu(key, options);
+          },
+          items: {
+              //"edit": {name: "Edit", icon: "edit"},
+              "edit": {name: "Edit"},
+              "copy_text": {name: "Copy as Text"},
+              "delete": {name: "Delete"},
+              "sep1": "---------",
+              "insert_after": {name: "Insert After"},
+              "insert_child": {name: "Insert a Child"}
+          }
+      });
+      
+      treeNodes.on('click', function(e){
+          console.log('clicked', this);
+      })
+  // });
+
 }
 
-function TTeditorDelete()
+function TThandleStoryMenu(key, options)
 {
-  alert("TODO:  What does this do?  TT_tree.js/TTeditorDelete");
-  var jqEditor = $("#tree-editor");
-  var jqNode = jqEditor.parent();
-  TTclearAndSaveTreeEditor(undefined, jqEditor);
-  TTdeleteTreeNode(jqNode);
+  switch(key)
+  {
+    case "edit":
+      TTeditTreeNode(options.$trigger);
+      break;
+    case "delete":
+      TTdeleteTreeNode(options.$trigger);
+      break;
+    case "insert_after":
+      TTinsertNewTreeNodeAfter(options.$trigger);
+      break;
+    case "insert_child":
+      TTinsertNewTreeNodeChild(options.$trigger);
+      break;
+    default:
+      var m = "TODO:   clicked: " + key;
+      window.console && console.log(m) || alert(m); 
+      break;
+  }
 }
 
 function TTeditorCancel()
 {
-  TTclearAndSaveTreeEditor(undefined, $("#tree-editor"), true);
+  alert("Fix me...   cancel the action!!!");
 }
 
 function TTeditorClose()
 {
-  TTclearAndSaveTreeEditor(undefined, $("#tree-editor"), true);
+  TTclearAndSaveTreeEditor($("#tree-editor"), true);
 }
 
 function TTeditorDetails()
 {
   alert("show me the details!!!!");
-}
-
-function TThandleEditorDeleteClick()
-{
-  TTdeleteTreeNode($("#tree-editor").parents(".tree-node:first"));
-  // var deleteForm = $("#tree-editor-delete-form");
-
-  // $.ajax(
-  // {
-  //   headers: { Accept : "text/javascript" },
-  //   type: deleteForm.attr("method"),
-  //   url: deleteForm.attr("action"),
-  //   data: deleteForm.serialize(),
-  //   error: function(jqXHR, stat, err) { alert("error deleting: " + err); },
-  // });
 }
 
 function TThandleServerNodeDelete(jqNode)
@@ -167,14 +199,14 @@ function TThandleServerNodeDelete(jqNode)
 
 function TTdeleteTreeNode(jqNode)
 {
-  var deleteForm = jqNode.find(".tn-delete-form");
+  var deleteForm = jqNode.find(".tn-form");
 
   if (confirm("Are you sure you want to delete this story?"))
   {
     $.ajax(
     {
       headers: { Accept : "text/javascript" },
-      type: deleteForm.attr("method"),
+      type: "delete",
       url: deleteForm.attr("action"),
       data: deleteForm.serialize(),
       error: function(jqXHR, stat, err) { alert("error deleting: " + err); },
@@ -243,7 +275,7 @@ function TTtreeDraggableElements(nodesToWire)
 
 function TTtreeDroppableElements(nodesToWire)
 {
-  return nodesToWire.find(".tree-node, .tree-sibling-dropzone");
+  return nodesToWire.find(".tree-node, .tree-sibling-dropzone, .tree-root-dropzone");
 }
 
 function TTtoggleTreeNode(jNode)
@@ -273,17 +305,17 @@ function TTsetTreeNodeFocus(event, jqNode)
   if (treeEditor.parent().hasClass("tree-node")
       && treeEditor.parent().attr("id") != jqNode.attr("id"))
   {
-    TTclearAndSaveTreeEditor(event,treeEditor);
+    TTclearAndSaveTreeEditor(treeEditor);
   }
 }
 
-function TTeditTreeNode(event, jqElement)
+function TTeditTreeNode(jqElement)
 {
 
   var editor = $("#tree-editor");
 
   // if the editor is already editing a node, clear it
-  TTclearAndSaveTreeEditor(event, editor);
+  TTclearAndSaveTreeEditor(editor);
 
   // make a call to get the html for the editor form.  server returns JS
   // that inserts the form to edit the node with
@@ -292,11 +324,11 @@ function TTeditTreeNode(event, jqElement)
     headers: { Accept : "text/javascript" },
     type: "get",
     url: jqElement.attr("data-edit-url"),
-    error: function(jqXHR, stat, err) {alert("Error getting form to edit tree node");}
+    error: function(jqXHR, stat, err) {alert("Error getting form to edit tree node: " + err);}
   });
 }
 
-function TTclearAndSaveTreeEditor(event, jqEditor, setFocusToCurrentNode)
+function TTclearAndSaveTreeEditor(jqEditor, setFocusToCurrentNode)
 {
   var editingBody = jqEditor.children(".tree-node-body");
   if (editingBody.length > 0)
@@ -322,22 +354,9 @@ function TTclearAndSaveTreeEditor(event, jqEditor, setFocusToCurrentNode)
     //$("#hidden-closet").append(jqEditor);
     jqEditor.remove();
  
-    // need to re-wire key press events since we unhooked them
-    // when we opened the editor
-    jqNode.keyup(function (e)
-    {
-      TTtreeNodeKeyUp(e, $(this));
-    });
-    jqNode.keydown(function (e)
-    {
-      TTtreeNodeKeyDown(e, $(this));
-    });  
-
-    if (setFocusToCurrentNode != undefined
-        && setFocusToCurrentNode == true)
-    {
-      jqNode.focus();
-    }
+    $('html, body').animate({
+      scrollTop: jqNode.offset().top
+    }, 800);
   }
 }
 
@@ -456,7 +475,7 @@ function TTtreeNodeKeyUp(event, jqNode)
 
   if (charCode == 13)
   { // enter key, edit the row
-    TTeditTreeNode(event, jqNode);
+    TTeditTreeNode(jqNode);
   }
   else if (charCode == 32)
   { // space bar, expand/contract tree node
@@ -464,7 +483,7 @@ function TTtreeNodeKeyUp(event, jqNode)
   }
   else if (charCode == 45)
   { // insert key, create a child
-    TTinsertNewTreeNode(jqNode);
+    TTinsertNewTreeNodeAfter(jqNode);
   }
   else if (charCode == 46)
   { // delete key, warn and delete
@@ -526,22 +545,32 @@ function TTtreeNodeKeyDown(event, jqNode)
   }
 }
 
-
 var TTtreeNodeCounter = 1;
-function TTinsertNewTreeNode(jqNode)
+function TTinsertNewTreeNodeAfter(jqNode)
 {
-  //find the tree that is the parent of it all.  It contains the URL we need to use
   var tree = jqNode.parents(".tree:first");
-
-
   // make a call to get the html for the editor form.  server returns JS
   // that inserts the form to edit the node with
   $.ajax(
   {
     headers: { Accept : "text/javascript" },
     type: "get",
-    url: tree.attr("data-new-url") + "?after=" + jqNode.attr("id"),
-    error: function(jqXHR, stat, err) {alert("error creating form for new user story: " + err);}
+    url: tree.attr("data-new-url") + "?after=" + jqNode.attr("data-storyid"),
+    error: function(jqXHR, stat, err) {alert("error creating form for new sibling user story: " + err);}
+  });
+}
+
+function TTinsertNewTreeNodeChild(jqNode)
+{
+  var tree = jqNode.parents(".tree:first");
+  // make a call to get the html for the editor form.  server returns JS
+  // that inserts the form to edit the node with
+  $.ajax(
+  {
+    headers: { Accept : "text/javascript" },
+    type: "get",
+    url: tree.attr("data-new-url") + "?parent=" + jqNode.attr("data-storyid"),
+    error: function(jqXHR, stat, err) {alert("error creating form for new child user story: " + err);}
   });
 }
 
@@ -735,46 +764,124 @@ function TTdropInto(into, droppingNode)
     // dropzone.  We need to find the parent of the dropzone, which is
     // an li that contains the new big brother of the dropped element.
     // we need to relocate the entire parent LI of the dropping node
-    intoNodeContainer.after(droppingNodeContainer);
+    TThandleSiblingChangeRequest($(droppingNode), $(into).attr("data-storyid"));
   }
-  else if (jInto.hasClass("tree-node"))
+  else if (jInto.hasClass("tree-root-dropzone"))
   {
-    TTtreeDebugMessage('creating a child of ' + into.id);
-    // in this case, we are dragging into a node.  Add the dragged node
-    // as a child of the into node.  If the into node is already a parent
-    // (i.e. already has an associated UL), then just append the dropped
-    // node as a new child. Otherwise, need to create a new UL for
-    // the into node first.
-    var intoNodeChildList = jInto.next("ul");
-    if (intoNodeChildList.length == 1)
-    {
-      droppingNodeContainer.appendTo(intoNodeChildList);
-    }
-    else if (intoNodeChildList.length == 0)
-    {
-      intoNodeChildList = TTbuildNewTreeList();
-      jInto.after(intoNodeChildList);
-      droppingNodeContainer.appendTo(intoNodeChildList);
-    }
-    else
-    {
-      TTtreeDebugMessage(into.id + ' has more than one child list!?!?!?');
-    }
-
-
+    TThandleParentChangeRequest($(droppingNode)
+      , $(into).parents(".tree-node, .tree").first());
+  }
+  else if (jInto.hasClass("tree-node") || jInto.hasClass("tree-child-dropzone"))
+  {
+  // in this case, we are dragging into a node.  Add the dragged node
+  // as a child of the into node.  If the into node is already a parent
+  // (i.e. already has an associated UL), then just append the dropped
+  // node as a new child. Otherwise, need to create a new UL for
+  // the into node first.
+    TThandleParentChangeRequest($(droppingNode), $(into));
   }
   else
   {
-    TTtreeDebugMessage('HMMMM.... not sure what this is ' + into.id);
+    alert('drop error:  HMMMM.... not sure what this is ' + into.id);
   }
-
-  if (droppingNodeContainerParentList.children().length <= 1)
-  {
-    droppingNodeContainerParentList.remove();
-  }
-
-  TTreindexTree(9000, droppingNode.id);
 }
+
+function TTchangeTreeNodeSibling(jqNode, jqNewBigBro)
+{
+  var movingNodeLI = jqNode.parents("li:first");
+  var targetNodeLI = jqNewBigBro.parents("li:first");
+  var movingFromUL = movingNodeLI.parent(); // the original UL of the node thats moving
+
+  // move the node to be after the new big brother
+  targetNodeLI.after(movingNodeLI);
+
+  if (movingFromUL.children("li").length <= 1)
+  {
+    // if the UL only contains the root dropzone, delete it
+    movingFromUL.remove();
+  }
+}
+
+function TTchangeTreeNodeParent(jqNode, jqNewParent)
+{
+  // if the parent was not passed, must be a new root story
+  if (jqNewParent.length == 0)
+  {
+    jqNewParent = $("#userStoryTree");
+  }
+  TTensureNodeParenthood(jqNewParent);
+  var droppingNodeLI = $(jqNode).parent(); // the LI that contains the node to move
+  var movingFromUL = droppingNodeLI.parent(); // the original UL of the node thats moving
+  TTaddNewChild(jqNewParent, jqNode);
+
+  if (movingFromUL.children("li").length <= 1)
+  {
+    // if the UL only contains the root dropzone, delete it
+    movingFromUL.remove();
+  }
+}
+
+
+
+function TTaddNewChild(jqParentNode, jqChildNode)
+{
+  // the parent of the passed node is an LI that contains the node AND the child list
+  // Insert directly after the div that contains the root nav element of the branch
+  jqParentNode.parent().find(".tree-root-dropzone:first").parent().after(jqChildNode.parents("li:first"));
+}
+
+function TTensureNodeParenthood(jqParentNode)
+{
+  var childList = jqParentNode.parents("li:first").children("ul.tree-node-list:first");
+  if (childList.length == 0)
+  {
+    // if the new parent does not already have a child list, build it
+    childList = TTbuildNewTreeList(); 
+    //The new list is inserted after the parent node (in the sameLI)
+    jqParentNode.after(childList);
+  }
+  return childList;
+}
+
+function TThandleSiblingChangeRequest(jqNode, newBigBroId)
+{
+  var form = jqNode.find(".tn-form");
+
+  var postData = form.serialize() 
+    + "&special_action=sibling_change"
+    + "&new_bigbro=" + newBigBroId;
+
+  $.ajax(
+  {
+    headers: { Accept : "text/javascript" },
+    type: "put",
+    url: form.attr("action"),
+    data: postData,
+    error: function(jqXHR, stat, err) { alert("error repositioning: " + err); },
+  });
+}
+
+function TThandleParentChangeRequest(jqNode, jqNewParent)
+{
+  var form = jqNode.find(".tn-form");
+
+  var postData = form.serialize() + "&special_action=parent_change";
+  if (!jqNewParent.hasClass("tree"))
+  {
+    // if the node was not dropped into the root of the tree, pass the new parent id
+    postData += "&new_parent=" + jqNewParent.attr("data-storyid");
+  }
+
+  $.ajax(
+  {
+    headers: { Accept : "text/javascript" },
+    type: "put",
+    url: form.attr("action"),
+    data: postData,
+    error: function(jqXHR, stat, err) { alert("error changing parent: " + err); },
+  });
+}
+
 
 var newListCounter = 1;
 
@@ -783,12 +890,12 @@ function TTbuildNewTreeList()
   //var retVal = $('<ul> \
   //    </ul>');
   var retVal = $('<ul class="tree-inner tree-node-list"> \
-            <li> \
-                <div class="tree-sibling-dropzone"> \
-                    <div class="tree-node-nav"></div> \
-                </div> \
-            </li> \
-        </ul>').attr("id", "newList_" + newListCounter++);
+  <li> \
+     <div class="tree-root-dropzone"> \
+        <div class="tree-node-nav"></div> \
+     </div> \
+  </li> \
+</ul>').attr("id", "newList_" + newListCounter++);
   return retVal;
 }
 

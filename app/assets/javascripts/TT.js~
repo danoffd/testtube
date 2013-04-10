@@ -47,8 +47,20 @@ function TTconfirmNodeSave(jqNode)
 {
   jqNode.prepend("<img class='confirm-image' src='/assets/saved.png'/>");
   var image = jqNode.children(".confirm-image");
-  image.fadeOut(1000, function(){image.remove()});
+  image.fadeOut(1500, function(){image.remove()});
 }
+
+//http://stackoverflow.com/a/210733/2163289
+//usage:  $(element).center();
+jQuery.fn.scrollToShow = function () {
+    // this.css("position","absolute");
+    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + 
+                                                $(window).scrollTop()) + "px");
+    // this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + 
+    //                                             $(window).scrollLeft()) + "px");
+    return this;
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 // tube menu

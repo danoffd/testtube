@@ -20,7 +20,7 @@
     <%= form_for user_story, \
       :url => project_user_story_path(@project,user_story)\
       , :method => :delete, :remote => true \
-      , :html => { :'data-type' => 'html', :class => 'tn-delete-form'} do  %>   
+      , :html => { :'data-type' => 'html', :class => 'tn-form'} do  %>   
       <%# <%= link_to "Delete", "javascript:TThandleEditorDeleteClick();", data: {confirm: "Are you sure?"} %>
     <% end %>
   <% end %>
