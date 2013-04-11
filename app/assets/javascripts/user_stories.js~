@@ -39,9 +39,9 @@ $("document").ready(function () {
 
 function updateTreeNode(jqOriginalNode, jqNewNode)
 {
-  jqOriginalNode.replaceWith(jqNewNode);
+  jqOriginalNode.parents("li:first").replaceWith(jqNewNode);
   TTconfirmNodeSave(jqNewNode.children(".tree-node-body"));
-  TTwireUpTreeNodes(jqNewNode.parent("li"));
+  TTwireUpTreeNodes(jqNewNode);
   TTreindexTree(9000, jqNewNode.attr("id"));
 }
 
@@ -67,12 +67,9 @@ function wireUpUserStoryEditor(toNode)
   // $("div.tree-editor-commands").scrollTo();
   // document.getElementById('tree-editor').scrollIntoView();
 
-  
-// $('html, body').animate({
-// 	scrollTop: $("#tree-editor").offset().top
-// }, 800);
-
-  
+  $('html, body').animate({
+    scrollTop: $("#tree-editor").offset().top
+  }, 800);
 }
 
 function treeEditorKeyDown(event, jqBox)

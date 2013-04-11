@@ -1,7 +1,4 @@
-var jqNewNode = $("<li><%= j render(@user_story) %>"
-  + '<div class="tree-sibling-dropzone">'
-  + '<div class="tree-node-nav"></div>'
-  + '</div></li>');
+var jqNewNode = $("<%= j render(@user_story) %>");
 
 // find the element that contains the node
 var newTreeNode = jqNewNode.find(".tree-node");
@@ -28,5 +25,4 @@ newTreeNode.prepend('<%= j render("editor_intree") %>');
 newTreeNode.children("#tree-editor").prepend(newTreeNode.children(".tree-node-body"));
 
 wireUpUserStoryEditor(newTreeNode);
-TTreindexTree(9000, newTreeNode.attr("id"));
-
+TTreindexTree(9000, newTreeNode);

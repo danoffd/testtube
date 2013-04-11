@@ -17,5 +17,5 @@ var newNode = $('<%= j render(@user_story) %>');
 // call JS method to replace the node
 updateTreeNode(node, newNode);
 
-TTreindexTree(9000, newNode.attr("id"));
+TTreindexTree(9000, newNode.find(".tree-node"));
 

@@ -39,10 +39,10 @@ $("document").ready(function () {
 
 function updateTreeNode(jqOriginalNode, jqNewNode)
 {
-  jqOriginalNode.replaceWith(jqNewNode);
+  jqOriginalNode.parents("li:first").replaceWith(jqNewNode);
   TTconfirmNodeSave(jqNewNode.children(".tree-node-body"));
-  TTwireUpTreeNodes(jqNewNode.parent("li"));
-  TTreindexTree(9000, jqNewNode.attr("id"));
+  TTwireUpTreeNodes(jqNewNode);
+  TTreindexTree(9000, jqNewNode);
 }
 
 function wireUpUserStoryEditor(toNode)

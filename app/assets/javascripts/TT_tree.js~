@@ -89,38 +89,25 @@ function TTwireUpTreeNodes(jqNodesToWire)
     TTsetTreeNodeFocus(e, $(this));
   });
 
-  // treeNodes.bind("contextmenu", function(e) {
-  //   $('#user-story-menu').css({
-  //       top: e.pageY+'px',
-  //       left: e.pageX+'px'
-  //   }).show();
-
-  //   return false;
-  // });
+  $.contextMenu({
+      selector: '.tree-node', 
+      callback: function(key, options) {
+        TThandleStoryMenu(key, options);
+      },
+      items: {
+          //"edit": {name: "Edit", icon: "edit"},
+          "edit": {name: "Edit"},
+          "copy_text": {name: "Copy as Text"},
+          "delete": {name: "Delete"},
+          "sep1": "---------",
+          "insert_after": {name: "Insert After"},
+          "insert_child": {name: "Insert a Child"}
+      }
+  });
   
-  // setup the jquery contextmenu plugin:
-  // http://medialize.github.io/jQuery-contextMenu/demo.html
-  // $(function(){
-      $.contextMenu({
-          selector: '.tree-node', 
-          callback: function(key, options) {
-            TThandleStoryMenu(key, options);
-          },
-          items: {
-              //"edit": {name: "Edit", icon: "edit"},
-              "edit": {name: "Edit"},
-              "copy_text": {name: "Copy as Text"},
-              "delete": {name: "Delete"},
-              "sep1": "---------",
-              "insert_after": {name: "Insert After"},
-              "insert_child": {name: "Insert a Child"}
-          }
-      });
-      
-      treeNodes.on('click', function(e){
-          console.log('clicked', this);
-      })
-  // });
+  treeNodes.on('click', function(e){
+      console.log('clicked', this);
+  });
 
 }
 
@@ -192,7 +179,7 @@ function TThandleServerNodeDelete(jqNode)
     if (containingUL.has(".tree-node").length == 0)
     {
       containingUL.remove();
-      TTreindexTree(9000, newNode.attr("id"));
+      TTreindexTree(9000, newNode);
     }
   });
 }
@@ -214,7 +201,7 @@ function TTdeleteTreeNode(jqNode)
   }
 }
 
-function TTreindexTree(startingIndex, initialSelectionId)
+function TTreindexTree(startingIndex, focusNode)
 {
   // this adds tab indexes to each node.  Causes problems, so removing
   // tabbing all together.  It is replaced with other keyboard functions
@@ -223,13 +210,11 @@ function TTreindexTree(startingIndex, initialSelectionId)
     $(this).attr("tabindex", startingIndex++);
   });
 
-  var initialSelection = $("#" + initialSelectionId);
-  if (initialSelection.length == 0)
+  if (focusNode == undefined or focusNode.length == 0)
   {
-    initialSelection = $(".tree-outer:first .tree-node:first");
+    focusNode = $(".tree-outer:first .tree-node:first");
   }
-
-  initialSelection[0].focus();
+  focusNode.focus();
 
   //reset the expand/collapse commands
   //find all of the li's that contain tree nodes
@@ -354,26 +339,9 @@ function TTclearAndSaveTreeEditor(jqEditor, setFocusToCurrentNode)
     //$("#hidden-closet").append(jqEditor);
     jqEditor.remove();
  
-    // // need to re-wire key press events since we unhooked them
-    // // when we opened the editor
-    // jqNode.keyup(function (e)
-    // {
-    //   TTtreeNodeKeyUp(e, $(this));
-    // });
-    // jqNode.keydown(function (e)
-    // {
-    //   TTtreeNodeKeyDown(e, $(this));
-    // });  
-
-    // if (setFocusToCurrentNode != undefined
-    //     && setFocusToCurrentNode == true)
-    // {
-    //   jqNode.focus();
-    // }
-
-    $('html, body').animate({
-      scrollTop: jqNode.offset().top
-    }, 800);
+    // $('html, body').animate({
+    //   scrollTop: jqNode.offset().top
+    // }, 800);
   }
 }
 
