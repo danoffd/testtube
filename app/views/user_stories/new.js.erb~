@@ -25,4 +25,4 @@ newTreeNode.prepend('<%= j render("editor_intree") %>');
 newTreeNode.children("#tree-editor").prepend(newTreeNode.children(".tree-node-body"));
 
 wireUpUserStoryEditor(newTreeNode);
-TTreindexTree(9000, newTreeNode.find(".tree-node"));
+TTreindexTree(9000, newTreeNode);

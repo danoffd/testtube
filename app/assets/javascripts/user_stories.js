@@ -40,7 +40,7 @@ $("document").ready(function () {
 function updateTreeNode(jqOriginalNode, jqNewNode)
 {
   jqOriginalNode.parents("li:first").replaceWith(jqNewNode);
-  TTconfirmNodeSave(jqNewNode.children(".tree-node-body"));
+  TTconfirmNodeSave(jqNewNode.find(".tree-node-body:first"));
   TTwireUpTreeNodes(jqNewNode);
   TTreindexTree(9000, jqNewNode);
 }

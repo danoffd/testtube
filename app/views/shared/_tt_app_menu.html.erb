@@ -2,14 +2,16 @@
 hand corner of the pages -->
 <div style="float: right">
   <menu class="app-menu">
-    <% if user_signed_in? %>
-      <%= link_to current_user.email, edit_user_registration_path %>
-      <%= button_to "Logout", destroy_user_session_path, :method => :delete %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %>
-      <%= link_to "Login", new_user_session_path %>
-      <%# <%= link_to "Login2", :controller => "devise", :action => "sign_in" %>
-    <% end %>
+    <div class="auth-options">
+      <% if user_signed_in? %>
+        <%= link_to current_user.email, edit_user_registration_path %>
+        <%= button_to "Logout", destroy_user_session_path, :method => :delete %>
+      <% else %>
+          <p>Sign in or register with...</p>
+          <%= link_to image_tag("google-logo-icon.png", :class => "google", :alt => "sign in with Google"), user_omniauth_authorize_path(:google_oauth2) %>
+          <%= link_to image_tag("testtube-icon.png", :class => "testtube", :alt => "sign in with Test Tube"), new_user_session_path %>
+      <% end %>
+    </div>
   </menu>
 </div>
 

@@ -5,7 +5,7 @@
       </tr>
       <% @project.project_users.each do |pu| %>
         <tr>
-          <td><%= pu.user.email %></td>
+          <td><%= pu.email(current_user) %></td>
           <td>
             <%= pu.role %>
           </td>

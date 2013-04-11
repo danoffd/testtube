@@ -6,7 +6,7 @@
   <p><%= project.description %></p>
     <p>
     <%= link_to "Stories", project_user_stories_path(project) %>
-    <%= link_to "Models", project_project_models_path(project.id) %>
+    <%= link_to "Models", project_project_models_path(project) %>
     </p>
   <% project.project_models.each do |model| %>
     <p><%= model.name %> (<%= model.description %>)</p>

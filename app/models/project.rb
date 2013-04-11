@@ -35,11 +35,12 @@ class Project < ActiveRecord::Base
    end)
 
   def view?(user)
-     project_users.any?{|project_user| project_user.user == user}
+     is_public || project_users.any?{|project_user| project_user.user == user}
   end
 
   def contribute?(user)
-     project_users.any?{|project_user| project_user.user == user && (project_user.role == "admin" || project_user.role == "contribute")}
+    puts "********  is contributor??? " + user.inspect + "|||" + project_users.inspect
+     project_users.any?{|project_user| project_user.user == user && (project_user.role == "admin" || project_user.role == "contrib")}
   end
 
   def admin?(user)

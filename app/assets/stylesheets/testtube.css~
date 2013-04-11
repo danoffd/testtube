@@ -9,13 +9,15 @@ body
     /*font-family:Georgia;*/
     /*font-family:Con­course;*/
     font-family:Verdana, Arial, Helvetica, sans-serif;
-    
+
     padding:0;
     margin:0;
     position:relative;
     background-color:#737373;
-
    background-image:url(/assets/stainless-2.png)
+
+   /* background-image:url(/assets/whiteboard-3-fixed.png); */
+   /* background-color: white; */
 }
 
 p {
@@ -84,11 +86,20 @@ header.page-header {
    /* background-color:#f58b26; */
    padding:0;
    margin:0;
+  color: #C30;
+  font-family: Comic Sans, Comic Sans MS, cursive;
+  font-style: italic;
+  font-size: 14px;
 }
 
 .page-header-contents {
     margin-left:120px;
     position:relative;
+    overflow: hidden;
+}
+
+.page-header-main-area {
+  float:left;
 }
 
 .page-header-headings{
@@ -98,7 +109,7 @@ header.page-header {
    background-image:url(/assets/chemset.png);
    background-repeat: no-repeat;
    min-height: 60px;
-   min-width: 800px;
+   min-width: 580px;
    position:relative;
 }
 
@@ -109,10 +120,7 @@ header.page-header {
 .page-header-headings.project p{
   margin: 5px 0 0 230px;
   /* color: #05245b; */
-  color: #c06224;
-  font-family: Comic Sans, Comic Sans MS, cursive;
   font-size: 26px;
-  font-style: italic;
 }
 
 img.page-logo {
@@ -150,8 +158,22 @@ h1.page-header p{
 
 menu.app-menu {
     text-align:right;
-    color: white;
     float:right;
+}
+
+.app-menu .auth-options {
+  margin: 2px 8px 0 0;
+}
+
+.app-menu .auth-options img {
+  width: 60px;
+  height: 60px;
+  margin: 0 0 0 10px;
+}
+
+.app-menu .auth-options .google {
+  width: 55px;
+  height: 55px;
 }
 
 .story-actor {
@@ -167,6 +189,7 @@ menu.app-menu {
    min-height: 400px;
    color: #FFF4a5;
    float:left;
+   clear: both;
 }
 
 .main-body-section h1 {
@@ -178,7 +201,7 @@ menu.app-menu {
 }
 
 .page-header a {
-  color: #bbf
+   color: #639; 
 }
 
 table.form-fields {
@@ -550,8 +573,10 @@ ul.tree-node-list li {
   background-color: #cccccc;
   color: #333333;
   border-radius: 12px;
-  margin-left: 50px;
   padding: 8px;
+  float: left;
+  margin:0 0 0 50px;
+  max-width: 930px;
 }
 
 .tree-editor a {

@@ -6,33 +6,35 @@
 <%= javascript_include_tag "application" %>
 <%= stylesheet_link_tag    "application", :media => "all" %>
     <%# <%= javascript_include_tag("jquery-1.9.1")%>
-    <%= javascript_include_tag("TT")%>
-    <%= stylesheet_link_tag("testtube")%>
+    <%# <%= javascript_include_tag("TT")%>
+    <%# <%= stylesheet_link_tag("testtube")%>
 </head>
 <body>
   <div id="wrapper">
     <header class="page-header">
-      <div class="page-header-contents">
-        <div class="page-header-headings<%= " project" if defined?(@project) %>">
-          <% if defined?(@project) %>
-            <p><%= @project.name %> (<%= @project.description %>)</p>
-          <% end %>
-        </div>
+    <div class="page-header-contents">
         <%= render "shared/tt_app_menu"  %>
-        <menu class="tube-menu">
-          <ul>
-            <li>
-            <%= link_to image_tag("tub-black-home-2.png"), \
-              welcome_index_path, \
-              :class => 'home' %>
-            </li>
-            <li>
-            <%= link_to image_tag("tubes-red-projects-2.png"), \
-              projects_path, \
-              :class => 'projects' %>
-            </li>
-          </ul>
-        </menu>
+        <div class="page-header-main-area">
+          <div class="page-header-headings<%= " project" if defined?(@project) %>">
+            <% if defined?(@project) %>
+              <p><%= @project.name %></p>
+            <% end %>
+          </div>
+          <menu class="tube-menu">
+            <ul>
+              <li>
+              <%= link_to image_tag("tub-black-home-2.png"), \
+                welcome_index_path, \
+                :class => 'home' %>
+              </li>
+              <li>
+              <%= link_to image_tag("tubes-red-projects-2.png"), \
+                projects_path, \
+                :class => 'projects' %>
+              </li>
+            </ul>
+          </menu>
+        </div>
       </div>
       <a href="/projects">
         <%= image_tag "logo-7.png", :class => "page-logo" %>

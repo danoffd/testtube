@@ -2,7 +2,7 @@
 var node = $('#tn-<%= @user_story.id %>');
 
 // insert the editor into the node we are editing
-node.prepend('<%= j render("editor_intree") %>');
+node.append('<%= j render("editor_intree") %>');
 
 // insert the body text into the editor so the editor can update in real time
 node.children("#tree-editor").prepend(node.children(".tree-node-body"));

@@ -19,7 +19,7 @@ TTwireUpTreeNodes(jqNewNode);
 newTreeNode.attr("id", "tn-new");
  
 // insert the editor into the node we are editing
-newTreeNode.prepend('<%= j render("editor_intree") %>');
+newTreeNode.append('<%= j render("editor_intree") %>');
 
 // insert the body text into the editor so the editor can update in real time
 newTreeNode.children("#tree-editor").prepend(newTreeNode.children(".tree-node-body"));

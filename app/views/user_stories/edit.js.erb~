@@ -9,10 +9,3 @@ node.children("#tree-editor").prepend(node.children(".tree-node-body"));
 
 wireUpUserStoryEditor(node);
 
-var confirmHost = node.children(".tree-node-body");
-
-alert("injecting: " + confirmHost);
-
-confirmHost.prepend("<img src='/assets/saved.png'/>");
-confirmHost.children("img").fadeOut(2000);
-
