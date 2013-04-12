@@ -369,6 +369,7 @@ p.label-field-pair textarea{
     right:0px;
 }
 
+
 .TTsliderCompanion {
     margin-left:5px;
     transition-property:margin-left;
@@ -412,7 +413,20 @@ p.label-field-pair textarea{
     padding:10px;
     box-sizing:border-box;
     position:relative;
-    color:white;
+    color: #EFEFEF;
+}
+
+.TTsliderDiv h4 {
+  color: #CC9933;
+  font-size: 12px;
+  margin: 2px 0 0 0;
+}
+
+.TTsliderDiv p {
+  font-size: 12px;
+  margin: 2px 0 0 5px;
+  text-indent: -5px;
+  padding-left: 5px;
 }
 
 /*  ----------------------------------------------------------
@@ -680,7 +694,7 @@ menu.tube-menu a.selected.admin {
 }
 
 menu.tube-menu a.admin { 
-  top: 30px;
+  top: 25px;
 }
  
 /* another RGBA background, now with an opacity of 0.8 */
