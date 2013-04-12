@@ -7,6 +7,10 @@ gem 'rails', '3.2.12'
 
 gem 'activerecord-postgresql-adapter'
 
+# gem 'activeadmin', '0.5.1'
+gem 'activeadmin', "~> 0.6.0", :git => "git://github.com/gregbell/active_admin.git"
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

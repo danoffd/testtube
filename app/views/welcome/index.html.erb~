@@ -6,23 +6,23 @@
 <p>(Gotta have a concept page, I guess)</p>
 <p>TestTube is a place to capture thoughts about something that needs to get done.  You start by defining the work, then breaking it into finer and finer levels of detail, until you have a complete set of bite-sized chunks (called User Stories of course) you can start cranking out as fast as your heart desires.</p>
 <p>Each story is of a certain Story Type.  Its Story Type defines the initial set of tasks required to complete the story.  For example, a "Development with UI" story type might have individual tasks such as Get approval of screen approach, Develop screen, Develop back-end functions, Automate regression testing, Deploy to test environment, Setup testcases, Test, Showcase &amp; Train, etc. etc.  Every story of this type would start with those tasks.  The estimated size of the story would change the estimated size of each task, allowing for a detailed understanding of the work ahead.</p>
-<p>TestTube's User Interface is designed for fast user-entry.  A skilled user can do everything without ever taking their fingers off the keyboard.  Stories can be entered, assigned as sub-stories under higher level stories, prioritized, deleted, modified, etc. without ever touching the mouse.  Add the mouse to the mix, and the excitement of the slick HTML 5 drag/drop functionality will litterally never end.</p>
+<p>TestTube's User Interface is designed for fast user-entry.  A skilled user can do everything without ever taking their fingers off the keyboard.  Stories can be entered, assigned as sub-stories under higher level stories, prioritized, deleted, modified, etc. without ever touching the mouse.  Add the mouse to the mix, and the excitement of the slick HTML 5 drag/drop functionality will literally never end.</p>
 <p>This is all done to collect the "do-it" estimates for getting the job done.  Once those estimates are collected (and vetted by the doer!!!), this information can be used to model the delivery.  The resources assigned, allowance for risk and slippage, start dates, etc. can all change the details of the plan and the final estimate.  TestTube lets you tune those inputs, and model the project using different approaches so you can experiment with different ways to deliver before you start.</p>
-<p>You can see where this is going, right?  Once we have this data and estimation in place, we can start to do more.  We can use the data as a project managmenet tool.  Future release may let managers assign work, let "doers" track their time, let "users" accept the final stories or enter changes or defects.</p>
+<p>You can see where this is going, right?  Once we have this data and estimation in place, we can start to do more.  We can use the data as a project managemenet tool.  Future releases may let managers assign work, let "doers" track their time, let "users" accept the final stories or enter changes or defects.</p>
 <p>Yeah, so this is not new.  I know.  There are lots of other tools that do this.  2 responses to that...  1. I don't really love any of the ones I've tried.  2. This is primarily a way for me to learn some new stuff.  If I get a tool out of it that does exactly what I want it to do, that's just a bonus.</p>
 
 <h2>Alrighty then...</h2>
 <p>If you're still here, may as well get started...  Create an account by linking from you Google (so you don't need Y.A.P.).  Then start a new project and begin entering your stories.</p>
-<p>BE WARNED: This is still in toy mode.  Who knows whether what you enter will be here when your future self returns.  I'm going to try to keep it in good shape.  I'll force myself to do this by entering the rest of the TestTube project into TestTube Production.  If I loose the data, I screw myself.  So you will be in good company.  If you need support and don't already know me, find me on linked in or something.  I don't want my emails getting spammed into oblivion yet.</p>
+<p>BE WARNED: This is still in toy mode.  Who knows whether what you enter will be here when your future-self returns.  I'm going to try to keep it in good shape.  I'll force myself to do this by entering the rest of the TestTube project into TestTube Production.  If I lose the data, I screw myself.  So you will be in good company.  If you need support and don't already know me, find me on linked in or something.  I don't want my emails getting spammed into oblivion yet.</p>
 <p>Enjoy! <br>-Doug Danoff</p>
 <h2>Credits</h2>
 
 <p>The back story here, is that I set out to learn Ruby on Rails...  just for a personal adventure really.  I'm still scratching the surface on that goal.  There is a lot for a corporate-focused .NET wonk to absorb.  Here are some of the amazing things I've discovered so far...</p>
 
 <ul>
-  <li>Ruby 1.9.3 - The core language...  funkey and different...  "think it and it will be done"</li>
+  <li>Ruby 1.9.3 - The core language...  funky and different...  build for productivity...  "think it and it will be done"</li>
   <li>Rails 3.2.12 - The magical web framework</li>
-  <li>Rails for zomblies - Sink your teeth into some Ruby on Rails brains</li>
+  <li>Rails for zombies - Sink your teeth into some Ruby on Rails brains</li>
   <li>VIM - Not your momma's text editor...  a workout for the inner geek</li>
   <li>VIM Nerdtree - Vim'ish tree navigation</li>
   <li>VIM's Tim Pope - I wonder what that guy does for fun... wait, I know, he codes VIM plug'ins</li>
@@ -30,6 +30,7 @@
   <li>lynda.com - Learn any friggin thing you could possibly want to for $29 / month</li>
   <li>railscasts.com from Ryan Bates - When, exactly, does that guy sleep?</li>
   <li>Photoshop - A site's got to have graphics, I suppose</li>
+  <li>Corel Paintshop - Near as photoshop I can reacon, but $950 cheaper</li>
   <li>HTML, CSS, Javascript, jQuery - How could I have managed so long knowing as little as I did...  and miles to go...</li>
   <li>HTML5 - Some cool new stuff, I used the drag-n-drop stuff for story management</li>
   <li>GIT - Source control for the big kids</li>
@@ -41,6 +42,7 @@
   <li>omniauth gem (including the -google-oauth2 and -facebook plugins so far) - libraries for incorporating OpenID and OAuth into the site</li>
   <li>CanCan gem - A very Rails-ie authorization gem. The RailsCasts guy built it because he wanted to rails cast about simple authorization, didn't find one, so built one...  now its like one of the best.</li>
   <li>declarative_authorization gem - close second for an authorization gem</li>
+  <li>http://medialize.github.io/jQuery-contextMenu - very cool context menu</li>
   <li>Heroku.com - Rails cloud hosting...  stuff could not be easier</li>
   <li>dnsimple.com - Make my heroku app surface through a subdomain in my own URL</li>
   <li>Google apps for business - I broke my company's email monkeying around with DNS settings, and had to switch us over to Gmail. Shoulda broke my email years ago.</li>

@@ -1,8 +1,11 @@
 Testtube::Application.routes.draw do
   
-  root :to => 'welcome#index'
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  # ActiveAdmin.routes(self)
   resources :welcome, :only => [:index]
   resources :projects, :only => [:index, :show, :update, :destroy, :create] do
     #custom actions that perform instance level function
@@ -20,6 +23,7 @@ Testtube::Application.routes.draw do
     end
 
   end
+  root :to => 'welcome#index'
 
   # get "project_models/index"
   # get "project_models/show"

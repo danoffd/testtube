@@ -1,8 +1,12 @@
 Testtube::Application.routes.draw do
   
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   root :to => 'welcome#index'
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  ActiveAdmin.routes(self)
   resources :welcome, :only => [:index]
   resources :projects, :only => [:index, :show, :update, :destroy, :create] do
     #custom actions that perform instance level function
@@ -13,7 +17,7 @@ Testtube::Application.routes.draw do
     resources :project_models, :only => [:index, :show], :shallow => true
     resources :project_users, :only => [:create, :update, :destroy], :shallow => true
   
-    resources :user_stories, :only => [:index, :show, :create, :edit, :update, :new] do
+    resources :user_stories, :only => [:index, :show, :create, :edit, :update, :new, :destroy] do
       member do
         post :save
       end

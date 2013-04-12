@@ -23,12 +23,12 @@
           <menu class="tube-menu">
             <ul>
               <li>
-              <%= link_to image_tag("tub-black-home-2.png"), \
+              <%= link_to image_tag("tub-black-home-2.png", :alt => "Home"), \
                 welcome_index_path, \
                 :class => 'home' %>
               </li>
               <li>
-              <%= link_to image_tag("tubes-red-projects-2.png"), \
+              <%= link_to image_tag("tubes-red-projects-2.png", :alt => "Projects"), \
                 projects_path, \
                 :class => 'projects' %>
               </li>
@@ -36,9 +36,8 @@
           </menu>
         </div>
       </div>
-      <a href="/projects">
-        <%= image_tag "logo-7.png", :class => "page-logo" %>
-      </a>
+      <%= link_to image_tag("logo-7.png", :alt => "Welcome", :class => "page-logo"), \
+        welcome_index_path %>
     </header>
     <div class="main-body-section">
       <% flash.each do |key, value| %>

@@ -7,6 +7,10 @@ gem 'rails', '3.2.12'
 
 gem 'activerecord-postgresql-adapter'
 
+# gem 'activeadmin', '0.5.1'
+gem 'activeadmin', :path => "vendor/gems/activeadmin-0.6.0"
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -28,10 +32,12 @@ gem 'omniauth-facebook', '1.4.0'
 # gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
+gem 'cancan'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
-# To use Jbuilder templates for JSON
+# To use Jbuilder templates for JSO
 # gem 'jbuilder'
 
 # Use unicorn as the app server

@@ -674,6 +674,15 @@ menu.tube-menu a.selected.projects {
   left: -10px;
 }
  
+menu.tube-menu a.selected.admin { 
+  top: 0px;
+  left: -10px;
+}
+
+menu.tube-menu a.admin { 
+  top: 25px;
+}
+ 
 /* another RGBA background, now with an opacity of 0.8 */
 menu.tube-menu ul li a.active { 
     /* background: rgba(32,32,32,1.0) !important;  */

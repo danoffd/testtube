@@ -575,7 +575,7 @@ ul.tree-node-list li {
   border-radius: 12px;
   padding: 8px;
   float: left;
-  margin:0 0 0 50px;
+  margin:0;
   max-width: 930px;
 }
 
@@ -672,6 +672,15 @@ menu.tube-menu a.selected.home {
 menu.tube-menu a.selected.projects { 
   top: 0px;
   left: -10px;
+}
+ 
+menu.tube-menu a.selected.admin { 
+  top: 0px;
+  left: -10px;
+}
+
+menu.tube-menu a.admin { 
+  top: 30px;
 }
  
 /* another RGBA background, now with an opacity of 0.8 */
