@@ -136,7 +136,7 @@ function TThandleStoryMenu(key, options)
 
 function TTeditorCancel()
 {
-  alert("Fix me...   cancel the action!!!");
+  TTcancelTreeEditor($("#tree-editor"));
 }
 
 function TTeditorClose()
@@ -313,6 +313,22 @@ function TTeditTreeNode(jqElement)
   });
 }
 
+function TTcancelTreeEditor(jqEditor)
+{
+  if (jqEditor.length > 0)
+  {
+    var backupBody = jqEditor.children(".tree-node-body-backup");
+    var jqNode = jqEditor.parent();
+    // move the editing body back to the tree-node.  it had
+    // been inserted into the editor
+    backupBody.removeClass(".tree-node-body-backup");
+    backupBody.addClass(".tree-node-body");
+    backupBody.show();
+    jqNode.append(backupBody);
+    jqEditor.remove();
+  }
+}
+
 function TTclearAndSaveTreeEditor(jqEditor, setFocusToCurrentNode)
 {
   var editingBody = jqEditor.children(".tree-node-body");
@@ -335,13 +351,7 @@ function TTclearAndSaveTreeEditor(jqEditor, setFocusToCurrentNode)
     // been inserted into the editor
     jqNode.append(editingBody);
 
-    // move the tree editor back to the closet
-    //$("#hidden-closet").append(jqEditor);
     jqEditor.remove();
- 
-    // $('html, body').animate({
-    //   scrollTop: jqNode.offset().top
-    // }, 800);
   }
 }
 
