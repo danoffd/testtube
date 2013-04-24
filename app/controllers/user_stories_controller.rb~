@@ -26,7 +26,7 @@ class UserStoriesController < ApplicationController
       #siblings rank + 1
       bigbro = @project.user_stories.find(params[:after])
       @user_story.parent_user_story = bigbro.parent_user_story
-      @user_story.stack_rank = bigbro.stack_rank + 1
+      @user_story.stack_rank = (bigbro.stack_rank || 0)  + 1
     else
       #not sure where we are adding it. 
     end
@@ -88,11 +88,12 @@ class UserStoriesController < ApplicationController
       @new_parent_id = params[:new_parent]
       if @new_parent_id.nil?
         @user_story.parent_user_story = nil
-        current_first_story = @project.user_stories.where("parent_user_story_id = null").first
+        current_first_story = @project.user_stories.where("parent_user_story_id is null").first
       else
         @user_story.parent_user_story = @project.user_stories.find(@new_parent_id)
         current_first_story = @user_story.parent_user_story.child_user_stories.first()
       end
+      puts "###########current first story: " + current_first_story.inspect
       @user_story.stack_rank = current_first_story.nil? ? 0 : current_first_story.stack_rank - 10
     elsif @special_action == "sibling_change"
       # for the sibling change action, insert the story after (in stack rank order) the big brother
@@ -130,6 +131,7 @@ class UserStoriesController < ApplicationController
       
       @user_story.parent_user_story = @bigbro_user_story.parent_user_story
     else
+      # just an update from the story editor
       @user_story.want_to = params[:user_story][:want_to]
       @user_story.so_i_can = params[:user_story][:so_i_can]
       @user_story.is_estimate_final = false

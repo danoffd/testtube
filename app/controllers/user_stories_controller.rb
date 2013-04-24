@@ -88,11 +88,12 @@ class UserStoriesController < ApplicationController
       @new_parent_id = params[:new_parent]
       if @new_parent_id.nil?
         @user_story.parent_user_story = nil
-        current_first_story = @project.user_stories.where("parent_user_story_id = null").first
+        current_first_story = @project.user_stories.where("parent_user_story_id is null").first
       else
         @user_story.parent_user_story = @project.user_stories.find(@new_parent_id)
         current_first_story = @user_story.parent_user_story.child_user_stories.first()
       end
+      puts "###########current first story: " + current_first_story.inspect
       @user_story.stack_rank = current_first_story.nil? ? 0 : current_first_story.stack_rank - 10
     elsif @special_action == "sibling_change"
       # for the sibling change action, insert the story after (in stack rank order) the big brother
@@ -100,36 +101,37 @@ class UserStoriesController < ApplicationController
       @bigbro_user_story = @project.user_stories.find(@new_bigbro_id)
 
       if !@bigbro_user_story.parent_user_story.nil?
-        # if bigbro is not a root story, need to reorder the siblings
         all_siblings = @bigbro_user_story.parent_user_story.child_user_stories
-        counter = 0
+      else
+        all_siblings = @project.user_stories.where("parent_user_story_id is null")
+      end
 
-        puts "************* about to reorder: " + all_siblings.count.to_s
-        puts "bigbro: " + @bigbro_user_story.id.to_s
-        puts "moved: " + @user_story.id.to_s
+      counter = 0
 
-        all_siblings.each do |s|
-          puts "--" + s.id.to_s + "-" + s.want_to + " - current rank: " + s.stack_rank.to_s
-          if @user_story.id != s.id
-            counter += 10
-            if s.stack_rank != counter
-              puts "----- CHANGING!" + s.id.to_s + " ------ " + counter.to_s
-              s.stack_rank = counter
-              s.save!
-            end
-          end
-          if s.id == @bigbro_user_story.id
-            counter += 10
-            puts "--  MOVED " + @user_story.id.to_s + @user_story.want_to + " ------ " + counter.to_s
-            @user_story.stack_rank = counter
+      puts "************* about to reorder: " + all_siblings.count.to_s
+      puts "bigbro: " + @bigbro_user_story.id.to_s
+      puts "moved: " + @user_story.id.to_s
+
+      all_siblings.each do |s|
+        puts "--" + s.id.to_s + "-" + s.want_to + " - current rank: " + s.stack_rank.to_s
+        if @user_story.id != s.id
+          counter += 10
+          if s.stack_rank != counter
+            puts "----- CHANGING!" + s.id.to_s + " ------ " + counter.to_s
+            s.stack_rank = counter
+            s.save!
           end
         end
-      else
-        @user_story.stack_rank = 0
+        if s.id == @bigbro_user_story.id
+          counter += 10
+          puts "--  MOVED " + @user_story.id.to_s + @user_story.want_to + " ------ " + counter.to_s
+          @user_story.stack_rank = counter
+        end
       end
       
       @user_story.parent_user_story = @bigbro_user_story.parent_user_story
     else
+      # just an update from the story editor
       @user_story.want_to = params[:user_story][:want_to]
       @user_story.so_i_can = params[:user_story][:so_i_can]
       @user_story.is_estimate_final = false
