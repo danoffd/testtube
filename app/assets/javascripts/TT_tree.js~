@@ -763,7 +763,7 @@ function TTdropInto(into, droppingNode)
     {
       // if the parent is a branch on the tree, need to get the node it represents
       TThandleParentChangeRequest($(droppingNode)
-          , intoRootContainer.find(".tree-node:first");
+          , intoRootContainer.find(".tree-node:first"));
     }
   }
   else if (jInto.hasClass("tree-node") || jInto.hasClass("tree-child-dropzone"))

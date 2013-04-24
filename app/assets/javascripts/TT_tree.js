@@ -754,17 +754,12 @@ function TTdropInto(into, droppingNode)
   else if (jInto.hasClass("tree-root-dropzone"))
   {
     var intoRootContainer =  $(into).parent().parents("li, .tree").first();
-    if (intoRootContainer.hasClass("tree"))
-    {
-      // if the parent is the tree, remove the parent...  pass no parent
-      TThandleParentChangeRequest($(droppingNode));
-    }
-    else
+    if (!intoRootContainer.hasClass("tree"))
     {
       // if the parent is a branch on the tree, need to get the node it represents
-      TThandleParentChangeRequest($(droppingNode)
-          , intoRootContainer.find(".tree-node:first"));
+      intoRootContainer = intoRootContainer.find(".tree-node:first");
     }
+    TThandleParentChangeRequest($(droppingNode), intoRootContainer);
   }
   else if (jInto.hasClass("tree-node") || jInto.hasClass("tree-child-dropzone"))
   {
