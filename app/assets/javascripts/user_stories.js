@@ -49,8 +49,7 @@ function wireUpUserStoryEditor(toNode)
 {
   // need to unbind the events from the node so user can type
   // without triggering them
-  toNode.off('keyup');
-  toNode.off('keydown');
+  TTunWireTreeNodes(toNode);
 
   TTwireupRefinedListEvents("#story-editor-actor", "#story-editor-wantto");
 

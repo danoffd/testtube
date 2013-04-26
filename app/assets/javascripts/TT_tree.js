@@ -22,7 +22,38 @@ function TTwireUpTree(populateEditorFunction)
 {
   TTpopulateEditorFunction = populateEditorFunction;
   TTwireUpTreeNodes($(".tree"));
+  $.contextMenu({
+      selector: '.tree-node', 
+      callback: function(key, options) {
+        TThandleStoryMenu(key, options);
+      },
+      items: {
+          //"edit": {name: "Edit", icon: "edit"},
+          "edit": {name: "Edit"},
+          "copy_text": {name: "Copy as Text"},
+          "delete": {name: "Delete"},
+          "sep1": "---------",
+          "insert_after": {name: "Insert After"},
+          "insert_child": {name: "Insert a Child"}
+      }
+  });
   TTreindexTree(9000);
+}
+
+function TTunWireTreeNodes(jqNodesToUnWire)
+{
+  jqNodesToUnWire.off('dragstart');
+  jqNodesToUnWire.off('dragend');
+  jqNodesToUnWire.off('dragover');
+  jqNodesToUnWire.off('dragenter');
+  jqNodesToUnWire.off('dragleave');
+  jqNodesToUnWire.off('drop');
+  jqNodesToUnWire.off('keyup');
+  jqNodesToUnWire.off('keydown');
+  jqNodesToUnWire.off('click');
+  jqNodesToUnWire.off('dblclick');
+  jqNodesToUnWire.off('focus');
+  jqNodesToUnWire.contextMenu(false);
 }
 
 function TTwireUpTreeNodes(jqNodesToWire)
@@ -89,26 +120,7 @@ function TTwireUpTreeNodes(jqNodesToWire)
     TTsetTreeNodeFocus(e, $(this));
   });
 
-  $.contextMenu({
-      selector: '.tree-node', 
-      callback: function(key, options) {
-        TThandleStoryMenu(key, options);
-      },
-      items: {
-          //"edit": {name: "Edit", icon: "edit"},
-          "edit": {name: "Edit"},
-          "copy_text": {name: "Copy as Text"},
-          "delete": {name: "Delete"},
-          "sep1": "---------",
-          "insert_after": {name: "Insert After"},
-          "insert_child": {name: "Insert a Child"}
-      }
-  });
-  
-  treeNodes.on('click', function(e){
-      console.log('clicked', this);
-  });
-
+  treeNodes.contextMenu(true);
 }
 
 function TThandleStoryMenu(key, options)
@@ -321,8 +333,8 @@ function TTcancelTreeEditor(jqEditor)
     var jqNode = jqEditor.parent();
     // move the editing body back to the tree-node.  it had
     // been inserted into the editor
-    backupBody.removeClass(".tree-node-body-backup");
-    backupBody.addClass(".tree-node-body");
+    backupBody.removeClass("tree-node-body-backup");
+    backupBody.addClass("tree-node-body");
     backupBody.show();
     jqNode.append(backupBody);
     jqEditor.remove();

@@ -4,16 +4,16 @@ var node = $('#tn-<%= @user_story.id %>');
 // insert the editor into the node we are editing
 node.append('<%= j render("editor_intree") %>');
 
-// insert the body text into the editor so the editor can update in real time
-node.children("#tree-editor").prepend(node.children(".tree-node-body"));
-
 // save a copy of the original node so we can use it if user wants to cancel the action
-debugger;
-var backupCopy = node.children(".tree-node-body").clone();
+var backupCopy = node.children(".tree-node-body").clone(true,true);
 backupCopy.removeClass("tree-node-body");
 backupCopy.addClass("tree-node-body-backup");
+backupCopy.attr("id", "editor-backup");
 backupCopy.hide();
 node.children("#tree-editor").prepend(backupCopy);
+
+// insert the body text into the editor so the editor can update in real time
+node.children("#tree-editor").prepend(node.children(".tree-node-body"));
 
 wireUpUserStoryEditor(node);
 

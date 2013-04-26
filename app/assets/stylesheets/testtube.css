@@ -538,6 +538,10 @@ ul.tree-node-list li {
     background-image:url(/assets/tree2-leaf-fill.png);
 }
 
+.tree-node-list li .tree-node-command {
+    background-image:url(/assets/tree2-leaf.png);
+}
+
 /*the last node in a branch should terminate the nav image*/
 .tree-node-list li:last-child .tree-node-command {
     background-image:url(/assets/tree2-leaf-last.png);

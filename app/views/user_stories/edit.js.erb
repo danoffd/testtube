@@ -5,7 +5,7 @@ var node = $('#tn-<%= @user_story.id %>');
 node.append('<%= j render("editor_intree") %>');
 
 // save a copy of the original node so we can use it if user wants to cancel the action
-var backupCopy = node.children(".tree-node-body").clone();
+var backupCopy = node.children(".tree-node-body").clone(true,true);
 backupCopy.removeClass("tree-node-body");
 backupCopy.addClass("tree-node-body-backup");
 backupCopy.hide();
