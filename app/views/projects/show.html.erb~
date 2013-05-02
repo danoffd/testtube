@@ -1,10 +1,11 @@
 <%= javascript_include_tag("projects") %>
 
 <section class="main-body-parts-container project-show">
+    <%= render "shared/tt_project_menu"  %>
 <div class="parts">
   <div class="chunk">
     <h2>Info</h2>
-    <% if can? :update, @project %>
+    <% if can? :update %>
       <%= render "project_details_edit" %>
     <% else %>
       <%= render "project_details_readonly" %>
@@ -21,7 +22,7 @@
     <% if can? :update, @project %>
       <%= render "project_users/project_users_edit" %>
     <% else %>
-      <p>read only version please</p>
+      <%= render "project_users/project_users_readonly" %>
     <% end %>
   </div>
   <aside class="hidden-closet">

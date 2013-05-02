@@ -538,29 +538,24 @@ ul.tree-node-list li {
     background-image:url(/assets/tree2-leaf-fill.png);
 }
 
+.tree-node-list li > .tree-node-command {
+    background-image:url(/assets/tree2-leaf.png);
+}
+
 /*the last node in a branch should terminate the nav image*/
-.tree-node-list li:last-child .tree-node-command {
+.tree-node-list li:last-child > .tree-node-command {
     background-image:url(/assets/tree2-leaf-last.png);
 }
-.tree-node-list li:last-child .tree-node-fill {
+.tree-node-list li:last-child > .tree-node-fill {
     background-image:none;
 }
 
-/*this is to prevent children of the last child from inheriting last
-    child styles*/
-/*.tree-node-list li:not(:last-child) .tree-node-command {
-    background-image:url(/assets/tree2-leaf.png);
-}
-.tree-node-list li:not(:last-child) .tree-node-fill {
-    background-image:url(/assets/tree2-leaf-fill.png);
-}*/
-
 /*Expanded nodes should insert the collapse button*/
-.tree-node-nav.TT-expanded .tree-node-command {
+.tree-node-nav.TT-expanded > .tree-node-command {
     background-image:url(/assets/tree2-leaf-collapse.png) !important;
 }
 /*Collapsed nodes should insert the expand button*/
-.tree-node-nav.TT-collapsed .tree-node-command {
+.tree-node-nav.TT-collapsed > .tree-node-command {
     background-image:url(/assets/tree2-leaf-expand.png) !important;
 }
 

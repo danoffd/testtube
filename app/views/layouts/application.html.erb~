@@ -32,6 +32,11 @@
                 projects_path, \
                 :class => 'projects' %>
               </li>
+              <li>
+              <%= link_to image_tag("adminTube.png", :alt => "Admin"), \
+                projects_path, \
+                :class => 'admin' %>
+              </li>
             </ul>
           </menu>
         </div>
@@ -42,6 +47,9 @@
     <div class="main-body-section">
       <% flash.each do |key, value| %>
         <p><%= value %></p>
+      <% end %>
+      <% if defined?(@project) %>
+        <p>asdf | asdf | asdf</p>
       <% end %>
       <%= yield %>
     </div>
