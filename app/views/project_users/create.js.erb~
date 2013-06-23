@@ -1,5 +1,0 @@
-$('#project-user-table-body').prepend('<%= j render(@project_user) %>');
-var newRow = $("#project-user-<%= @project_user.id %>");
-newRow.find("td:first").prepend("<img src='/assets/saved.png'/>");
-newRow.find("td:first").find("img").fadeOut(2000);
-
