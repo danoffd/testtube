@@ -9,6 +9,7 @@ development:
   timeout: 5000
   username: testtube
   password: testtube
+  host: localhost
   pool: 5
 
 # Warning: The database defined as "test" will be erased and
@@ -20,6 +21,7 @@ test:
   timeout: 5000
   username: testtube
   password: testtube
+  host: localhost
   pool: 5
 
 production:
