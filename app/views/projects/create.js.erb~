@@ -1,2 +1,0 @@
-$('#projects').prepend('<img src="/assets/saved.png"></img><%= j render(@project) %>');
-

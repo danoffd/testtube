@@ -1,9 +1,0 @@
-
-var node = $('#tn-new');
-
-node.replaceWith('<%= j render(@user_story) %>');
-
-var newNode = $('#tn-<%= @user_story.id %>');
-
-TTconfirmNodeSave(newNode.children(".tree-node-body"));
-
