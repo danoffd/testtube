@@ -21,7 +21,7 @@ class Project < ActiveRecord::Base
 
   scope :view, (lambda do |user_id|
     user_id = (user_id.nil?) ? "-1" : user_id.to_s
-     where("is_public = true or exists (select 1 from project_users where projects.id = project_users.project_id and project_users.user_id = ?)", user_id)
+     where("is_public = 1 or exists (select 1 from project_users where projects.id = project_users.project_id and project_users.user_id = ?)", user_id)
    end)
 
   scope :contribute, (lambda do |user_id|

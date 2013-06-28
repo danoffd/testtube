@@ -1,11 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'activerecord-postgresql-adapter'
+#gem 'activerecord-postgresql-adapter'
+
+gem 'sqlite3'
+#gem 'activerecord-sqlite3-adapter'
 
 # gem 'activeadmin', '0.5.1'
 gem 'activeadmin', "~> 0.6.0", :git => "git://github.com/gregbell/active_admin.git"
