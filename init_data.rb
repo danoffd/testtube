@@ -50,126 +50,127 @@ puts @actorReviewer.inspect
 
   #################################
   # - Development story type
-@storyTypeDev = Project.where(:name => @projectName).first
+@project = Project.where(:name => @projectName).first
+@storyTypeDev = @project.story_types.where(:story_type_name => "Development").first
 if (@storyTypeDev == nil)
   @storyTypeDev = @project.story_types.create(:story_type_name => "Development")
-
-  @storyTypeDev.baseline_tasks.create( \
-     :name => "Get smart", \
-     :description => "Get familliar with reqs, refine details, review related code, etc", \
-     :small_doit_loe_hours => 0.5, \
-     :is_sensitive_to_size => true, \
-     :review_team_size => 1)
-
-  @storyTypeDev.baseline_tasks.create( \
-     :name => "Code and unit test", \
-     :description => "Develop code, including some testing along the way", \
-     :small_doit_loe_hours => 6, \
-     :is_sensitive_to_size => true, \
-     :review_team_size => 1)
-
-  @storyTypeDev.baseline_tasks.create( \
-     :name => "Acceptance testing", \
-     :description => "Independently complete the acceptance tests, and ensure regression is in place", \
-     :small_doit_loe_hours => 2, \
-     :is_sensitive_to_size => true, \
-     :review_team_size => 0)
-
-  @storyTypeDev.baseline_tasks.create( \
-     :name => "Merge Code", \
-     :description => "Merge code with latest set and execute automated regression tests", \
-     :small_doit_loe_hours => 0.5, \
-     :is_sensitive_to_size => false, \
-     :review_team_size => 0)
-
-  @storyTypeDev.baseline_tasks.create( \
-     :name => "Code Review", \
-     :description => "Perform technical code review with 1 other technical person", \
-     :small_doit_loe_hours => 1, \
-     :is_sensitive_to_size => false, \
-     :review_team_size => 1)
-  
-  @storyTypeDev.baseline_tasks.create( \
-     :name => "Showcase", \
-     :description => "Showcase functionality and acceptance tests", \
-     :small_doit_loe_hours => 0.5, \
-     :is_sensitive_to_size => false, \
-     :review_team_size => 4)
-  
-  @storyTypeDev.baseline_tasks.create( \
-     :name => "Support post sprint testing", \
-     :description => "Handle bugs and changes that arise after release is final", \
-     :small_doit_loe_hours => 3, \
-     :is_sensitive_to_size => true, \
-     :review_team_size => 1)
-  
-  
-  
-  #################################
-  # - tracer story type
-  @storyTypeSpike = @project.story_types.create( \
-     :story_type_name => "Tracer")
-
-  @storyTypeSpike.baseline_tasks.create( \
-     :name => "Define objectives", \
-     :description => "Define the objectives of the tracer", \
-     :small_doit_loe_hours => 0.5, \
-     :is_sensitive_to_size => true, \
-     :review_team_size => 2)
-
-  @storyTypeSpike.baseline_tasks.create( \
-     :name => "Do it", \
-     :description => "Do whatever work is required by the tracer", \
-     :small_doit_loe_hours => 1, \
-     :is_sensitive_to_size => true, \
-     :review_team_size => 2)
-
-  @storyTypeSpike.baseline_tasks.create( \
-     :name => "Review progress and results", \
-     :description => "Review the progress of the work and final results", \
-     :small_doit_loe_hours => 1, \
-     :is_sensitive_to_size => true, \
-     :review_team_size => 2)
-
-  #################################
-  # - Minor task story type
-  @storyTypeTask = @project.story_types.create( \
-     :story_type_name => "Minor Task")
-
-  @storyTypeTask.baseline_tasks.create( \
-     :name => "Define objectives", \
-     :description => "Define the objectives of the task", \
-     :small_doit_loe_hours => 0.5, \
-     :is_sensitive_to_size => true, \
-     :review_team_size => 1)
-
-  @storyTypeTask.baseline_tasks.create( \
-     :name => "Do it", \
-     :description => "Do whatever work is required", \
-     :small_doit_loe_hours => 2, \
-     :is_sensitive_to_size => true, \
-     :review_team_size => 0)
-
-  #################################
-  # - Epic
-  @storyTypeEpic = @project.story_types.create( \
-     :story_type_name => "Epic")
-
-  @storyTypeEpic.baseline_tasks.create( \
-     :name => "Define Child Stories", \
-     :description => "Define the breakdown of stories within the epic", \
-     :small_doit_loe_hours => 4, \
-     :is_sensitive_to_size => true, \
-     :review_team_size => 0)
-
-  @storyTypeEpic.baseline_tasks.create( \
-     :name => "Communicate and build consensus", \
-     :description => "Communicate the sub-stories, assimilate feedback", \
-     :small_doit_loe_hours => 2, \
-     :is_sensitive_to_size => true, \
-     :review_team_size => 5)
-
 end
+
+@storyTypeDev.baseline_tasks.create( \
+ :name => "Get smart", \
+ :description => "Get familliar with reqs, refine details, review related code, etc", \
+ :small_doit_loe_hours => 0.5, \
+ :is_sensitive_to_size => true, \
+ :review_team_size => 1)
+
+@storyTypeDev.baseline_tasks.create( \
+ :name => "Code and unit test", \
+ :description => "Develop code, including some testing along the way", \
+ :small_doit_loe_hours => 6, \
+ :is_sensitive_to_size => true, \
+ :review_team_size => 1)
+
+@storyTypeDev.baseline_tasks.create( \
+ :name => "Acceptance testing", \
+ :description => "Independently complete the acceptance tests, and ensure regression is in place", \
+ :small_doit_loe_hours => 2, \
+ :is_sensitive_to_size => true, \
+ :review_team_size => 0)
+
+@storyTypeDev.baseline_tasks.create( \
+ :name => "Merge Code", \
+ :description => "Merge code with latest set and execute automated regression tests", \
+ :small_doit_loe_hours => 0.5, \
+ :is_sensitive_to_size => false, \
+ :review_team_size => 0)
+
+@storyTypeDev.baseline_tasks.create( \
+ :name => "Code Review", \
+ :description => "Perform technical code review with 1 other technical person", \
+ :small_doit_loe_hours => 1, \
+ :is_sensitive_to_size => false, \
+ :review_team_size => 1)
+
+@storyTypeDev.baseline_tasks.create( \
+ :name => "Showcase", \
+ :description => "Showcase functionality and acceptance tests", \
+ :small_doit_loe_hours => 0.5, \
+ :is_sensitive_to_size => false, \
+ :review_team_size => 4)
+
+@storyTypeDev.baseline_tasks.create( \
+ :name => "Support post sprint testing", \
+ :description => "Handle bugs and changes that arise after release is final", \
+ :small_doit_loe_hours => 3, \
+ :is_sensitive_to_size => true, \
+ :review_team_size => 1)
+
+
+
+#################################
+# - tracer story type
+@storyTypeSpike = @project.story_types.create( \
+ :story_type_name => "Tracer")
+
+@storyTypeSpike.baseline_tasks.create( \
+ :name => "Define objectives", \
+ :description => "Define the objectives of the tracer", \
+ :small_doit_loe_hours => 0.5, \
+ :is_sensitive_to_size => true, \
+ :review_team_size => 2)
+
+@storyTypeSpike.baseline_tasks.create( \
+ :name => "Do it", \
+ :description => "Do whatever work is required by the tracer", \
+ :small_doit_loe_hours => 1, \
+ :is_sensitive_to_size => true, \
+ :review_team_size => 2)
+
+@storyTypeSpike.baseline_tasks.create( \
+ :name => "Review progress and results", \
+ :description => "Review the progress of the work and final results", \
+ :small_doit_loe_hours => 1, \
+ :is_sensitive_to_size => true, \
+ :review_team_size => 2)
+
+#################################
+# - Minor task story type
+@storyTypeTask = @project.story_types.create( \
+ :story_type_name => "Minor Task")
+
+@storyTypeTask.baseline_tasks.create( \
+ :name => "Define objectives", \
+ :description => "Define the objectives of the task", \
+ :small_doit_loe_hours => 0.5, \
+ :is_sensitive_to_size => true, \
+ :review_team_size => 1)
+
+@storyTypeTask.baseline_tasks.create( \
+ :name => "Do it", \
+ :description => "Do whatever work is required", \
+ :small_doit_loe_hours => 2, \
+ :is_sensitive_to_size => true, \
+ :review_team_size => 0)
+
+#################################
+# - Epic
+@storyTypeEpic = @project.story_types.create( \
+ :story_type_name => "Epic")
+
+@storyTypeEpic.baseline_tasks.create( \
+ :name => "Define Child Stories", \
+ :description => "Define the breakdown of stories within the epic", \
+ :small_doit_loe_hours => 4, \
+ :is_sensitive_to_size => true, \
+ :review_team_size => 0)
+
+@storyTypeEpic.baseline_tasks.create( \
+ :name => "Communicate and build consensus", \
+ :description => "Communicate the sub-stories, assimilate feedback", \
+ :small_doit_loe_hours => 2, \
+ :is_sensitive_to_size => true, \
+ :review_team_size => 5)
+
 
 # ###########################################################
 # Create some stories
