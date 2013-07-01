@@ -1,6 +1,7 @@
 class Ability
   include CanCan::Ability
 
+  # @param [Object] story_type
   def initialize(user)
 
     user ||= User.new # guest user
@@ -36,6 +37,7 @@ class Ability
       can :create, Project 
     end
 
+
     # User Stories
     can :read, UserStory do |user_story|
       user_story.project.view?(user)
@@ -50,6 +52,18 @@ class Ability
       user_story.project.contribute?(user)
     end
 
+    # Story Types
+    can :read, StoryType do |story_type|
+      story_type.project.view?(user)
+    end
+
+    can :update, StoryType do |story_type|
+      story_type.project.contribute?(user)
+    end
+
+    can(:create, StoryType) { |story_type| story_type.project.contribute?(user) }
+
+    can(:destroy, StoryType) { |story_type| story_type.project.contribute?(user) }
     
     # can :read, Project, Project.mine(user.id) do |project|
     #   puts "********  Evaluating read project permissions for: " + project.inspect

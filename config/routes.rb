@@ -15,7 +15,7 @@ Testtube::Application.routes.draw do
 
     resources :project_models, :only => [:index, :show], :shallow => true
     resources :project_users, :only => [:create, :update, :destroy], :shallow => true
-  
+    resources :story_types, :only => [:index, :show, :create, :edit, :update, :new, :destroy]
     resources :user_stories, :only => [:index, :show, :create, :edit, :update, :new, :destroy] do
       member do
         post :save
