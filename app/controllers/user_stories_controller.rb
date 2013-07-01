@@ -13,6 +13,7 @@ class UserStoriesController < ApplicationController
     @all_actors = get_actors
 
     @user_story = @project.user_stories.new
+    @story_note = @user_story.notes.build
 
     if params[:parent].present?
       #requesting to add a child of a parent.  set the parent id to the specified
@@ -54,6 +55,9 @@ class UserStoriesController < ApplicationController
     # editor combo box
     @all_actors = get_actors
 
+    @user_story = @project.user_stories.find(params[:id])
+    @story_note = @user_story.notes.build
+  
     respond_to do |format|
       format.html { render :nothing => true }
       format.js 
@@ -136,6 +140,8 @@ class UserStoriesController < ApplicationController
       @user_story.so_i_can = params[:user_story][:so_i_can]
       @user_story.is_estimate_final = false
       @user_story.actor = find_or_create_actor(params[:user_story][:actor_name])
+      
+      @user_story.notes_attributes = params[:user_story][:notes_attributes]
     end
    
     puts @user_story.inspect

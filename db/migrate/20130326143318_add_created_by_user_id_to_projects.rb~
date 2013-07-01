@@ -1,5 +1,0 @@
-class AddCreatedByUserIdToProjects < ActiveRecord::Migration
-  def change
-    add_column :projects, :users, :references
-  end
-end
