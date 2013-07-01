@@ -10,6 +10,9 @@ class UserStory < ActiveRecord::Base
     , :class_name => "UserStory" \
     , :foreign_key => "parent_user_story_id" \
     , :dependent => :delete_all
+    
+  has_many :notes, :as => :notable
+  accepts_nested_attributes_for :notes
   
   has_many :story_notes, :dependent => :destroy, :foreign_key => "user_story_id"
   attr_accessible :doit_loe_hours,
@@ -25,7 +28,8 @@ class UserStory < ActiveRecord::Base
     :story_type_id,
     :parent_user_story_id,
     :actor_name,
-    :stack_rank
+    :stack_rank,
+    :notes_attributes
 
   attr_accessor :actor_name
   
