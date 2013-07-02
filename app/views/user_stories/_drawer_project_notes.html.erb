@@ -1,0 +1,5 @@
+<%= @project.notes.each do |note_f| %>
+	<%= render "shared/notes_view" \
+  		, :f => note_f \
+  		, :tab_index => "3403" %>
+<% end %>

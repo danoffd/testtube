@@ -60,6 +60,8 @@ class ProjectsController < ApplicationController
     puts "************ saving project" + params.inspect 
     # @project = Project.find(params[:id])
     puts "************ project:" + @project.inspect 
+    # @project.notes_attributes = params[:user_story][:notes_attributes]
+
     @project.update_attributes!(params[:project])
     puts "************ done!" 
     render :nothing => true

@@ -141,10 +141,11 @@ class UserStoriesController < ApplicationController
       @user_story.is_estimate_final = false
       @user_story.actor = find_or_create_actor(params[:user_story][:actor_name])
       
-      @user_story.notes_attributes = params[:user_story][:notes_attributes]
+      valid_notes = params[:user_story][:notes_attributes].select { |k, itm| !itm[:content].blank? }
+      @user_story.notes_attributes = valid_notes
     end
    
-    puts @user_story.inspect
+    puts "+++++++inspect: " + @user_story.inspect
 
     @user_story.save!
 
@@ -198,6 +199,12 @@ class UserStoriesController < ApplicationController
 
   def build_drawers
     retval = []
+
+    retval.push({\
+      :partial_name => "drawer_project_notes"\
+      , :drawer_header => "Project Notes"\
+      , :handle_text => "notes"\
+    })
 
     retval.push({\
       :partial_name => "drawer_filters"\
